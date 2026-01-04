@@ -1,0 +1,71 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: praca.aux
+The style file: unsrt.bst
+Database file #1: bibliografia/bibliografia.bib
+Repeated entry---line 395 of file bibliografia/bibliografia.bib
+ : @book{Géron2019
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 409 of file bibliografia/bibliografia.bib
+ : @book{Sze2017
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 423 of file bibliografia/bibliografia.bib
+ : @book{Lin2014
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 453 of file bibliografia/bibliografia.bib
+ : @misc{yolo_usage
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 467 of file bibliografia/bibliografia.bib
+ : @article{Bochkovskiy2020
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 481 of file bibliografia/bibliografia.bib
+ : @book{Géron2019
+ :                ,
+I'm skipping whatever remains of this entry
+You've used 18 entries,
+            1791 wiz_defined-function locations,
+            539 strings with 6064 characters,
+and the built_in function-call counts, 3087 in all, are:
+= -- 241
+> -- 153
+< -- 1
++ -- 60
+- -- 42
+* -- 110
+:= -- 487
+add.period$ -- 53
+call.type$ -- 18
+change.case$ -- 14
+chr.to.int$ -- 0
+cite$ -- 18
+duplicate$ -- 142
+empty$ -- 366
+format.name$ -- 42
+if$ -- 723
+int.to.chr$ -- 0
+int.to.str$ -- 18
+missing$ -- 11
+newline$ -- 92
+num.names$ -- 18
+pop$ -- 111
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 67
+stack$ -- 0
+substring$ -- 40
+swap$ -- 32
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 21
+width$ -- 20
+write$ -- 185
+(There were 6 error messages)

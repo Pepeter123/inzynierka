@@ -1,0 +1,28 @@
+
+\subsection*{Streszczenie}
+
+Celem niniejszej pracy by³o opracowanie systemu wykrywania i rozpoznawania obiektów na obrazach pochodz¹cych z kamery samochodowej, z zastosowaniem algorytmu YOLOv4 oraz symulatora jazdy samochodowej CARLA. Projekt zak³ada³ integracjê detektora obiektów z symulowanym œrodowiskiem oraz ocenê jego skutecznoœci w ró¿nych warunkach drogowych i pogodowych.
+
+W pierwszej czêœci pracy przedstawiono charakterystykê œrodowiska CARLA oraz przegl¹d metod wykrywania obiektów w obrazach. Nastêpnie zaprojektowano i zaimplementowano system detekcji, który umo¿liwia identyfikacjê pojazdów, pieszych i znaków drogowych w czasie rzeczywistym. System zosta³ przetestowany w symulowanych warunkach, a uzyskane wyniki wykaza³y wysok¹ skutecznoœæ detekcji oraz stabilnoœæ dzia³ania.
+
+Na podstawie przeprowadzonych badañ stwierdzono, ¿e opracowany system spe³nia za³o¿one cele i mo¿e stanowiæ podstawê do dalszych prac nad percepcj¹ œrodowiska w pojazdach autonomicznych.
+
+
+% d³u¿sze
+% W niniejszej pracy in¿ynierskiej przedstawiono projekt oraz implementacjê systemu wykrywania i rozpoznawania obiektów w œrodowisku symulacyjnym CARLA z wykorzystaniem algorytmu YOLOv4. Celem pracy by³o stworzenie kompletnego rozwi¹zania umo¿liwiaj¹cego analizê otoczenia pojazdu w czasie rzeczywistym na podstawie obrazu z kamery samochodowej, w kontekœcie zastosowania w systemach wspomagania kierowcy oraz pojazdach autonomicznych.      Praca zosta³a rozpoczêta od zapoznania siê z architektur¹ i funkcjonalnoœciami symulatora CARLA, który dostarcza realistyczne warunki symulacyjne dla ruchu drogowego, uwzglêdniaj¹c ró¿ne warunki atmosferyczne, pory dnia, infrastrukturê miejsk¹ i pozamiejsk¹. W kolejnych etapach przeprowadzono analizê wspó³czesnych metod detekcji obiektów, koncentruj¹c siê na rodzinie algorytmów YOLO (You Only Look Once), ze szczególnym uwzglêdnieniem YOLOv4, który oferuje wysok¹ precyzjê oraz efektywnoœæ dzia³ania przy detekcji wielu klas obiektów.         G³ówna czêœæ pracy skupia siê na integracji modelu detekcji YOLOv4 z kodem Ÿród³owym CARLA, a w szczególnoœci z modu³em manual_control.py, odpowiedzialnym za sterowanie i wizualizacjê symulacji. Zaimplementowany system umo¿liwia wykrywanie pojazdów, pieszych, znaków drogowych i innych istotnych elementów infrastruktury drogowej. Obiekty s¹ oznaczane w czasie rzeczywistym na ekranie symulatora za pomoc¹ prostok¹tów oraz etykiet opisuj¹cych klasê rozpoznanego obiektu. W trakcie implementacji uwzglêdniono wykorzystanie GPU, optymalizacjê przetwarzania obrazu oraz odpowiednie przekszta³cenia i normalizacjê danych wejœciowych.       Zwieñczeniem pracy by³a seria testów przeprowadzonych w ró¿nych scenariuszach symulacyjnych. Uzyskane wyniki potwierdzi³y skutecznoœæ dzia³ania systemu – wykrywane by³y wszystkie obiekty istotne z punktu widzenia systemów bezpieczeñstwa i autonomii pojazdu. Opracowane oprogramowanie mo¿e byæ z powodzeniem wykorzystane jako narzêdzie badawcze, a tak¿e jako prototyp systemu do zastosowania w realnych warunkach.
+
+% stare
+% W pracy opisane zosta³y technologie jak i kroki niezbêdne do stworzenia systemu do wykrywania i rozpoznawania obiektów na podstawie obrazów pochodz¹cych z kamery samochodowej z wykorzystaniem symulatora CARLA. W tym celu u¿yty zosta³ system wykrywania obiektów w czasie rzeczywistym YOLOv4 na platformie sieci neuronowych Darknet, napisanym w jêzyku Python.    Pokazano w jaki sposób zainstalowaæ symulator CARLA w dystrybucji systemu Linux a mianowicie Ubuntu. Przedstawiony zosta³ proces instalacji zale¿noœci, pobierania Ÿróde³ CARLA, kompilacji projektu, uruchamiania symulatora oraz instalacji niezbêdnych pakietów Pythona. Dziêki tym krokom zosta³o przygotowane œrodowisko, aby zacz¹æ korzystaæ z CARLA i eksperymentowaæ z symulacjami pojazdów autonomicznych.          Skrypt \texttt{manual\_control.py} w symulatorze CARLA pozwala na interakcjê z pojazdem w sposób manualny, wykorzystuj¹c standardowe urz¹dzenia wejœciowe, takie jak klawiatura. Jego struktura opiera siê na kilku kluczowych etapach: konfiguracji klienta, obs³udze wejœcia u¿ytkownika, g³ównej pêtli gry oraz czyszczeniu zasobów po zakoñczeniu symulacji. Dziêki odpowiedniemu zarz¹dzaniu wejœciem i kontrol¹ pojazdu, mo¿liwe jest uzyskanie realistycznego i intuicyjnego doœwiadczenia symulacyjnego.          Zaimplementowane oprogramowanie demonstruje kompleksowe podejœcie do integracji algorytmów sztucznej inteligencji z symulatorem jazdy autonomicznej. System umo¿liwia dynamiczn¹ analizê otoczenia pojazdu, interaktywne testowanie scenariuszy oraz wizualn¹ walidacjê wyników, co czyni go niezwykle cennym narzêdziem in¿ynierskim i badawczym.
+
+
+
+% Mateusza
+% Przetwarzanie danych oraz tworzenie zapytañ przy u¿yciu sk³adni SQL, umo¿liwi³ Hive Apache jako silnik hurtowni danych. G³ównym elementem ka¿dej hurtowni danych jest analiza du¿ych zbiorów informacji, do której wykorzystane zosta³o oprogramowanie Pentaho zapewniaj¹ce analizê biznesow¹. Za ?rodowisko pracy wykorzystano Ubuntu, czyli jedna z najpopularniejszych dystrybucji Linuxa na ?wiecie.
+%
+
+
+
+\vspace{1cm}
+\noindent\textbf{S³owa kluczowe:} symulator CARLA, YOLO4,  Darknet, Python, Ubuntu, detekcja obiektów, rozpoznawanie obrazów, sztuczna inteligencja
+%Mateusza
+%hurtownia danych, Apache Hadoop, Apache Hive, Pentaho, Ubuntu.

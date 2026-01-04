@@ -1,0 +1,77 @@
+\chapter{Wstêp}
+
+%======================================================================================================
+\section{Wprowadzenie}
+
+Wspó³czesna motoryzacja dynamicznie ewoluuje, a jednym z kluczowych obszarów jej rozwoju s¹ systemy rozpoznawania i wykrywania obiektów. Technologie te, wykorzystuj¹ce sztuczn¹ inteligencjê i uczenie maszynowe, pozwalaj¹ na analizê otoczenia w czasie rzeczywistym, co znajduje zastosowanie zarówno w systemach wspomagania kierowcy (ADAS), jak i w pojazdach autonomicznych. Dziêki nim mo¿liwe jest m.in. rozpoznawanie znaków drogowych, wykrywanie przeszkód czy monitorowanie martwego pola, co przek³ada siê na zwiêkszenie bezpieczeñstwa na drogach.
+
+Jednym z g³ównych wyzwañ w rozwijaniu tych technologii jest ich testowanie w realistycznych warunkach. Tradycyjne metody, takie jak rzeczywiste jazdy testowe, s¹ kosztowne i czasoch³onne, a dodatkowo mog¹ wi¹zaæ siê z ryzykiem wypadków. Dlatego coraz czêœciej wykorzystuje siê symulacje komputerowe, które pozwalaj¹ na przeprowadzanie eksperymentów w kontrolowanych warunkach. Jednym z najbardziej zaawansowanych narzêdzi w tej dziedzinie jest symulator CARLA (Car Learning to Act) – otwartoŸród³owe œrodowisko stworzone z myœl¹ o badaniach nad autonomiczn¹ jazd¹ oraz systemami percepcji wizualnej pojazdów~\cite{carla}.
+
+W niniejszej pracy zostan¹ omówione kluczowe aspekty wykrywania i rozpoznawania obiektów na podstawie obrazu z kamer samochodowych, a tak¿e mo¿liwoœci wykorzystania symulatora CARLA do badañ w tym zakresie.
+
+Przyk³ady zastosowañ systemów rozpoznawania obrazu w motoryzacji:
+\begin{itemize}
+	\item \textbf{Systemy wspomagania kierowcy (ADAS)}
+	\begin{itemize}
+		\item \textbf{Rozpoznawanie znaków drogowych} – pozwala na identyfikacjê znaków takich jak ograniczenia prêdkoœci czy zakazy wyprzedzania, pomagaj¹c kierowcom w przestrzeganiu przepisów.
+		\item \textbf{Ostrzeganie o niezamierzonej zmianie pasa ruchu} – system analizuje po³o¿enie pojazdu i informuje kierowcê o niekontrolowanym opuszczeniu pasa.
+		\item \textbf{Adaptacyjny tempomat} – automatycznie dostosowuje prêdkoœæ pojazdu do warunków na drodze, utrzymuj¹c bezpieczn¹ odleg³oœæ od innych pojazdów.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{Systemy bezpieczeñstwa}
+	\begin{itemize}
+		\item \textbf{Automatyczne hamowanie awaryjne} – wykrywa potencjalne kolizje i inicjuje hamowanie, aby zminimalizowaæ ryzyko wypadku.
+		\item \textbf{Monitorowanie martwego pola} – ostrzega kierowcê o pojazdach znajduj¹cych siê w obszarach niewidocznych w lusterkach.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{Autonomiczne pojazdy i analiza otoczenia}
+	\begin{itemize}
+		\item \textbf{Identyfikacja przeszkód i u¿ytkowników drogi} – pozwala na wykrywanie pieszych, rowerzystów oraz innych pojazdów, umo¿liwiaj¹c pojazdom autonomicznym bezpieczne poruszanie siê po drogach.
+		\item \textbf{Predykcja zachowañ innych uczestników ruchu} – analiza sygna³ów drogowych, ruchu pieszych i pojazdów umo¿liwia przewidywanie ich manewrów i odpowiednie reagowanie.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{Systemy wspomagaj¹ce parkowanie}
+	\begin{itemize}
+		\item \textbf{Automatyczne parkowanie} – pojazd mo¿e samodzielnie wykonaæ manewry parkowania, korzystaj¹c z kamer i czujników.
+		\item \textbf{Widok 360°} – system kamer rozmieszczonych wokó³ pojazdu u³atwia manewrowanie w ciasnych przestrzeniach.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{Monitorowanie stanu kierowcy}
+	\begin{itemize}
+		\item \textbf{Systemy wykrywaj¹ce zmêczenie} – analizuj¹ ruchy kierowcy, takie jak czêstotliwoœæ mrugania czy pozycja g³owy, ostrzegaj¹c w przypadku wykrycia oznak zmêczenia.
+	\end{itemize}
+\end{itemize}
+% 
+%======================================================================================================
+
+\section{Cel i zakres pracy}
+
+W zwi¹zku coraz wiêksz¹ iloœci¹ samochodów na drogach istnieje potrzeba ci¹g³ego rozwoju bran¿y systemów wspomagaj¹cych zarówno kierowców jak i samych pojazdów. 
+Proces ten skupia siê nie tylko na udoskonalaniu pojazdów samochodowych, ale równie¿ ci¹g³ym tworzeniem przepisów prawnych, które maj¹ sk³oniæ ich u¿ytkowników do bezpieczniejszej jazdy. 
+Poza aspektami prawnymi istotnym czynnikiem jest wyposa¿enie samochodu w systemy pomocnice, które pozwalaj¹ kierowcy na podejmowanie szybkich i przemyœlanych decyzji podczas jazdy. G³ównym celem pracy zosta³o stworzenie systemu, umo¿liwiaj¹cego wykrywanie i rozpoznawanie obiektów na podstawie obrazów pochodz¹cych z kamery samochodowej. W tym celu przyjêto za³o¿enie, i¿ praca zostanie zrealizowana za pomoc¹ symulatora CARLA.
+
+Symulator CARLA pozwala na proste i sprawne weryfikowanie stworzonych rozwi¹zañ, za poœrednictwem symulacji wyposa¿onej w zestaw odpowiednich ustawieñ œrodowiskowych zapewnionych przez developerów.
+
+Zakres pracy obejmowa³:
+
+\begin{itemize}
+	\item zgromadzenie i zapoznanie siê z literatur¹ dotycz¹c¹ systemów jak i algorytmów s³u¿¹cych do rozpoznawania obiektów
+	\item ustalenie wymagañ
+\end{itemize}
+
+
+\section{Struktura pracy}
+Tu powinno znaleŸæ siê omówienie treœci pracy w postaci opisu zawartoœci poszczególnych rozdzia³ów.
+
+
+
+\textbf{Uwaga:} Treœæ tego rozdzia³u najrozs¹dniej napisaæ \underline{po napisaniu} pozosta³ej czêœci pracy.
+

@@ -1,0 +1,65 @@
+\chapter{Dyskusja rezultatów i wnioski koñcowe}
+%=================================================================================================
+Celem niniejszej pracy by³o opracowanie systemu wykrywania i rozpoznawania obiektów takich jak znaki drogowe, pojazdy oraz piesi na obrazach pochodz¹cych z kamery samochodowej, z wykorzystaniem algorytmu detekcji YOLOv4 oraz œrodowiska symulacyjnego CARLA. Projekt zak³ada³ implementacjê rozwi¹zania w jêzyku Python, integracjê modelu g³êbokiego uczenia ze œrodowiskiem symulacyjnym oraz weryfikacjê skutecznoœci rozwi¹zania poprzez testy wirtualne w ró¿nych warunkach drogowych.
+
+Wszystkie cele okreœlone w zakresie pracy zosta³y zrealizowane:
+
+\begin{itemize}
+	\item Zapoznano siê z funkcjonalnoœci¹ œrodowiska CARLA, analizuj¹c jego architekturê, mo¿liwoœci sterowania pojazdem oraz integracji z zewnêtrznym oprogramowaniem.
+	\item Przeprowadzono przegl¹d metod wykrywania obiektów na obrazach z kamer samochodowych, ze szczególnym uwzglêdnieniem algorytmu YOLO jako rozwi¹zania kompromisowego miêdzy szybkoœci¹ a dok³adnoœci¹.
+	\item Zaimplementowano system detekcji obiektów, integruj¹c YOLOv4 z symulatorem CARLA poprzez modyfikacjê skryptu \texttt{manual\_control.py}.
+	\item Przeprowadzono testy, które pozwoli³y oceniæ skutecznoœæ detekcji w ró¿nych scenariuszach symulacyjnych (np. zmienne warunki pogodowe, ró¿na liczba obiektów, perspektywa kamery).
+	\item Sformu³owano wnioski oraz wskazano kierunki dalszego rozwoju systemu.
+\end{itemize}
+
+\subsection*{Wnioski}
+Integracja detektorów obiektów z symulatorami stanowi obecnie nieod³¹czny element testowania algorytmów autonomicznej jazdy – zarówno na etapie prototypowania, jak i walidacji modeli w œrodowiskach kontrolowanych.
+
+Przeprowadzone eksperymenty wykaza³y, ¿e model YOLOv4 bardzo dobrze sprawdza siê w zadaniu wykrywania obiektów w czasie rzeczywistym. Uzyskane rezultaty by³y zadowalaj¹ce zarówno pod wzglêdem liczby wykrytych obiektów, jak i ich klasyfikacji. Model skutecznie identyfikowa³ pojazdy, ludzi oraz znaki drogowe w ró¿nych warunkach oœwietleniowych i pogodowych.
+
+Na tle innych podejœæ, np. SSD czy Faster R-CNN, YOLOv4 wyró¿nia siê znacznie wy¿sz¹ prêdkoœci¹ dzia³ania, co ma kluczowe znaczenie w kontekœcie pojazdów autonomicznych. Choæ dok³adnoœæ detekcji mo¿e byæ nieco ni¿sza ni¿ w przypadku modeli bardziej z³o¿onych, to kompromis pomiêdzy szybkoœci¹ a precyzj¹ zosta³ zachowany na bardzo dobrym poziomie, co potwierdza literatura przedmiotu oraz wyniki innych badaczy w tej dziedzinie.
+
+Na podstawie przeprowadzonych testów mo¿na sformu³owaæ nastêpuj¹ce wnioski:
+
+\begin{enumerate}
+	\item Œrodowisko CARLA umo¿liwia realistyczn¹ symulacjê warunków jazdy, co pozwala na skuteczne testowanie algorytmów percepcyjnych bez koniecznoœci korzystania z rzeczywistych pojazdów.
+	
+	\item Algorytm YOLOv4 zapewnia wysok¹ wydajnoœæ w czasie rzeczywistym, dziêki czemu mo¿liwe jest wykrywanie wielu obiektów (samochody, piesi, znaki) przy zachowaniu p³ynnoœci dzia³ania systemu.
+	
+	\item Integracja detektora z kodem symulacyjnym CARLA, w tym przechwytywanie obrazu, przetwarzanie klatek oraz renderowanie detekcji, mo¿e byæ zrealizowana w sposób stabilny i modularny. Modu³owa struktura umo¿liwia ³atwe rozszerzanie funkcjonalnoœci w przysz³oœci.
+	
+	\item Wprowadzenie mo¿liwoœci filtrowania klas oraz dynamicznego renderowania wyników na ekranie znacz¹co poprawia czytelnoœæ systemu i u³atwia analizê zachowania modelu.
+	
+	\item Otrzymane rezultaty w pe³ni uzasadniaj¹ osi¹gniêcie za³o¿onych celów, gdy¿ zaprojektowany system wykrywa obiekty z du¿¹ dok³adnoœci¹ i niskim opóŸnieniem, co odpowiada wymaganiom stawianym przed systemami percepcji w pojazdach autonomicznych.
+\end{enumerate}
+
+Mimo pozytywnych rezultatów, nale¿y wskazaæ kilka ograniczeñ i mo¿liwoœci ich eliminacji:
+
+\begin{itemize}
+	\item Model YOLOv4 nie zawsze poprawnie rozpoznaje obiekty w du¿ym oddaleniu lub w s³abych warunkach oœwietleniowych, co mo¿e wynikaæ z ograniczeñ danych treningowych lub niskiej rozdzielczoœci obrazu.
+	
+	\item Detekcja odbywa siê wy³¹cznie na podstawie danych wizyjnych – system móg³by zostaæ ulepszony poprzez fuzjê danych z innych sensorów (np. LIDAR, radar), co poprawi³oby jego odpornoœæ na b³êdy w trudnych warunkach.
+	
+	\item Wyniki testowanego systemu zosta³y przedstawione na podstawie zrzutów ekranu, przedstawiaj¹c pojedyncz¹ klatê. Jako, i¿ system umo¿liwia rozpoznawanie obiektów w czasie rzeczywistym nie by³o mo¿liwe przedstawienie tego w formie pisemnej. 
+	
+	\item Testy przeprowadzono wy³¹cznie w œrodowisku symulacyjnym, które – mimo wysokiego realizmu – nie oddaje w pe³ni nieprzewidywalnoœci œwiata rzeczywistego. Wdro¿enie systemu na realnych danych wymaga³oby dalszego dostrojenia i oceny.
+	
+	\item Z powodu ograniczeñ sprzêtowych system zosta³ przetestowany w nieco gorszych warunkach, ni¿ zalecanych przez sam symulator CARLA. Dodatkowo system do detekcji obiektów YOLO pobiera kolejne zasoby sprzêtowy na skutek czego w gorszych warunkach pogodowych, takich jak noc czy deszcz oraz przy du¿ym natê¿eniu ruchu iloœæ klatek by³a bardzo niska.
+\end{itemize}
+
+\subsection*{Mo¿liwy rozwój systemu}
+W oparciu o zdobyt¹ wiedzê, mo¿liwe s¹ nastêpuj¹ce kierunki rozwoju systemu:
+
+\begin{itemize}
+	\item Zastosowanie modelu YOLOv8 lub innych nowszych architektur, które oferuj¹ lepsz¹ dok³adnoœæ i mo¿liwoœæ pracy na mniejszych urz¹dzeniach (np. Jetson Nano, Raspberry Pi).
+	
+	\item Rozszerzenie systemu o modu³ decyzyjny, który na podstawie wykrytych obiektów podejmuje dzia³ania – np. zatrzymanie pojazdu, zmiana pasa, ostrze¿enie o niebezpieczeñstwie.
+	
+	\item Wprowadzenie mechanizmów oceny jakoœci detekcji (precision, recall, mAP) oraz zapisywanie wyników do analizy porównawczej.
+	
+	\item Implementacja systemu œledzenia obiektów (np. Deep SORT), co pozwoli³oby na analizê trajektorii oraz zachowañ uczestników ruchu drogowego.
+	
+	\item Testowanie systemu na rzeczywistych nagraniach z kamer samochodowych, celem oceny jego przydatnoœci w praktycznych wdro¿eniach.
+\end{itemize}
+
+Ostatecznie, praca w pe³ni zrealizowa³a zak³adane cele i potwierdzi³a skutecznoœæ po³¹czenia narzêdzi symulacyjnych z algorytmami g³êbokiego uczenia w kontekœcie systemów percepcyjnych. W oparciu o przeprowadzone badania oraz analizê wyników mo¿na stwierdziæ, ¿e integracja YOLOv4 z symulatorem CARLA stanowi efektywne, elastyczne i przysz³oœciowe narzêdzie do projektowania systemów rozpoznawania otoczenia w pojazdach autonomicznych.

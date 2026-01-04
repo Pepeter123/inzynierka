@@ -1,0 +1,429 @@
+\chapter{System rozpoznawania obrazÛw}
+
+\textbf{Rozpoznawanie obrazÛw} to dziedzina komputerowego przetwarzania danych, ktÛrej celem jest identyfikacja i klasyfikacja obiektÛw w obrazach cyfrowych. W ostatnich latach, dziÍki rozwojowi g≥Íbokiego uczenia (deep learning) oraz sieci neuronowych, osiπgniÍto znaczπcy postÍp w tej dziedzinie.
+
+\textbf{Sieci neuronowe} to modele matematyczne inspirowane strukturπ ludzkiego mÛzgu, sk≥adajπce siÍ z po≥πczonych ze sobπ neuronÛw (wÍz≥Ûw), ktÛre przetwarzajπ informacje. G≥Íbokie uczenie odnosi siÍ do sieci neuronowych o wielu warstwach (tzw. g≥Íbokich sieci), ktÛre potrafiπ uczyÊ siÍ reprezentacji danych na rÛønych poziomach abstrakcji. W kontekúcie rozpoznawania obrazÛw, najczÍúciej stosuje siÍ konwolucyjne sieci neuronowe (Convolutional Neural Networks, CNN), ktÛre sπ szczegÛlnie efektywne w analizie danych obrazowych.
+
+Poniøej przedstawiono \textbf{przeglπd kluczowych architektur} stosowanych w rozpoznawaniu obrazÛw, wraz z ich charakterystykπ i przyk≥adami.
+
+\begin{itemize}
+	\item \textbf{R-CNN (Region-based Convolutional Neural Networks)} to jedna z pierwszych skutecznych metod detekcji obiektÛw, oparta na analizie wybranych regionÛw obrazu. W pierwszym etapie stosowany jest algorytm \textit{Selective Search}, ktÛry generuje oko≥o 2000 propozycji obszarÛw potencjalnie zawierajπcych obiekty, uwzglÍdniajπc cechy takie jak kolor, tekstura czy kszta≥t. Kaødy region jest nastÍpnie skalowany i przetwarzany przez sieÊ konwolucyjnπ (CNN), co pozwala na ekstrakcjÍ cech wizualnych. Ostatecznie, klasyfikator SVM decyduje o przynaleønoúci danego regionu do konkretnej klasy, a regresor liniowy doprecyzowuje wspÛ≥rzÍdne ramki ograniczajπcej.~\cite{ren2015faster}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{Rysunki/Rozdzial3/RCNN.png}
+		\caption[RCNN]{Schemat dzia≥ania R-CNN.}
+		\label{fig:RCNN}
+	\end{figure}
+	
+	ChoÊ metoda ta cechuje siÍ wysokπ precyzjπ detekcji, jej g≥Ûwnπ wadπ pozostaje duøe zapotrzebowanie obliczeniowe zwiπzane z koniecznoúciπ analizowania tysiÍcy regionÛw dla kaødego obrazu.
+
+	\item \textbf{Fast R-CNN} to ulepszona wersja modelu R-CNN, zaprojektowana z myúlπ o zwiÍkszeniu wydajnoúci i redukcji czasoch≥onnoúci procesu detekcji obiektÛw. G≥Ûwne usprawnienie polega na zastosowaniu jednej sieci konwolucyjnej (CNN) do ekstrakcji cech z ca≥ego obrazu przed wygenerowaniem propozycji regionÛw, co eliminuje koniecznoúÊ wielokrotnego przetwarzania tych samych obszarÛw.
+	
+	Zamiast klasyfikatora SVM, Fast R-CNN wykorzystuje wbudowanπ warstwÍ softmax do rozpoznawania klas obiektÛw oraz regresjÍ do dok≥adnej lokalizacji ramek ograniczajπcych. Regiony zainteresowania (RoI) sπ przekszta≥cane za pomocπ operacji \textit{RoI Pooling}, ktÛra dostosowuje ich wymiary do jednolitego formatu wejúciowego dla dalszej klasyfikacji.
+	
+	DziÍki integracji tych rozwiπzaÒ Fast R-CNN znacznie skraca czas przetwarzania i umoøliwia efektywne wykrywanie obiektÛw przy zachowaniu wysokiej dok≥adnoúci.~\cite{girshick2015fast}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{Rysunki/Rozdzial3/fastRCNN.png}
+		\caption[fastRCNN]{Schemat dzia≥ania Fast R-CNN.}
+		\label{fig:fastRcnn}
+	\end{figure}
+
+	\item \textbf{Faster R-CNN} to zaawansowana architektura detekcji obiektÛw, ktÛra integruje SieÊ Generujπcπ Propozycje RegionÛw (Region Proposal Network, RPN) z g≥Ûwnπ sieciπ konwolucyjnπ. Kluczowπ innowacjπ jest eliminacja potrzeby korzystania z zewnÍtrznych algorytmÛw generujπcych propozycje regionÛw, co znacznie skraca czas detekcji i zwiÍksza efektywnoúÊ~\cite{ren2015faster}.
+	
+	Ca≥y obraz jest najpierw przetwarzany przez CNN w celu uzyskania map cech. NastÍpnie RPN generuje regiony zainteresowania bezpoúrednio na podstawie tych map, przewidujπc zarÛwno ich pozycje, jak i prawdopodobieÒstwo zawierania obiektÛw. Regiony te sπ klasyfikowane oraz doprecyzowywane przez koÒcowy modu≥ sieci. DziÍki wspÛ≥dzieleniu warstw konwolucyjnych pomiÍdzy RPN a modu≥em klasyfikacyjnym, Faster R-CNN oferuje wysokπ dok≥adnoúÊ przy znacznie lepszej wydajnoúci niø jego poprzednicy.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{Rysunki/Rozdzial3/fasterRCNN2.png}
+		\caption[fasterRCNN2]{Schemat dzia≥ania Faster R-CNN.}
+		\label{fig:fasterRcnn2}
+	\end{figure}
+
+	\item \textbf{SSD (Single Shot MultiBox Detector)} to jednowarstwowa architektura detekcji obiektÛw, ktÛra, w przeciwieÒstwie do metod opartych na regionach, takich jak R-CNN, wykonuje detekcjÍ i klasyfikacjÍ obiektÛw w jednym kroku. DziÍki temu SSD jest szybsza i bardziej efektywna, co czyni jπ odpowiedniπ do zastosowaÒ w czasie rzeczywistym.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{Rysunki/Rozdzial3/ssd_architecture.png}
+		\label{fig:ssd_architecture}
+		\caption[SSD]{Schemat architektury SSD \cite{liu2016ssd}.}
+	\end{figure} 
+	
+	SSD wykorzystuje konwolucyjne sieci neuronowe (CNN) do ekstrakcji cech obrazu i jednoczesnej predykcji po≥oøenia oraz klasy obiektÛw na wielu skalach. Model sk≥ada siÍ z:
+	\begin{itemize}
+		\item \textbf{Sieci bazowej} ñ najczÍúciej stosuje siÍ architekturÍ VGG16 bez w pe≥ni po≥πczonych warstw,
+		\item \textbf{Dodatkowych warstw konwolucyjnych} ñ umoøliwiajπ one detekcjÍ obiektÛw na rÛønych poziomach szczegÛ≥owoúci,
+		\item \textbf{Mechanizmu MultiBox} ñ generuje wiele ramki ograniczajπcych (bounding boxes) o rÛønych proporcjach i rozmiarach,
+		\item \textbf{Funkcji straty} ñ sk≥ada siÍ z dwÛch komponentÛw: b≥Ídu klasyfikacji (cross-entropy loss) oraz b≥Ídu lokalizacji (smooth L1 loss).
+	\end{itemize}
+	
+	DziÍki swojej szybkoúci i efektywnoúci SSD znajduje zastosowanie w wielu dziedzinach, takich jak:
+	\begin{itemize}
+		\item Systemy monitoringu wizyjnego,
+		\item Rozpoznawanie obiektÛw w autonomicznych pojazdach,
+		\item Aplikacje rzeczywistoúci rozszerzonej (AR),
+		\item Systemy wspomagania kierowcy (ADAS).
+	\end{itemize}
+	
+	\item \textbf{YOLO (You Only Look Once)} to kolejna jednowarstwowa architektura, ktÛra traktuje detekcjÍ obiektÛw jako problem regresji, przewidujπc bezpoúrednio klasy i po≥oøenie obiektÛw w obrazie. DziÍki temu YOLO osiπga bardzo wysokπ szybkoúÊ detekcji, co jest istotne w aplikacjach wymagajπcych przetwarzania w czasie rzeczywistym.
+	
+	\item \textbf{DETR (Detection Transformer)} to nowoczesna architektura detekcji obiektÛw oparta na transformatorach, ktÛra integruje mechanizmy uwagi (attention mechanisms) w procesie detekcji. DETR eliminuje potrzebÍ stosowania tradycyjnych metod generowania propozycji regionÛw, co upraszcza proces detekcji i pozwala na bardziej efektywne wykorzystanie danych.
+	
+	Schemat dzia≥ania DETR
+	èrÛd≥o: End-to-End Object Detection with Transformers
+	
+\end{itemize}
+
+Poniøsza tabela przedstawia \textbf{porÛwnanie omÛwionych architektur} pod wzglÍdem szybkoúci i dok≥adnoúci detekcji:
+
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Architektura & SzybkoúÊ (FPS)              & Dok≥adnoúÊ (mAP) & Zastosowanie                         \\ 
+			\hline
+			R-CNN        &  1 FPS                      & Wysoka           & Analiza offline                      \\ 
+			\hline
+			Fast R-CNN   & \textasciitilde{}2-3 FPS    & Wysoka           & Analiza offline                      \\ 
+			\hline
+			Faster R-CNN & \textasciitilde{}5-10 FPS   & Bardzo wysoka    & Zastosowania wymagajπce dok≥adnoúci  \\ 
+			\hline
+			SSD          & \textasciitilde{}20-60 FPS  & årednia          & Zastosowania w czasie rzeczywistym   \\ 
+			\hline
+			YOLO         & \textasciitilde{}45-150 FPS & Wysoka           & Wykrywanie w czasie rzeczywistym     \\ 
+			\hline
+			DETR         & \textasciitilde{}10-20 FPS  & Bardzo wysoka    & Nowoczesne zastosowania AI           \\
+			\hline
+		\end{tabular}
+	}
+	\caption{PorÛwnanie wybranych architektur}
+\end{table}
+
+Rozpoznawanie obrazÛw z wykorzystaniem sieci neuronowych jest obecnie jednπ z kluczowych technologii w dziedzinie sztucznej inteligencji. DziÍki zastosowaniu zaawansowanych architektur, takich jak R-CNN, SSD, YOLO czy DETR, moøliwe jest osiπganie wysokiej dok≥adnoúci i szybkoúci detekcji obiektÛw. WybÛr odpowiedniej architektury zaleøy od specyficznych wymagaÒ aplikacji, takich jak potrzeba przetwarzania w czasie rzeczywistym, dostÍpnoúÊ zasobÛw obliczeniowych oraz dok≥adnoúÊ rozpoznawania.
+
+Przysz≥y rozwÛj w tej dziedzinie prawdopodobnie bÍdzie koncentrowa≥ siÍ na dalszym zwiÍkszaniu efektywnoúci modeli, integracji z systemami opartymi na transformatorach oraz rozwijaniu metod rozpoznawania obiektÛw w trudnych warunkach úrodowiskowych.
+\section{YOLOv4 i konwolucyjne sieci neuronowe}
+
+YOLOv4 (\textit{You Only Look Once version 4}) to jeden z najnowszych modeli s≥uøπcych do detekcji obiektÛw w obrazach i wideo, naleøπcy do rodziny algorytmÛw YOLO. Jego celem jest osiπgniÍcie wysokiej precyzji przy jednoczesnym zachowaniu duøej szybkoúci dzia≥ania. YOLOv4 opiera siÍ na konwolucyjnych sieciach neuronowych (CNN), ktÛre umoøliwiajπ ekstrakcjÍ cech wizualnych z obrazÛw oraz ich klasyfikacjÍ \cite{yolov4_paper}.
+
+\subsection{Konwolucyjne sieci neuronowe (CNN)}
+
+Konwolucyjne sieci neuronowe (CNN) sπ rodzajem sztucznych sieci neuronowych szczegÛlnie skutecznym w analizie obrazÛw. Dzia≥ajπ one w sposÛb hierarchiczny, w ktÛrym rÛøne warstwy sieci uczπ siÍ wykrywaÊ rÛøne cechy obrazu ó od prostych krawÍdzi i tekstur w poczπtkowych warstwach, po bardziej z≥oøone struktury, takie jak twarze czy obiekty w g≥Íbszych warstwach. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{Rysunki/Rozdzial3/cnn_structure.png}
+	\caption{Schemat struktury konwolucyjnej sieci neuronowej~\cite{esezam}.}
+	\label{fig:cnn}
+\end{figure}
+
+Konwolucyjne sieci neuronowe sk≥adajπ siÍ z trzech g≥Ûwnych typÛw warstw:
+\begin{itemize}
+	\item \textbf{Warstwa konwolucyjna (Convolutional Layer)} - wykonuje operacjÍ konwolucji na obrazie wejúciowym, wykrywajπc podstawowe cechy, takie jak krawÍdzie, rogi i tekstury.
+	\item \textbf{Warstwa aktywacji (Activation Layer)} - czÍsto stosuje funkcjÍ aktywacyjnπ ReLU (Rectified Linear Unit), ktÛra wprowadza nieliniowoúÊ do sieci.
+	\item \textbf{Warstwa poolingowa (Pooling Layer)} - zmniejsza rozmiar danych, podsumowujπc cechy w danym obszarze, co prowadzi do zmniejszenia liczby parametrÛw i zwiÍkszenia wydajnoúci obliczeniowej.
+\end{itemize}
+
+Zosta≥y one opracowane przez LeCuna, Bengio i Hintona w 2015 roku \cite{cnn_survey}, a ich celem by≥o umoøliwienie maszynom skutecznego rozpoznawania wzorcÛw w danych wizualnych, takich jak obrazy.
+
+---------------------------------------------------------------
+\section{Zasada dzia≥ania algorytmu YOLO i YOLOv4}
+
+Algorytm \textit{YOLO} (You Only Look Once) stanowi jedno z najefektywniejszych rozwiπzaÒ dla zadania detekcji obiektÛw w czasie rzeczywistym. Jego g≥Ûwnym za≥oøeniem jest jednorazowe przetworzenie obrazu przez sieÊ neuronowπ, ktÛra rÛwnoczeúnie lokalizuje oraz klasyfikuje obiekty. Proces ten odbywa siÍ poprzez podzia≥ obrazu wejúciowego na siatkÍ przestrzennπ o zadanej rozdzielczoúci, np. $13\times13$, $26\times26$ lub $52\times52$, przy czym kaøda komÛrka siatki odpowiada za detekcjÍ obiektÛw, ktÛrych úrodek znajduje siÍ w jej obrÍbie.
+
+W kaødej komÛrce siatki generowanych jest kilka tzw. \textit{anchor boxes}, czyli wczeúniej zdefiniowanych propozycji ramki detekcyjnej o charakterystycznych proporcjach. Dla kaødego takiego anchor boxa sieÊ przewiduje wspÛ≥rzÍdne ramki obiektu, wartoúÊ ufnoúci (\textit{objectness score}) oraz prawdopodobieÒstwa przynaleønoúci do poszczegÛlnych klas. Zak≥ada siÍ, øe dla kaødej komÛrki moøliwa jest detekcja wielu obiektÛw, przy czym w typowej konfiguracji YOLOv4 sπ to trzy ramki na kaødπ komÛrkÍ, co dla siatki $13\times13$ daje ≥πcznie 507 moøliwoúci detekcyjnych.
+
+W przypadku algorytmu \textit{YOLOv4} architektura zosta≥a zoptymalizowana w celu uzyskania kompromisu pomiÍdzy precyzjπ detekcji a szybkoúciπ dzia≥ania, co jest kluczowe w zastosowaniach czasu rzeczywistego. YOLOv4 implementuje szereg technik usprawniajπcych zarÛwno ekstrakcjÍ cech, jak i generalizacjÍ modelu. W warstwie ekstrakcji cech wykorzystuje siÍ g≥Íbokπ architekturÍ CSPDarknet53, wspieranπ przez tzw. \textit{Spatial Pyramid Pooling} (SPP) oraz \textit{Path Aggregation Network} (PAN), co umoøliwia agregacjÍ informacji z rÛønych poziomÛw szczegÛ≥owoúci obrazu.
+
+YOLOv4 operuje rÛwnolegle na trzech skalach detekcji, odpowiadajπcych rÛønym poziomom rozdzielczoúci siatki: $13\times13$, $26\times26$ oraz $52\times52$, co odpowiada kolejno obiektom duøym, úrednim oraz ma≥ym. Wszystkie trzy skale sπ wykorzystywane jednoczeúnie, a ich selekcja dokonywana jest automatycznie w ramach struktury sieci w oparciu o propagacjÍ gradientÛw. DziÍki temu detekcja uwzglÍdnia kontekst globalny i lokalny, zwiÍkszajπc szanse poprawnej lokalizacji obiektÛw o zrÛønicowanych rozmiarach.
+
+SieÊ przewiduje dla kaødej ramki: przesuniÍcie wzglÍdem centrum komÛrki siatki, szerokoúÊ i wysokoúÊ ramki, wartoúÊ ufnoúci, a takøe rozk≥ad prawdopodobieÒstwa przynaleønoúci do zadanych klas. W wyniku dzia≥ania algorytmu otrzymuje siÍ zbiÛr ramek z przypisanymi etykietami klas oraz wspÛ≥czynnikami pewnoúci, ktÛre nastÍpnie sπ filtrowane za pomocπ mechanizmu \textit{Non-Maximum Suppression} (NMS), eliminujπcego nak≥adajπce siÍ detekcje tej samej klasy.
+
+Mechanizm dzia≥ania YOLOv4 zosta≥ dostosowany do z≥oøonych scenariuszy analizy obrazu, w tym symulowanych úrodowisk miejskich, takich jak te generowane przez symulator CARLA \cite{carla}, co czyni go odpowiednim wyborem w kontekúcie zautomatyzowanego rozpoznawania obiektÛw w zadaniach zwiπzanych z autonomicznπ jazdπ.
+
+---------------------------------------------------------------
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\section{Zasada dzia≥ania algorytmu YOLO i YOLOv4}
+
+Algorytmy z rodziny \textit{YOLO} (You Only Look Once) sπ jednymi z najbardziej wydajnych rozwiπzaÒ do detekcji obiektÛw w czasie rzeczywistym. Ich podstawowym za≥oøeniem jest traktowanie zadania detekcji jako problemu regresyjnego, przekszta≥cajπcego obraz wejúciowy bezpoúrednio do zbioru ramek detekcyjnych z przypisanymi etykietami klas i wspÛ≥czynnikami pewnoúci~\cite{Redmon2016,Goodfellow2016}.
+
+\subsection{Etap 1: Podzia≥ obrazu na siatkÍ detekcyjnπ}
+
+Obraz wejúciowy o ustalonej rozdzielczoúci, np. $416 \times 416$ pikseli, jest dzielony na siatkÍ przestrzennπ o rozmiarach $S \times S$ (typowo $13 \times 13$, $26 \times 26$ oraz $52 \times 52$ dla YOLOv4)~\cite{Bochkovskiy2020}. Kaøda komÛrka siatki odpowiada za detekcjÍ obiektÛw, ktÛrych úrodek masy znajduje siÍ w jej obrÍbie~\cite{GÈron2019}. Dla kaødej komÛrki generowanych jest $B$ tzw. \textit{anchor boxes}, czyli propozycji ramek o z gÛry ustalonych proporcjach, reprezentujπcych potencjalne rozmieszczenie i rozmiary obiektÛw.
+
+\subsection{Etap 2: Predykcja atrybutÛw obiektÛw}
+
+Dla kaødego z anchor boxÛw sieÊ neuronowa przewiduje piÍÊ podstawowych wartoúci: wspÛ≥rzÍdne przesuniÍcia úrodka ramki wzglÍdem komÛrki siatki $(t_x, t_y)$, szerokoúÊ i wysokoúÊ $(t_w, t_h)$ oraz wspÛ≥czynnik ufnoúci (\textit{objectness score}) $P_{obj}$~\cite{Aggarwal2018}. Dodatkowo dla kaødego boxa generowane sπ rozk≥ady prawdopodobieÒstwa przynaleønoúci do zadanych klas obiektÛw. Wartoúci wspÛ≥rzÍdnych przekszta≥cane sπ do realnych wymiarÛw obrazu przy uøyciu funkcji sigmoidalnych i eksponencjalnych, jak opisano w dokumentacji YOLOv4~\cite{Bochkovskiy2020}.
+
+\subsection{Etap 3: Przetwarzanie danych przez sieÊ neuronowπ}
+
+YOLOv4 korzysta z g≥Íbokiej sieci ekstrakcji cech \textit{CSPDarknet53}, ktÛra stanowi bazÍ dla analizy wizualnej~\cite{Bochkovskiy2020}. W celu zwiÍkszenia efektywnoúci ekstrakcji semantycznej wprowadzono mechanizmy takie jak:
+\begin{itemize}
+	\item \textbf{Spatial Pyramid Pooling (SPP)} ó umoøliwia uwzglÍdnienie informacji z rÛønych skal przestrzennych bez koniecznoúci zmiany wymiarÛw wejúciowych.
+	\item \textbf{Path Aggregation Network (PAN)} ó poprawia propagacjÍ cech pomiÍdzy niøszymi i wyøszymi warstwami sieci, co zwiÍksza jakoúÊ detekcji ma≥ych obiektÛw~\cite{Sze2017}.
+\end{itemize}
+
+Dodatkowo sieÊ jest trenowana przy uøyciu metod augmentacji danych, takich jak \textit{mosaic augmentation}, \textit{dropblock} czy \textit{CIoU loss}, ktÛre przyczyniajπ siÍ do lepszej generalizacji i dok≥adnoúci predykcji~\cite{Bochkovskiy2020, GÈron2019}.
+
+\subsection{Etap 4: Detekcja na wielu skalach}
+
+YOLOv4 wykonuje detekcjÍ jednoczeúnie na trzech poziomach siatek: $13 \times 13$ (obiekty duøe), $26 \times 26$ (úrednie) oraz $52 \times 52$ (ma≥e)~\cite{Bochkovskiy2020}. DziÍki temu moøliwe jest uchwycenie obiektÛw o zrÛønicowanych rozmiarach, co znaczπco zwiÍksza jakoúÊ detekcji w z≥oøonych úrodowiskach wizualnych.
+
+\subsection{Etap 5: Filtrowanie wynikÛw ó Non-Maximum Suppression}
+
+Po wygenerowaniu wszystkich predykcji nastÍpuje etap filtrowania, podczas ktÛrego eliminowane sπ powtarzajπce siÍ detekcje za pomocπ algorytmu \textit{Non-Maximum Suppression (NMS)}. Algorytm ten wybiera tylko te ramki, ktÛre majπ najwyøszy wspÛ≥czynnik ufnoúci i nie nak≥adajπ siÍ istotnie na siebie wzglÍdem wskaünika IoU (Intersection over Union)~\cite{GÈron2019, Goodfellow2016}.
+
+\subsection{Zastosowania YOLOv4}
+
+DziÍki wysokiej szybkoúci dzia≥ania i dok≥adnoúci, YOLOv4 znajduje zastosowanie w wielu dziedzinach, takich jak systemy monitoringu, inteligentne miasta, analiza wideo, a takøe w badaniach nad autonomicznπ jazdπ. Integracja YOLOv4 z symulatorem CARLA pozwala na trenowanie i testowanie modeli detekcji w realistycznych warunkach miejskich z uwzglÍdnieniem dynamicznych scenariuszy ruchu drogowego~\cite{carla, yolo_usage}.
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+\section{Zasada dzia≥ania algorytmu YOLOv4}
+
+Algorytmy wykrywania obiektÛw stanowiπ fundament wspÛ≥czesnych systemÛw przetwarzania obrazu, umoøliwiajπc automatycznπ identyfikacjÍ i lokalizacjÍ obiektÛw na obrazach cyfrowych. WúrÛd nich szczegÛlnπ pozycjÍ zajmuje rodzina algorytmÛw YOLO (You Only Look Once), a w szczegÛlnoúci jej rozwiniÍcie ñ YOLOv4. Model ten, opublikowany w 2020 roku przez Bochkovskiy'ego jako kontynuacja wczeúniejszych prac Redmona i Farhadiego, charakteryzuje siÍ wyjπtkowym kompromisem pomiÍdzy szybkoúciπ dzia≥ania a dok≥adnoúciπ predykcji \cite{Bochkovskiy2020}. 
+
+YOLOv4 to detektor jednokrokowy (ang. \textit{one-stage detector}), ktÛry wykonuje predykcjÍ bezpoúrednio na pe≥nym obrazie wejúciowym, bez koniecznoúci generowania regionÛw propozycji, jak ma to miejsce w klasycznych podejúciach dwukrokowych (np. Faster R-CNN). Takie podejúcie przek≥ada siÍ na istotne przyspieszenie procesu detekcji oraz moøliwoúÊ zastosowania modelu w aplikacjach czasu rzeczywistego.
+
+\section*{OgÛlna koncepcja YOLOv4}
+
+Zasadniczπ ideπ, jaka przyúwieca modelom YOLO, jest jednorazowe przetwarzanie obrazu w celu jednoczesnego rozpoznania i lokalizacji wszystkich obiektÛw. Oznacza to, øe zamiast dzieliÊ problem na kilka etapÛw (np. selekcjÍ regionÛw, ekstrakcjÍ cech, klasyfikacjÍ), sieÊ neuronowa wykonuje wszystkie te czynnoúci w ramach jednej przepustki przez architekturÍ.
+
+YOLOv4 otrzymuje jako wejúcie obraz RGB o okreúlonym, przeskalowanym rozmiarze (najczÍúciej $416 \times 416$ lub $608 \times 608$ pikseli). Obraz ten przechodzi przez g≥Íbokπ sieÊ neuronowπ, ktÛrej zadaniem jest wygenerowanie zestawu predykcji w postaci wspÛ≥rzÍdnych ramek ograniczajπcych (ang. \textit{bounding boxes}), przypisanych klas oraz poziomu ufnoúci dla kaødego wykrytego obiektu.
+
+\section*{Etap 1: Przekszta≥cenie obrazu i ekstrakcja cech}
+
+Pierwszym krokiem przetwarzania w YOLOv4 jest przeskalowanie obrazu do standardowego rozmiaru, co pozwala na zapewnienie spÛjnoúci w czasie inferencji. NastÍpnie obraz jest przekazywany do g≥Íbokiej sieci konwolucyjnej zwanej \textit{backbone}, ktÛrej celem jest wyekstrahowanie reprezentacji cech obrazu.
+
+W przypadku YOLOv4 jako ekstraktor cech wykorzystywana jest sieÊ \textbf{CSPDarknet53}, bÍdπca udoskonalonπ wersjπ Darknet-53, ktÛra wprowadza mechanizmy takie jak \textit{cross-stage partial connections} w celu poprawy gradientÛw oraz redukcji z≥oøonoúci obliczeniowej \cite{Bochkovskiy2020}. Cechy te sπ nastÍpnie przekazywane do dalszych modu≥Ûw detekcyjnych.
+
+\section*{Etap 2: Wieloskalowa predykcja detekcji}
+
+W celu poprawy skutecznoúci wykrywania obiektÛw o rÛønych rozmiarach, YOLOv4 wprowadza predykcje detekcji na trzech poziomach rozdzielczoúci:
+\begin{itemize}
+	\item $13 \times 13$ ó dla duøych obiektÛw,
+	\item $26 \times 26$ ó dla úrednich obiektÛw,
+	\item $52 \times 52$ ó dla ma≥ych obiektÛw.
+\end{itemize}
+
+Taki mechanizm umoøliwia detekcjÍ zarÛwno obiektÛw dominujπcych na obrazie, jak i tych marginalnych, np. pieszych czy znakÛw drogowych z oddali.
+
+Kaøda z wymienionych siatek odpowiada za generowanie predykcji w ramach przyleg≥ych fragmentÛw obrazu. Na przyk≥ad, w siatce $13 \times 13$, kaødy z 169 kwadratÛw pokrywa oko≥o $32 \times 32$ piksele obrazu wejúciowego.
+
+\section*{Etap 3: Ramki ograniczajπce i obliczanie prawdopodobieÒstw}
+
+Kaøda kratka siatki (ang. \textit{grid cell}) generuje kilka propozycji ramek ograniczajπcych, tzw. \textit{anchor boxes}. W YOLOv4 liczba ta wynosi zazwyczaj 3 na kaødy poziom rozdzielczoúci, co daje w sumie 9 ramek przypisanych do kaødego punktu siatki. Dla kaødej ramki predykcjonowane sπ:
+\begin{itemize}
+	\item wspÛ≥rzÍdne úrodka $(x, y)$ ramki (wzglÍdem komÛrki siatki),
+	\item szerokoúÊ $(w)$ i wysokoúÊ $(h)$,
+	\item wartoúÊ \textit{objectness score}, czyli prawdopodobieÒstwo, øe ramka zawiera obiekt,
+	\item wektor prawdopodobieÒstw przynaleønoúci do kaødej z klas.
+\end{itemize}
+
+Predykcje sπ generowane z wykorzystaniem funkcji aktywacji sigmoid dla wspÛ≥rzÍdnych i funkcji softmax dla klasyfikacji klas. WspÛ≥rzÍdne sπ obliczane wzglÍdem rozmiaru obrazu, przy czym przekszta≥cenia nieliniowe (np. funkcja sigmoidalna dla $x$ i $y$, eksponent dla $w$ i $h$) zapewniajπ stabilnoúÊ predykcji.
+
+\section*{Etap 4: Klasyfikacja i liczba obs≥ugiwanych klas}
+
+YOLOv4 zosta≥ domyúlnie przetrenowany na zbiorze danych COCO (Common Objects in Context), ktÛry zawiera 80 rÛønych klas obiektÛw, takich jak: osoby, samochody, zwierzÍta, rowery, meble, sprzÍt elektroniczny itd. LiczbÍ klas moøna jednak dostosowaÊ do konkretnego zastosowania, dokonujπc transferu uczenia na w≥asnym zbiorze danych \cite{Lin2014}.
+
+SzczegÛlnie interesujπcym i praktycznym przypadkiem zastosowania YOLOv4 jest jego integracja z symulatorem CARLA do testowania algorytmÛw autonomicznej jazdy i systemÛw wspomagania kierowcy. W kontekúcie symulatora CARLA, YOLOv4 jest w stanie skutecznie wykrywaÊ kluczowe obiekty infrastruktury drogowej, takie jak:
+\begin{itemize}
+	\item samochody osobowe i ciÍøarowe,
+	\item piesi,
+	\item rowerzyúci,
+	\item sygnalizacja úwietlna,
+	\item znaki drogowe,
+	\item inne pojazdy autonomiczne lub awatary.
+\end{itemize}
+
+DziÍki zastosowaniu wieloskalowej detekcji, nawet obiekty o niewielkich rozmiarach, poruszajπce siÍ w dalszych planach sceny, mogπ zostaÊ skutecznie rozpoznane. Zastosowanie YOLOv4 w CARLA pozwala nie tylko na ocenÍ skutecznoúci detekcji w warunkach zbliøonych do rzeczywistych, ale rÛwnieø na trening i weryfikacjÍ algorytmÛw podejmowania decyzji oraz trajektorii ruchu pojazdÛw. DziÍki moøliwoúci kontrolowania warunkÛw pogodowych, ruchu ulicznego i zachowaÒ pieszych, integracja YOLOv4 z CARLA umoøliwia prowadzenie symulacji o wysokiej wartoúci badawczej.
+
+\section*{Etap 5: Eliminacja nadmiarowych ramek ñ Non-Maximum Suppression}
+
+Po wygenerowaniu zbioru predykcji, model moøe wykryÊ ten sam obiekt wielokrotnie. Aby ograniczyÊ nadmiarowe ramki, stosuje siÍ algorytm \textit{Non-Maximum Suppression} (NMS). Polega on na zachowaniu tylko tej ramki, ktÛra uzyska≥a najwyøszy poziom ufnoúci dla danego obiektu, oraz na eliminacji pozosta≥ych ramek, ktÛrych stopieÒ nak≥adania siÍ (IoU ó Intersection over Union) przekracza okreúlony prÛg \cite{GÈron2019}.
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+\subsection{Architektura YOLOv4}
+
+YOLOv4 jest jednπ z najnowszych wersji modelu YOLO, ktÛry jest jednym z najpopularniejszych algorytmÛw do detekcji obiektÛw w obrazach. Jego architektura opiera siÍ na trzech g≥Ûwnych komponentach:
+\begin{itemize}
+	\item \textbf{Backbone} - jest odpowiedzialny za ekstrakcjÍ cech z obrazu. W YOLOv4 wykorzystano zaawansowanπ sieÊ ResNet-50, ktÛra pozwala na szybkie i dok≥adne przetwarzanie obrazu.
+	\item \textbf{Neck} - ≥πczy cechy z rÛønych warstw backbone i pomaga w ich dalszym przetwarzaniu, umoøliwiajπc detekcjÍ obiektÛw w rÛønych skalach. W YOLOv4 zastosowano PANet (Path Aggregation Network), ktÛre poprawia reprezentacjÍ cech.
+	\item \textbf{Head} - dokonuje finalnej klasyfikacji oraz lokalizacji obiektÛw na obrazie, przy pomocy detekcji boxÛw i klasyfikacji dla kaødego wykrytego obiektu.
+\end{itemize}
+
+YOLOv4 korzysta z zaawansowanych technik, takich jak:
+\begin{itemize}
+	\item \textbf{DropBlock} - technika regularizacji, ktÛra pomaga zapobiegaÊ przeuczeniu (overfitting).
+	\item \textbf{CSPDarknet53} - nowoczesna sieÊ, ktÛra stanowi podstawÍ (backbone) YOLOv4.
+	\item \textbf{CIoU Loss} - funkcja straty, ktÛra poprawia dok≥adnoúÊ lokalizacji obiektÛw.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{Rysunki/Rozdzial3/yolov4_architecture.png}
+	\caption{Architektura YOLOv4. Zawiera backbone, neck i head~\cite{yolo_usage}.}
+	\label{fig:yolov4_arch}
+\end{figure}
+
+Wszystkie te elementy wspÛ≥pracujπ, aby umoøliwiÊ YOLOv4 wykrywanie obiektÛw na obrazach w czasie rzeczywistym, przy zachowaniu wysokiej dok≥adnoúci i wydajnoúci. DziÍki zastosowaniu wielu technik optymalizacyjnych, YOLOv4 osiπga bardzo wysokπ dok≥adnoúÊ i duøπ szybkoúÊ dzia≥ania w porÛwnaniu z poprzednimi wersjami.
+
+\section{Zalety, wydajnoúÊ i zastosowania algorytmu YOLOv4}
+
+YOLOv4 (You Only Look Once version 4) to jedna z najnowoczeúniejszych i najbardziej zaawansowanych wersji sieci neuronowych przeznaczonych do detekcji obiektÛw w czasie rzeczywistym. Algorytm ten wyrÛønia siÍ znakomitπ rÛwnowagπ pomiÍdzy szybkoúciπ dzia≥ania a jakoúciπ detekcji, co sprawia, øe z powodzeniem znajduje zastosowanie zarÛwno w badaniach naukowych, jak i w aplikacjach przemys≥owych, militarnych czy cywilnych.
+
+\subsection*{Zalety i efektywnoúÊ dzia≥ania}
+
+YOLOv4 ≥πczy w sobie liczne usprawnienia architektoniczne i techniczne wzglÍdem wczeúniejszych wersji (YOLOv1ñYOLOv3) oraz konkurencyjnych metod takich jak Faster R-CNN czy SSD. Do jego najistotniejszych zalet naleøπ:
+
+\begin{itemize}
+	\item \textbf{Wysoka prÍdkoúÊ dzia≥ania} ñ osiπga nawet do 65 klatek na sekundÍ (FPS) na wydajnych procesorach graficznych, co pozwala na detekcjÍ w czasie rzeczywistym \cite{Bochkovskiy2020}.
+	\item \textbf{Obs≥uga urzπdzeÒ brzegowych} ñ dziÍki optymalizacji sieci i wsparciu dla technologii takich jak TensorRT, YOLOv4 moøe dzia≥aÊ na urzπdzeniach o ograniczonej mocy obliczeniowej (np. Nvidia Jetson).
+	\item \textbf{Wysoka dok≥adnoúÊ detekcji} ñ osiπga wynik mAP (mean Average Precision) rzÍdu 43,5\% na zestawie danych COCO, co czyni go jednym z liderÛw wúrÛd modeli jednoetapowych (ang. \textit{one-stage detectors}) \cite{Bochkovskiy2020}.
+	\item \textbf{ElastycznoúÊ i adaptowalnoúÊ} ñ model moøna z ≥atwoúciπ dostosowaÊ do nowych klas obiektÛw poprzez proces tzw. \textit{fine-tuningu}.
+	\item \textbf{OdpornoúÊ na zak≥Ûcenia} ñ YOLOv4 radzi sobie z trudnymi warunkami detekcji, takimi jak czÍúciowe zas≥oniÍcia, rotacje, zmienne oúwietlenie czy szum.
+\end{itemize}
+
+Zaletom tym towarzyszy przemyúlana architektura wewnÍtrzna, oparta na integracji licznych nowoczesnych komponentÛw:
+
+\begin{itemize}
+	\item \textbf{Funkcja aktywacji Mish} ñ niemonotoniczna funkcja aktywacji, ktÛra poprawia propagacjÍ gradientÛw.
+	\item \textbf{DropBlock regularization} ñ technika regularizacji przestrzennej ograniczajπca nadmierne dopasowanie (overfitting).
+	\item \textbf{CSPNet (Cross-Stage Partial Network)} ñ struktura rozdzielajπca przep≥yw danych w celu zmniejszenia obciπøenia obliczeniowego przy jednoczesnym zwiÍkszeniu g≥Íbokoúci sieci.
+	\item \textbf{PANet (Path Aggregation Network)} ñ odpowiedzialna za integracjÍ informacji na rÛønych poziomach cech w celu skuteczniejszej lokalizacji obiektÛw.
+	\item \textbf{SPP (Spatial Pyramid Pooling)} ñ umoøliwia detekcjÍ obiektÛw w rÛønych skalach bez utraty przestrzennej spÛjnoúci.
+\end{itemize}
+
+DziÍki tym mechanizmom YOLOv4 stanowi jedno z najbardziej kompleksowych i wydajnych narzÍdzi w dziedzinie detekcji wizualnej.
+
+\subsection*{Inne przyk≥ady zastosowania algorytmu YOLO}
+
+Model ten znajduje zastosowanie w szerokim zakresie dziedzin, m.in.:
+
+\begin{itemize}
+	\item \textbf{Monitorowanie i analiza ruchu drogowego} ñ YOLOv4 skutecznie identyfikuje pojazdy, pieszych, rowerzystÛw, znaki drogowe i inne elementy infrastruktury drogowej, umoøliwiajπc zastosowanie w systemach ITS (Intelligent Transportation Systems) \cite{yolo_usage}.
+	\item \textbf{Systemy bezpieczeÒstwa i nadzoru wideo} ñ detekcja osÛb, bagaøy, podejrzanych zachowaÒ czy naruszeÒ przestrzeni publicznych.
+	\item \textbf{Automatyka przemys≥owa} ñ wykrywanie defektÛw, klasyfikacja produktÛw oraz inspekcja wizualna na liniach produkcyjnych.
+	\item \textbf{Robotyka i pojazdy autonomiczne} ñ rozpoznawanie przeszkÛd i elementÛw otoczenia w czasie rzeczywistym w celu bezpiecznej nawigacji.
+\end{itemize}
+
+\section{Instalacja systemu YOLO}
+\subsection*{Instalacja wymaganych pakietÛw}
+
+Pierwszym krokiem w procesie instalacji jest zainstalowanie wszystkich wymaganych pakietÛw, w tym Git, Python oraz bibliotek zwiπzanych z CUDA i OpenCV. W celu zaktualizowania listy pakietÛw naleøy wykonaÊ poniøsze polecenie:
+
+\begin{lstlisting}[caption={Aktualizacja listy pakietÛw}]
+	sudo apt update
+\end{lstlisting}
+
+NastÍpnie zainstalowane zostanπ wymagane pakiety:
+
+\begin{lstlisting}[caption={Instalacja wymaganych pakietÛw}]
+	sudo apt install build-essential cmake git pkg-config libjpeg8-dev \
+	libtiff5-dev libjasper-dev libpng12-dev libopencv-dev libeigen3-dev \
+	libatlas-base-dev gfortran python3-dev python3-pip python3-numpy \
+	libhdf5-dev libhdf5-serial-dev libprotobuf-dev protobuf-compiler \
+	libgflags-dev libgoogle-glog-dev liblmdb-dev
+\end{lstlisting}
+
+\subsection*{Instalacja CUDA i cuDNN}
+
+W przypadku chÍci korzystania z przyspieszenia GPU, konieczna jest instalacja CUDA oraz cuDNN.
+
+Ay zainstalowaÊ odpowiedniπ wersjÍ CUDA, zgodnπ z systemem, naleøy pobraÊ jπ ze strony NVIDIA: \url{https://developer.nvidia.com/cuda-downloads}. W celu zainstalowania CUDA naleøy wykonaÊ poniøsze polecenie:
+
+\begin{lstlisting}[caption={Instalacja CUDA}]
+	sudo apt install nvidia-cuda-toolkit
+\end{lstlisting}
+
+Aby zainstalowaÊ cuDNN, ktÛry jest niezbÍdny do przyspieszenia obliczeÒ na GPU, naleøy wykonaÊ poniøsze polecenie:
+
+\begin{lstlisting}[caption={Instalacja cuDNN}]
+	sudo apt install libcudnn7 libcudnn7-dev
+\end{lstlisting}
+
+\subsection*{Klonowanie repozytorium YOLOv4 i kompilacja}
+
+Aby pobraÊ kod ürÛd≥owy YOLOv4, oficjalne repozytorium z GitHub jest klonowane przy uøyciu poniøszego polecenia:
+
+\begin{lstlisting}[caption={Klonowanie repozytorium YOLOv4}]
+	git clone https://github.com/AlexeyAB/darknet
+	cd darknet
+\end{lstlisting}
+
+NastÍpnie plik \texttt{Makefile} naleøy edytowaÊ, aby w≥πczyÊ obs≥ugÍ CUDA (GPU) oraz OpenCV, zmieniajπc odpowiednie opcje na:
+
+\begin{lstlisting}[caption={Edytowanie pliku Makefile}]
+	GPU=1
+	CUDNN=1
+	OPENCV=1
+\end{lstlisting}
+
+Po dokonaniu zmian, projekt jest kompilowany za pomocπ polecenia:
+
+\begin{lstlisting}[caption={Kompilacja projektu YOLOv4}]
+	make
+\end{lstlisting}
+
+\subsection{Testowanie instalacji}
+
+Po zakoÒczeniu kompilacji system moøe zostaÊ przetestowany, aby upewniÊ siÍ, øe instalacja przebieg≥a pomyúlnie. YOLOv4 moøe zostaÊ uruchomiony na przyk≥adowym obrazie przy uøyciu poniøszego polecenia:
+
+\begin{lstlisting}[caption={Testowanie YOLOv4}]
+	./darknet detector test cfg/coco.data cfg/yolov4.cfg yolov4.weights data/dog.jpg
+\end{lstlisting}
+
+Jeúli wszystko zosta≥o poprawnie zainstalowane, powinien zostaÊ wyúwietlony wynik wykrywania obiektÛw na obrazie.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{Rysunki/Rozdzial3/yolo_test.png}
+	\label{fig:yoloTest}
+	\caption[Yolo Test]{Obraz przedstawiajπcy poprawne zainstalowanie i uruchomienie YOLOv4.}
+\end{figure}
+
+\section{Integracja detektora YOLOv4 z symulatorem CARLA}
+
+W celu rozszerzenia funkcjonalnoúci symulatora CARLA o moøliwoúÊ detekcji obiektÛw w czasie rzeczywistym, dokonano integracji modelu YOLOv4 z plikiem \texttt{manual\_control.py}. Model YOLOv4 (You Only Look Once) to zaawansowany algorytm detekcji obiektÛw w obrazie, ktÛry umoøliwia identyfikacjÍ oraz lokalizacjÍ wielu klas obiektÛw w pojedynczym przebiegu sieci neuronowej.
+
+Proces integracji rozpoczÍto od zaimportowania wymaganych bibliotek i konfiguracji úrodowiska TensorFlow:
+
+\begin{lstlisting}[style=pythonColor, emph={import tensorflow, InteractiveSession, filter\_boxes, cfg}, caption={Importowanie bibliotek dla integracji z YOLOv4}]
+	import tensorflow as tf
+	from tensorflow.compat.v1 import InteractiveSession
+	from core.yolov4 import filter_boxes
+	from core.config import cfg
+\end{lstlisting}
+
+Zdefiniowana zosta≥a rÛwnieø globalna funkcja \verb|spawn_actor()|, ktÛrej celem jest wczytywanie i przekszta≥canie listy wspÛ≥rzÍdnych tzw. \verb|anchor boxes|, bÍdπcych podstawπ w modelu YOLO do przewidywania poleøenia obiektÛw w obrazie. Przyjmuje jako argument listÍ wspÛ≥rzÍdnych opisujπcych wymiary anchorÛw, nastÍpnie przekszta≥ca jπ do struktury trÛjwymiarowej, umoøliwiajπcej przypisanie anchorÛw do trzech skal detekcji, z ktÛrych kaøda operuje na prostokπtnych propozycjach. DziÍki takiej organizacji danych moøliwe jest skuteczne dopasowanie anchorÛw do charakterystyki obiektÛw wystÍpujπcych w obrazie, co znaczπco wp≥ywa na jakoúÊ predykcji oraz efektywnoúÊ dzia≥ania algorytmu detekcji.
+
+\begin{lstlisting}[language=Python, style=pythonColor, emph={get\_anchors, array, reshape}, caption={Globalna funkcja \texttt{get\_anchors()} dla YOLOv4}]
+	def get_anchors(anchors_path):
+	anchors = np.array(anchors_path)
+	return anchors.reshape(3, 3, 2)
+\end{lstlisting}
+
+Po wczytaniu obrazu z symulatora przy uøyciu biblioteki \texttt{pygame}, ramka obrazu jest skalowana i przekszta≥cana na odpowiedni format:
+
+\begin{lstlisting}[style=pythonColor, emph={pygame.surfarray.array3d, cv2.resize, np.newaxis}, caption={Wczytywanie i przetwarzanie obrazu z symulatora CARLA}]
+	frame = pygame.surfarray.array3d(display)
+	image_data = cv2.resize(frame, (self.input_size, self.input_size))
+	image_data = image_data / 255.
+	image_data = image_data[np.newaxis, ...].astype(np.float32)
+\end{lstlisting}
+
+Obraz ten trafia nastÍpnie do sieci neuronowej YOLOv4, ktÛra zwraca ramki ograniczajπce (ang. bounding boxes), prawdopodobieÒstwa detekcji oraz klasy obiektÛw. Przyk≥adowo, wykorzystano funkcjÍ \texttt{combined\_non\_max\_suppression} do eliminacji powtarzajπcych siÍ wykryÊ:
+
+\begin{lstlisting}[style=pythonColor, emph={tf.image.combined\_non\_max\_suppression}, caption={Wykorzystanie funkcji \texttt{combined\_non\_max\_suppression} w celu eliminacji powtÛrzeÒ}]
+	boxes, scores, classes, valid_detections = tf.image.combined_non_max_suppression(...)
+\end{lstlisting}
+
+Tak przygotowane dane sπ nastÍpnie przetwarzane i wizualizowane w úrodowisku symulatora CARLA.

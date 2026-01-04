@@ -1,0 +1,222 @@
+\chapter{Wyniki badañ eksperymentalnych}
+
+\section{Proces testowania systemu}
+
+W trakcie przeprowadzania testów w symulatorze CARLA,  dzia³anie programu zosta³o sprawdzone poprzez wykonanie serii przejazdów po okreœlonej trasie z widoku pierwszej osoby. Ka¿dy przejazd by³ nagrywany a nastêpnie w trzech uprzednio wybranych miejscach wykonywany by³ zrzut ekranu. Testy obejmowa³y wszelkie mo¿liwe kombinacje nastêpuj¹cych scenariuszy:
+
+\begin{itemize}
+	\item \textbf{Przejazdy dla ró¿nych pór dnia:} testy przeprowadzono zarówno w ci¹gu dnia, jak i w nocy, aby oceniæ wp³yw oœwietlenia na przebieg symulacji.
+	\item \textbf{Przejazdy dla ró¿nych warunków pogodowych:} badania obejmowa³y symulacje w ró¿nych warunkach atmosferycznych, takich jak s³oñce oraz deszcz, co pozwoli³o na sprawdzenie, jak zmienia siê zachowanie pojazdu i wizualizacja symulacji w tych warunkach.
+	\item \textbf{Przejazdy przy ró¿nych poziomach nasycenia ruchu:} testy wykonywano przy ró¿nych poziomach natê¿enia ruchu samochodowego i pieszego (ma³y, œredni, du¿y), aby oceniæ, jak system radzi sobie w ró¿nych scenariuszach natê¿enia ruchu.
+	\item \textbf{Przejazdy dla ró¿nych modeli:} badania zawiera³y równie¿ przetestowanie dla du¿ego oraz ma³ego modelu YOLO.
+\end{itemize}
+
+Podczas testowania serwer uruchomiony by³ na GPU, natomiast klient a tym samym program w³aœciwy na CPU. Wynika to z faktu, i¿ zasoby karty graficznej by³y zajête przez symulator CARLA, przez co nie by³o mo¿liwoœci uruchomienia równoczeœnie klienta wraz z YOLO.
+
+Poni¿ej przedstawiono trzy punkty, w których dokonywane by³y pomiary skutecznoœci funkcjonowania programu podczas jazdy. Na jego podstawie by³a sczytywana liczba klatek na sekundê FPS (ang. Frames Per Second):
+
+\begin{enumerate}
+	\item \textbf{Obraz nr 1} wykonywany by³ z widocznym znakiem STOP, a tak¿e samochodem stoj¹cym za skrzy¿owaniem. W tym przypadku podczas s³onecznego dnia o ma³ym natê¿eniu ruchu dla du¿ego modelu:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{Rysunki/Rozdzial4/sun10car20ppl1.png}
+		\caption[sun10car20ppl1]{Miejsce wykonywania obrazu nr 1.}
+		\label{fig:sun10car20ppl1}
+	\end{figure} 
+	
+	\item \textbf{Obraz nr 2} wykonywany by³ z widocznymi motorami oraz samochodami na zakrêcie na chodniku. W tym przypadku podczas bezchmurnej nocy o œrednim natê¿eniu ruchu dla modelu du¿ego:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{Rysunki/Rozdzial4/night20car40ppl2.png}
+		\caption[night20car40ppl2]{Miejsce wykonywania obrazu nr 2.}
+		\label{fig:night20car40ppl2}
+	\end{figure} 
+	
+	\item \textbf{Obraz nr 3} wykonywany by³ w miejscu stanowi¹cym wyzwanie dla YOLO, poniewa¿ by³o to ruchliwe skrzy¿owanie z sygnalizacj¹ œwietln¹, samochodami oraz pieszymi. Poni¿szy rysunek przedstawia scenariusz podczas deszczowego dnia o ma³ym natê¿eniu ruchu dla du¿ego modelu:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{Rysunki/Rozdzial4/rainsun10car20ppl3.png}
+		\caption[rainsun10car20ppl3]{Miejsce wykonywania obrazu nr 3.}
+		\label{fig:rainsun10car20ppl3}
+	\end{figure} 
+\end{enumerate}
+
+
+\section{Dane}
+
+Specyfikacja  komputera, na którym przeprowadzono eksperyment siê nastêpuj¹co:
+\begin{itemize}
+	\item \verb|Procesor| Intel Xeon 12 E5-2697v2 12 rdzeni 24 w¹tki
+	\item \verb|Iloœæ pamiêci RAM| 32 GB pamiêci RAM
+	\item \verb|Iloœæ miejsca na dysku| 500 GB
+	\item \verb|Karta graficzna| NVIDIA RTX 3060 Ti 8 GB
+	\item \verb|System operacyjny| Ubuntu 18.04
+\end{itemize}
+
+Filmy z przejazdów by³y nagrywane za pomoc¹ programu \texttt{OBS Studio} i zapisywane w formacie wideo \texttt{.mkv}.  Zrzuty ekranu z symulatora, przedstawiaj¹ce istotne momenty testów, by³y natomiast zapisywane w formacie \texttt{.png}. 
+
+Testy by³y przeprowadzane równie¿ dla modeli o ró¿nym stopniu skomplikowania, w tym modelu ma³ego \texttt{yolov4-tiny-416} oraz modelu du¿ego \texttt{yolov4-416}, z rejestrowaniem wartoœci \textit{FPS} w ka¿dym przypadku, co pozwoli³o na ocenê wydajnoœci systemu w ró¿nych warunkach symulacji.
+
+
+\begin{table}[h]
+	\centering
+	\resizebox{\textwidth}{!}{
+	\renewcommand{\arraystretch}{1.3} % Zwiêkszenie odstêpów w tabeli
+	\begin{tabular}{|c|l|c|c|c|}
+		\hline
+		\multirow{2}{*}{\textbf{Lp.}} & \multirow{2}{*}{\textbf{Scenariusz testowy}} & \multicolumn{3}{c|}{\textbf{Obrazy  [FPS]}} \\
+		\cline{3-5}
+		& & \textbf{Nr 1} \textbf{Serwer/ Klient} & \textbf{Nr 2} \textbf{Serwer/ Klient} & \textbf{Nr 3} \textbf{Serwer/ Klient} \\  
+		\hline
+		1.  & Dzieñ, S³oñce, Ma³y ruch  &  20/ 4  &  25/ 4  &  23/ 4  \\
+		\hline
+		2.  & Dzieñ, S³oñce,  Œredni ruch  &  18/ 4  &  22/ 4  &  19/ 4  \\
+		\hline
+		3.  & Dzieñ, S³oñce,  Du¿y ruch  &  14/ 4  &  15/ 4  &  16/ 4  \\
+		\hline
+		4.  & Dzieñ, Deszcz, Ma³y ruch  &  19/ 4  &  22/ 4  &  21/ 4  \\
+		\hline
+		5.  & Dzieñ, Deszcz, Œredni ruch  &  16/ 4  &  19/ 4  &  19/ 4  \\
+		\hline
+		6.  & Dzieñ, Deszcz, Du¿y ruch  &  14/ 4  &  16/ 4  &  16/ 4  \\
+		\hline
+		7.  & Noc, Czyste niebo, Ma³y ruch  &  11/ 4  &  22/ 4  &  12/ 4  \\
+		\hline
+		8.  & Noc, Czyste niebo, Œredni ruch  &  6/ 4  &  8/ 4  &  8/ 4 \\
+		\hline
+		9.  & Noc, Czyste niebo, Du¿y ruch  &  6/ 4  &  8/ 4  &  8/ 4  \\
+		\hline
+		10. & Noc, Deszcz, Ma³y ruch  &  7/ 4  &  8/ 4 &  8/ 4  \\
+		\hline
+		11. & Noc, Deszcz, Œredni ruch  &  6/ 4  &  8/ 4  &  8/ 4  \\
+		\hline
+		12. & Noc, Deszcz, Du¿y ruch  &   6/ 4  &  8/ 4  &  8/ 4  \\
+		\hline
+	\end{tabular}
+}
+	\caption{Wyniki testów wydajnoœciowych dla modelu du¿ego.}
+	\label{tab:wyniki_model_duzy}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\adjustbox{max width=\textwidth}{  % Automatyczne dopasowanie szerokoœci tabeli do szerokoœci strony
+		\renewcommand{\arraystretch}{1.3}  % Zwiêkszenie odstêpów w tabeli
+		\begin{tabular}{|c|l|c|c|c|}
+			\hline
+			\multirow{2}{*}{\textbf{Lp.}} & \multirow{2}{*}{\textbf{Scenariusz testowy}} & \multicolumn{3}{c|}{\textbf{Obrazy [FPS]}} \\
+			\cline{3-5}
+			& & \textbf{Nr 1 Serwer/ Klient} & \textbf{Nr 2 Serwer/ Klient} & \textbf{Nr 3 Serwer/ Klient} \\  
+			\hline
+			1.  & Dzieñ, S³oñce, Ma³y ruch  &  20/11  &  25/12  &  23/11  \\
+			\hline
+			2.  & Dzieñ, S³oñce, Œredni ruch  &  16/11  &  22/12  &  20/13  \\
+			\hline
+			3.  & Dzieñ, S³oñce, Du¿y ruch  &  14/13  &  19/12  &  17/12  \\
+			\hline
+			4.  & Dzieñ, Deszcz, Ma³y ruch  &  19/12  &  23/11  &  22/11  \\
+			\hline
+			5.  & Dzieñ, Deszcz, Œredni ruch  &  16/13  &  20/11  &  19/12  \\
+			\hline
+			6.  & Dzieñ, Deszcz, Du¿y ruch  &  14/14  &  18/12  &  17/12  \\
+			\hline
+			7.  & Noc, Czyste niebo, Ma³y ruch  &  7/15  &  9/12  & 9/13  \\
+			\hline
+			8.  & Noc, Czyste niebo, Œredni ruch  &  6/14  &  7/13  &  8/12  \\
+			\hline
+			9.  & Noc, Czyste niebo, Du¿y ruch  &  6/13  &  8/14  &  8/14  \\
+			\hline
+			10. & Noc, Deszcz, Ma³y ruch  &  7/14  &  9/13  &  9/12  \\
+			\hline
+			11. & Noc, Deszcz, Œredni ruch  &  7/14  &  8/13  &  8/14  \\
+			\hline
+			12. & Noc, Deszcz, Du¿y ruch  &  7/15  &  8/16  &  7/15  \\
+			\hline
+		\end{tabular}
+	}
+	\caption{Wyniki testów wydajnoœciowych modelu ma³ego.}
+	\label{tab:wyniki_model_maly}
+\end{table}
+
+
+\section{Przyk³adowe funkcjonalnoœci oprogramowania}
+
+Zaimplementowane oprogramowanie w œrodowisku symulacyjnym CARLA, rozszerzone o integracjê z algorytmem detekcji YOLOv4, oferuje szereg funkcjonalnoœci pozwalaj¹cych na efektywne testowa
+nie i wizualizacjê systemów percepcyjnych pojazdu autonomicznego. W niniejszym rozdziale przedstawiono najwa¿niejsze elementy i mechanizmy dzia³ania, które sk³adaj¹ siê na system przetwarzania i analizy danych w czasie rzeczywistym.
+
+\begin{enumerate}
+\item \textbf{Pobieranie i przetwarzanie obrazu}
+
+Podstaw¹ dzia³ania systemu detekcji jest regularne pobieranie aktualnych danych wizualnych z renderowanej sceny symulatora. Realizowane jest to poprzez bibliotekê \texttt{pygame}, która umo¿liwia bezpoœredni dostêp do zawartoœci ekranu:
+
+\begin{lstlisting}[style=pythonColor, emph={array3d, 0swapaxes}, caption={Pobieranie i przetwarzanie obrazu w symulatorze CARLA}]
+	frame = pygame.surfarray.array3d(display)
+	frame = frame.swapaxes(0,1)
+\end{lstlisting}
+
+Obraz nastêpnie poddawany jest normalizacji oraz skalowaniu do rozmiaru oczekiwanego przez sieæ YOLOv4 (domyœlnie 416x416 pikseli). W ten sposób przygotowane dane wejœciowe s¹ gotowe do przekazania do modelu detekcyjnego.
+
+\item \textbf{Wykrywanie obiektów}
+
+Wykorzystanie modelu YOLOv4 pozwala na detekcjê wielu klas obiektów w czasie rzeczywistym. Wczytany model (za pomoc¹ TensorFlow) analizuje dostarczony obraz i zwraca zestaw predykcji, zawieraj¹cy wspó³rzêdne obiektów oraz ich prawdopodobieñstwo klasyfikacji:
+
+\begin{lstlisting}[style=pythonColor, emph={infer, tf.image.combined_non_max_suppression}, caption={Wykrywanie obiektów za pomoc¹ YOLOv4}]
+	pred_bbox = infer(batch_data)
+	...
+	boxes, scores, classes, valid_detections = tf.image.combined_non_max_suppression(...)
+\end{lstlisting}
+
+System przetwarza surowe dane wyjœciowe, filtruj¹c i formatuj¹c wyniki z u¿yciem funkcji pomocniczych (np. \texttt{utils.format\_boxes()}). Dodatkowo odczytywane s¹ nazwy klas z pliku konfiguracyjnego, aby przypisaæ odpowiedni¹ etykietê do ka¿dego wykrytego obiektu.
+
+\item \textbf{Filtrowanie klas}
+
+U¿ytkownik mo¿e zdecydowaæ, które klasy obiektów maj¹ byæ uwzglêdnione podczas renderowania. Domyœlnie dozwolone s¹ wszystkie klasy zawarte w pliku \texttt{.names}, jednak istnieje mo¿liwoœæ ograniczenia listy do wybranych etykiet (np. tylko \texttt{person}, \texttt{car}):
+
+\begin{lstlisting}[style=pythonColor, emph={allowed_classes, class_name}, caption={Filtrowanie wykrytych klas obiektów}]
+	allowed_classes = ['person', 'car']
+	...
+	if class_name not in allowed_classes:
+	deleted_indx.append(i)
+\end{lstlisting}
+
+Dziêki temu u¿ytkownik mo¿e ukierunkowaæ system detekcji na konkretne cele, co jest przydatne podczas testowania okreœlonych scenariuszy, np. wykrywania pieszych na przejœciach.
+
+\item \textbf{Wizualizacja wykrytych obiektów}
+
+Wykryte obiekty s¹ rysowane na ekranie w postaci prostok¹tów ograniczaj¹cych (ang. \textit{bounding boxes}). Ka¿dy z nich zawiera równie¿ tekstow¹ etykietê klasy obiektu:
+
+\begin{lstlisting}[style=pythonColor, emph={pygame.draw.rect, bbox_font.render}, caption={Wizualizacja wykrytych obiektów na ekranie}]
+	pygame.draw.rect(display, (255, 255, 255), rect, 2)
+	label = bbox_font.render(classname, True, (255,255,255))
+\end{lstlisting}
+
+System umo¿liwia równie¿ dynamiczne skalowanie czcionki, co wp³ywa na czytelnoœæ wyników. Takie podejœcie znacz¹co u³atwia analizê dzia³ania modelu w czasie rzeczywistym, umo¿liwiaj¹c wizualn¹ weryfikacjê dok³adnoœci wykryæ.
+
+\item \textbf{Reakcja na dane wejœciowe}
+
+W oprogramowaniu zaimplementowany zosta³ system obs³ugi zdarzeñ klawiatury, umo¿liwiaj¹cy rêczne sterowanie pojazdem w trybie symulacyjnym:
+
+\begin{lstlisting}[style=pythonColor, emph={KeyboardControl, controller.parse_events}, caption={Obs³uga zdarzeñ klawiatury w symulatorze}]
+	controller = KeyboardControl(world, args.autopilot)
+	if controller.parse_events(client, world, clock):
+	return
+\end{lstlisting}
+
+Dziêki temu operator mo¿e aktywnie testowaæ system detekcji w ró¿nych sytuacjach – zmieniaj¹c prêdkoœæ pojazdu, tor jazdy czy ustawienia kamery.
+
+\item \textbf{Integracja komponentów w pêtli g³ównej}
+
+Wszystkie powy¿sze funkcje zosta³y zintegrowane w g³ównej pêtli gry \texttt{game\_loop()}, która odpowiada za nieprzerwan¹ aktualizacjê symulacji, wykrywanie obiektów i renderowanie wyników:
+
+\begin{lstlisting}[style=pythonColor, emph={game_loop, world.render}, caption={Pêtla g³ówna symulacji CARLA}]
+	while True:
+	clock.tick_busy_loop(60)
+	...
+	detections = []
+	...
+	world.render(display, detections)
+	pygame.display.flip()
+\end{lstlisting}
+
+System dzia³a w czasie rzeczywistym z czêstotliwoœci¹ odœwie¿ania obrazu oko³o 60 FPS, co czyni go u¿ytecznym narzêdziem do eksperymentów w dziedzinie autonomicznej jazdy.
+\end{enumerate}
