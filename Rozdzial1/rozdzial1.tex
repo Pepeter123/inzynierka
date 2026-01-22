@@ -69,9 +69,15 @@ Zakres pracy obejmowa³:
 
 
 \section{Struktura pracy}
-Tu powinno znaleŸæ siê omówienie treœci pracy w postaci opisu zawartoœci poszczególnych rozdzia³ów.
 
+Niniejsza praca sk³ada siê z piêciu rozdzia³ów, które prowadz¹ od wprowadzenia teoretycznego, przez opis implementacji, a¿ do prezentacji wyników badañ eksperymentalnych i wniosków koñcowych.
 
+W \textbf{rozdziale 1} przedstawiono t³o problemu, motywacjê podjêcia tematyki detekcji obiektów na potrzeby pojazdów autonomicznych, a tak¿e zdefiniowano cel i zakres pracy oraz omówiono jej strukturê. Zwrócono uwagê na znaczenie symulacji komputerowych w procesie testowania algorytmów percepcji.
 
-\textbf{Uwaga:} Treœæ tego rozdzia³u najrozs¹dniej napisaæ \underline{po napisaniu} pozosta³ej czêœci pracy.
+\textbf{Rozdzia³ 2} poœwiêcony jest szczegó³owemu opisowi symulatora CARLA. Zaprezentowano w nim architekturê systemu klient–serwer, dostêpne sensory, sposób modelowania œwiata oraz mo¿liwoœci konfiguracji warunków œrodowiskowych. Omówiono równie¿ sposób instalacji symulatora w systemie Ubuntu oraz strukturê skryptu \texttt{manualcontrol.py}, który stanowi podstawê integracji z zewnêtrznymi algorytmami detekcji.
 
+W \textbf{rozdziale 3} opisano system rozpoznawania obrazu zastosowany w pracy. Przedstawiono wybrane architektury detekcji obiektów, ze szczególnym uwzglêdnieniem algorytmu YOLOv4, jego budowy i technik treningowych. Nastêpnie zaprezentowano proces instalacji i uruchomienia detektora oraz sposób jego integracji z symulatorem CARLA. Na koñcu rozdzia³u przedstawiono schemat ewaluacji offline, wykorzystywany do obliczania miary IoU na podstawie danych referencyjnych generowanych przez symulator.
+
+\textbf{Rozdzia³ 4} zawiera opis procesu testowania zintegrowanego systemu oraz wyniki badañ eksperymentalnych. Omówiono konfiguracjê scenariuszy jazdy, sposób rejestracji danych oraz wybrane funkcjonalnoœci oprogramowania. Zaprezentowano wyniki eksperymentu on-line, dotycz¹ce wydajnoœci systemu mierzonej liczb¹ klatek na sekundê, oraz eksperymentu offline, w którym oceniano poprawnoœæ detekcji za pomoc¹ miary IoU w ró¿nych warunkach pogodowych i oœwietleniowych.
+
+W \textbf{rozdziale 5} przedstawiono dyskusjê uzyskanych rezultatów oraz wnioski koñcowe. Podsumowano najwa¿niejsze obserwacje dotycz¹ce jakoœci i wydajnoœci detekcji obiektów w symulatorze CARLA z wykorzystaniem algorytmu YOLOv4, a tak¿e wskazano mo¿liwe kierunki dalszych prac, w szczególnoœci zwi¹zane z rozszerzeniem zbioru danych, zastosowaniem innych architektur detekcji oraz integracj¹ dodatkowych sensorów.

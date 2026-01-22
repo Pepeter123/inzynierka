@@ -3,69 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: praca.aux
 The style file: unsrt.bst
 Database file #1: bibliografia/bibliografia.bib
-Repeated entry---line 395 of file bibliografia/bibliografia.bib
- : @book{Géron2019
- :                ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 409 of file bibliografia/bibliografia.bib
- : @book{Sze2017
- :              ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 423 of file bibliografia/bibliografia.bib
- : @book{Lin2014
- :              ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 453 of file bibliografia/bibliografia.bib
- : @misc{yolo_usage
- :                 ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 467 of file bibliografia/bibliografia.bib
- : @article{Bochkovskiy2020
- :                         ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 481 of file bibliografia/bibliografia.bib
- : @book{Géron2019
- :                ,
-I'm skipping whatever remains of this entry
-You've used 18 entries,
+You've used 22 entries,
             1791 wiz_defined-function locations,
-            539 strings with 6064 characters,
-and the built_in function-call counts, 3087 in all, are:
-= -- 241
-> -- 153
+            547 strings with 6497 characters,
+and the built_in function-call counts, 3735 in all, are:
+= -- 283
+> -- 201
 < -- 1
-+ -- 60
-- -- 42
-* -- 110
-:= -- 487
-add.period$ -- 53
-call.type$ -- 18
-change.case$ -- 14
++ -- 78
+- -- 56
+* -- 137
+:= -- 597
+add.period$ -- 65
+call.type$ -- 22
+change.case$ -- 18
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 142
-empty$ -- 366
-format.name$ -- 42
-if$ -- 723
+cite$ -- 22
+duplicate$ -- 165
+empty$ -- 434
+format.name$ -- 56
+if$ -- 864
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 11
-newline$ -- 92
-num.names$ -- 18
-pop$ -- 111
+int.to.str$ -- 22
+missing$ -- 12
+newline$ -- 112
+num.names$ -- 22
+pop$ -- 136
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 67
+skip$ -- 80
 stack$ -- 0
 substring$ -- 40
-swap$ -- 32
+swap$ -- 36
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 21
-width$ -- 20
-write$ -- 185
-(There were 6 error messages)
+while$ -- 25
+width$ -- 24
+write$ -- 225

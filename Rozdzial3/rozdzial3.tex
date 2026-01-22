@@ -129,127 +129,55 @@ Konwolucyjne sieci neuronowe sk³adaj¹ siê z trzech g³ównych typów warstw:
 
 Zosta³y one opracowane przez LeCuna, Bengio i Hintona w 2015 roku \cite{cnn_survey}, a ich celem by³o umo¿liwienie maszynom skutecznego rozpoznawania wzorców w danych wizualnych, takich jak obrazy.
 
----------------------------------------------------------------
 \section{Zasada dzia³ania algorytmu YOLO i YOLOv4}
 
-Algorytm \textit{YOLO} (You Only Look Once) stanowi jedno z najefektywniejszych rozwi¹zañ dla zadania detekcji obiektów w czasie rzeczywistym. Jego g³ównym za³o¿eniem jest jednorazowe przetworzenie obrazu przez sieæ neuronow¹, która równoczeœnie lokalizuje oraz klasyfikuje obiekty. Proces ten odbywa siê poprzez podzia³ obrazu wejœciowego na siatkê przestrzenn¹ o zadanej rozdzielczoœci, np. $13\times13$, $26\times26$ lub $52\times52$, przy czym ka¿da komórka siatki odpowiada za detekcjê obiektów, których œrodek znajduje siê w jej obrêbie.
+Algorytmy z rodziny \textit{YOLO} (You Only Look Once) nale¿¹ do najwydajniejszych rozwi¹zañ w dziedzinie detekcji obiektów w czasie rzeczywistym, traktuj¹c to zadanie jako problem regresyjny, w którym obraz wejœciowy jest bezpoœrednio odwzorowywany na zbiór ramek detekcyjnych z przypisanymi klasami oraz wspó³czynnikami pewnoœci~\cite{Redmon2016,Bochkovskiy2020,Goodfellow2016}. W odró¿nieniu od klasycznych detektorów dwuetapowych, takich jak Faster R-CNN, modele \textit{YOLO} realizuj¹ proces detekcji w jednym przebiegu przez sieæ neuronow¹ (\textit{one-stage detector}), co pozwala na osi¹gniêcie wysokiej szybkoœci dzia³ania przy zachowaniu konkurencyjnej dok³adnoœci~\cite{Redmon2016,Bochkovskiy2020}. 
 
-W ka¿dej komórce siatki generowanych jest kilka tzw. \textit{anchor boxes}, czyli wczeœniej zdefiniowanych propozycji ramki detekcyjnej o charakterystycznych proporcjach. Dla ka¿dego takiego anchor boxa sieæ przewiduje wspó³rzêdne ramki obiektu, wartoœæ ufnoœci (\textit{objectness score}) oraz prawdopodobieñstwa przynale¿noœci do poszczególnych klas. Zak³ada siê, ¿e dla ka¿dej komórki mo¿liwa jest detekcja wielu obiektów, przy czym w typowej konfiguracji YOLOv4 s¹ to trzy ramki na ka¿d¹ komórkê, co dla siatki $13\times13$ daje ³¹cznie 507 mo¿liwoœci detekcyjnych.
+W algorytmach YOLO obraz wejœciowy jest wstêpnie przeskalowywany do ustalonej rozdzielczoœci (najczêœciej \(416 \times 416\) lub \(608 \times 608\) pikseli), a nastêpnie przetwarzany przez g³êbok¹ sieæ konwolucyjn¹, która jednoczeœnie odpowiada za ekstrakcjê cech, lokalizacjê obiektów oraz ich klasyfikacjê~\cite{Bochkovskiy2020,Geron2019}. W wyniku dzia³ania sieci otrzymuje siê zbiór propozycji ramek ograniczaj¹cych (\textit{bounding boxes}) wraz z przypisanymi im prawdopodobieñstwami przynale¿noœci do klas oraz wartoœciami ufnoœci (\textit{objectness score}), które nastêpnie s¹ filtrowane w celu uzyskania koñcowych detekcji. YOLOv4 stanowi rozwiniêcie wczeœniejszych wersji, wprowadzaj¹c szereg modyfikacji architektonicznych i technik treningowych, zapewniaj¹cych lepszy kompromis pomiêdzy dok³adnoœci¹ a szybkoœci¹ dzia³ania~\cite{Bochkovskiy2020}. 
 
-W przypadku algorytmu \textit{YOLOv4} architektura zosta³a zoptymalizowana w celu uzyskania kompromisu pomiêdzy precyzj¹ detekcji a szybkoœci¹ dzia³ania, co jest kluczowe w zastosowaniach czasu rzeczywistego. YOLOv4 implementuje szereg technik usprawniaj¹cych zarówno ekstrakcjê cech, jak i generalizacjê modelu. W warstwie ekstrakcji cech wykorzystuje siê g³êbok¹ architekturê CSPDarknet53, wspieran¹ przez tzw. \textit{Spatial Pyramid Pooling} (SPP) oraz \textit{Path Aggregation Network} (PAN), co umo¿liwia agregacjê informacji z ró¿nych poziomów szczegó³owoœci obrazu.
+\textbf{Etap 1: Podzia³ obrazu na siatkê i definicja anchor boxes}
 
-YOLOv4 operuje równolegle na trzech skalach detekcji, odpowiadaj¹cych ró¿nym poziomom rozdzielczoœci siatki: $13\times13$, $26\times26$ oraz $52\times52$, co odpowiada kolejno obiektom du¿ym, œrednim oraz ma³ym. Wszystkie trzy skale s¹ wykorzystywane jednoczeœnie, a ich selekcja dokonywana jest automatycznie w ramach struktury sieci w oparciu o propagacjê gradientów. Dziêki temu detekcja uwzglêdnia kontekst globalny i lokalny, zwiêkszaj¹c szanse poprawnej lokalizacji obiektów o zró¿nicowanych rozmiarach.
+Podstaw¹ dzia³ania algorytmów YOLO jest podzia³ przeskalowanego obrazu na regularn¹ siatkê przestrzenn¹ o rozmiarze \(S \times S\), gdzie \(S\) zale¿y od poziomu rozdzielczoœci detekcji~\cite{Redmon2016}. W przypadku YOLOv4 detekcja realizowana jest równoczeœnie na trzech skalach: \(13 \times 13\), \(26 \times 26\) oraz \(52 \times 52\), co umo¿liwia skuteczne wykrywanie odpowiednio du¿ych, œrednich oraz ma³ych obiektów~\cite{Bochkovskiy2020}. Ka¿da komórka siatki odpowiada za wykrywanie obiektów, których œrodek masy znajduje siê w jej obrêbie, co ogranicza liczbê mo¿liwych lokalizacji i upraszcza proces optymalizacji~\cite{Geron2019}. 
 
-Sieæ przewiduje dla ka¿dej ramki: przesuniêcie wzglêdem centrum komórki siatki, szerokoœæ i wysokoœæ ramki, wartoœæ ufnoœci, a tak¿e rozk³ad prawdopodobieñstwa przynale¿noœci do zadanych klas. W wyniku dzia³ania algorytmu otrzymuje siê zbiór ramek z przypisanymi etykietami klas oraz wspó³czynnikami pewnoœci, które nastêpnie s¹ filtrowane za pomoc¹ mechanizmu \textit{Non-Maximum Suppression} (NMS), eliminuj¹cego nak³adaj¹ce siê detekcje tej samej klasy.
+Dla ka¿dej komórki siatki definiowanych jest \(B\) tzw. \textit{anchor boxes}, czyli z góry ustalonych propozycji ramek ograniczaj¹cych o okreœlonych proporcjach i rozmiarach~\cite{Bochkovskiy2020}. Anchor boxy s¹ zwykle wyznaczane na podstawie analizy danych treningowych (np. metod¹ k-œrednich), tak aby jak najlepiej odzwierciedla³y typowe kszta³ty i rozmiary obiektów wystêpuj¹cych w danym zbiorze. W typowej konfiguracji YOLOv4 stosuje siê trzy anchor boxy na ka¿d¹ komórkê dla ka¿dej z trzech skal, co daje ³¹cznie dziewiêæ anchorów przypisanych do danego punktu siatki i pozwala na modelowanie obiektów o zró¿nicowanych rozmiarach oraz proporcjach~\cite{Bochkovskiy2020}. 
 
-Mechanizm dzia³ania YOLOv4 zosta³ dostosowany do z³o¿onych scenariuszy analizy obrazu, w tym symulowanych œrodowisk miejskich, takich jak te generowane przez symulator CARLA \cite{carla}, co czyni go odpowiednim wyborem w kontekœcie zautomatyzowanego rozpoznawania obiektów w zadaniach zwi¹zanych z autonomiczn¹ jazd¹.
+\textbf{Etap 2: Ekstrakcja cech – backbone CSPDarknet53}
 
----------------------------------------------------------------
+Pierwszym etapem przetwarzania obrazu w YOLOv4 jest ekstrakcja cech wizualnych z wykorzystaniem g³êbokiej sieci konwolucyjnej pe³ni¹cej rolê \textit{backbone}. W YOLOv4 funkcjê tê realizuje architektura \textit{CSPDarknet53}, bêd¹ca rozwiniêciem sieci Darknet-53 z zastosowaniem mechanizmu \textit{cross-stage partial connections}~\cite{Bochkovskiy2020}. Rozwi¹zanie to pozwala na lepsze rozdzielenie przep³ywu gradientów w sieci oraz redukcjê liczby operacji obliczeniowych bez istotnej utraty jakoœci reprezentacji cech~\cite{Bochkovskiy2020}. 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-\section{Zasada dzia³ania algorytmu YOLO i YOLOv4}
+W trakcie propagacji w g³¹b sieci CSPDarknet53 obraz jest wielokrotnie poddawany operacjom konwolucji, normalizacji i nieliniowej aktywacji, co prowadzi do utworzenia hierarchicznej reprezentacji cech – od niskopoziomowych (krawêdzie, tekstury) po wysokopoziomowe (struktury semantyczne). Dziêki temu kolejne warstwy sieci s¹ w stanie rozró¿niaæ zarówno proste, jak i z³o¿one obiekty, co jest kluczowe dla skutecznej detekcji w ró¿norodnych scenariuszach, w tym w z³o¿onych œrodowiskach miejskich~\cite{Geron2019}. 
 
-Algorytmy z rodziny \textit{YOLO} (You Only Look Once) s¹ jednymi z najbardziej wydajnych rozwi¹zañ do detekcji obiektów w czasie rzeczywistym. Ich podstawowym za³o¿eniem jest traktowanie zadania detekcji jako problemu regresyjnego, przekszta³caj¹cego obraz wejœciowy bezpoœrednio do zbioru ramek detekcyjnych z przypisanymi etykietami klas i wspó³czynnikami pewnoœci~\cite{Redmon2016,Goodfellow2016}.
+\textbf{Etap 3: Agregacja wieloskalowa – SPP i PAN}
 
-\subsection{Etap 1: Podzia³ obrazu na siatkê detekcyjn¹}
+Po etapie ekstrakcji cech przez backbone wykorzystywane s¹ modu³y odpowiedzialne za ich dalsz¹ fuzjê i agregacjê. W YOLOv4 rolê tê pe³ni¹ miêdzy innymi \textit{Spatial Pyramid Pooling} (SPP) oraz \textit{Path Aggregation Network} (PAN)~\cite{Bochkovskiy2020}. Modu³ SPP stosuje równoleg³e operacje poolingowe o ró¿nych rozmiarach okien, co pozwala na zwiêkszenie efektywnego pola recepcji i integracjê informacji kontekstowych z ró¿nych skal przestrzennych bez koniecznoœci zmiany wymiarów wejœcia~\cite{Bochkovskiy2020}. 
 
-Obraz wejœciowy o ustalonej rozdzielczoœci, np. $416 \times 416$ pikseli, jest dzielony na siatkê przestrzenn¹ o rozmiarach $S \times S$ (typowo $13 \times 13$, $26 \times 26$ oraz $52 \times 52$ dla YOLOv4)~\cite{Bochkovskiy2020}. Ka¿da komórka siatki odpowiada za detekcjê obiektów, których œrodek masy znajduje siê w jej obrêbie~\cite{Géron2019}. Dla ka¿dej komórki generowanych jest $B$ tzw. \textit{anchor boxes}, czyli propozycji ramek o z góry ustalonych proporcjach, reprezentuj¹cych potencjalne rozmieszczenie i rozmiary obiektów.
+Z kolei \textit{Path Aggregation Network} odpowiada za efektywn¹ propagacjê cech pomiêdzy warstwami ni¿szymi i wy¿szymi poprzez po³¹czenia typu top-down i bottom-up, ³¹cz¹c informacjê semantyczn¹ z wy¿szych poziomów z detalami przestrzennymi z ni¿szych poziomów~\cite{Sze2017}. Taka struktura poprawia jakoœæ detekcji ma³ych obiektów oraz stabilizuje proces uczenia, poniewa¿ sieæ otrzymuje bogatsz¹ i lepiej zró¿nicowan¹ reprezentacjê cech na wszystkich poziomach rozdzielczoœci. W efekcie mo¿liwa jest jednoczesna detekcja obiektów o istotnie ró¿nych rozmiarach przy zachowaniu wysokiej precyzji lokalizacji~\cite{Bochkovskiy2020}. 
 
-\subsection{Etap 2: Predykcja atrybutów obiektów}
+\textbf{Etap 4: Predykcja atrybutów obiektów na wielu skalach}
 
-Dla ka¿dego z anchor boxów sieæ neuronowa przewiduje piêæ podstawowych wartoœci: wspó³rzêdne przesuniêcia œrodka ramki wzglêdem komórki siatki $(t_x, t_y)$, szerokoœæ i wysokoœæ $(t_w, t_h)$ oraz wspó³czynnik ufnoœci (\textit{objectness score}) $P_{obj}$~\cite{Aggarwal2018}. Dodatkowo dla ka¿dego boxa generowane s¹ rozk³ady prawdopodobieñstwa przynale¿noœci do zadanych klas obiektów. Wartoœci wspó³rzêdnych przekszta³cane s¹ do realnych wymiarów obrazu przy u¿yciu funkcji sigmoidalnych i eksponencjalnych, jak opisano w dokumentacji YOLOv4~\cite{Bochkovskiy2020}.
+Na wyjœciu modu³ów agreguj¹cych cechy znajduj¹ siê g³owice detekcyjne przypisane do trzech siatek: \(13 \times 13\), \(26 \times 26\) oraz \(52 \times 52\)~\cite{Bochkovskiy2020}. Ka¿da komórka tych siatek generuje predykcje dla swoich anchor boxów. Dla ka¿dego anchor boxa sieæ przewiduje zestaw parametrów opisuj¹cych potencjalny obiekt: wspó³rzêdne przesuniêcia œrodka ramki wzglêdem komórki siatki \((t_x, t_y)\), logarytmiczne przeskalowania szerokoœci i wysokoœci \((t_w, t_h)\), wspó³czynnik ufnoœci \(P_{obj}\) oraz wektor prawdopodobieñstw przypisania do poszczególnych klas~\cite{Aggarwal2018}. 
 
-\subsection{Etap 3: Przetwarzanie danych przez sieæ neuronow¹}
+Wartoœci wyjœciowe s¹ nastêpnie przekszta³cane do przestrzeni obrazu za pomoc¹ funkcji nieliniowych. Wspó³rzêdne œrodka ramki s¹ skalowane przy u¿yciu funkcji sigmoidalnej, co zapewnia ich lokalizacjê w obrêbie danej komórki siatki, natomiast szerokoœæ i wysokoœæ s¹ obliczane poprzez zastosowanie funkcji eksponencjalnej do przewidywanych parametrów oraz pomno¿enie przez wymiary anchor boxa~\cite{Bochkovskiy2020}. Dziêki temu model uczy siê jedynie wzglêdnych modyfikacji anchorów, co stabilizuje proces optymalizacji i poprawia zbie¿noœæ uczenia. 
 
-YOLOv4 korzysta z g³êbokiej sieci ekstrakcji cech \textit{CSPDarknet53}, która stanowi bazê dla analizy wizualnej~\cite{Bochkovskiy2020}. W celu zwiêkszenia efektywnoœci ekstrakcji semantycznej wprowadzono mechanizmy takie jak:
-\begin{itemize}
-	\item \textbf{Spatial Pyramid Pooling (SPP)} — umo¿liwia uwzglêdnienie informacji z ró¿nych skal przestrzennych bez koniecznoœci zmiany wymiarów wejœciowych.
-	\item \textbf{Path Aggregation Network (PAN)} — poprawia propagacjê cech pomiêdzy ni¿szymi i wy¿szymi warstwami sieci, co zwiêksza jakoœæ detekcji ma³ych obiektów~\cite{Sze2017}.
-\end{itemize}
+Predykcja klas obiektów realizowana jest poprzez generowanie rozk³adu prawdopodobieñstwa spoœród wszystkich dostêpnych klas, zwykle przy u¿yciu funkcji softmax lub sigmoidalnej, w zale¿noœci od przyjêtej konfiguracji~\cite{Goodfellow2016}. W przypadku YOLOv4 model jest domyœlnie trenowany na zbiorze COCO, obejmuj¹cym 80 klas obiektów, takich jak osoby, pojazdy, zwierzêta, elementy infrastruktury czy przedmioty codziennego u¿ytku~\cite{Lin2014}. Jednoczeœnie architektura pozwala na ³atwe dostosowanie liczby klas do konkretnego zastosowania poprzez transfer uczenia na w³asnym zbiorze danych. 
 
-Dodatkowo sieæ jest trenowana przy u¿yciu metod augmentacji danych, takich jak \textit{mosaic augmentation}, \textit{dropblock} czy \textit{CIoU loss}, które przyczyniaj¹ siê do lepszej generalizacji i dok³adnoœci predykcji~\cite{Bochkovskiy2020, Géron2019}.
+\textbf{Etap 5: Filtrowanie wyników – Non-Maximum Suppression}
 
-\subsection{Etap 4: Detekcja na wielu skalach}
+Po wygenerowaniu predykcji dla wszystkich komórek i anchor boxów na trzech skalach powstaje bardzo du¿y zbiór potencjalnych ramek detekcyjnych. Wiele z nich odnosi siê do tego samego obiektu, ró¿ni¹c siê nieznacznie po³o¿eniem oraz wartoœci¹ wspó³czynnika ufnoœci. Aby otrzymaæ spójny i nieprzepe³niony zbiór detekcji, stosuje siê algorytm \textit{Non-Maximum Suppression} (NMS)~\cite{Geron2019,Goodfellow2016}. 
 
-YOLOv4 wykonuje detekcjê jednoczeœnie na trzech poziomach siatek: $13 \times 13$ (obiekty du¿e), $26 \times 26$ (œrednie) oraz $52 \times 52$ (ma³e)~\cite{Bochkovskiy2020}. Dziêki temu mo¿liwe jest uchwycenie obiektów o zró¿nicowanych rozmiarach, co znacz¹co zwiêksza jakoœæ detekcji w z³o¿onych œrodowiskach wizualnych.
+Algorytm NMS polega na iteracyjnym wybieraniu ramek o najwy¿szej wartoœci ufnoœci dla danej klasy, a nastêpnie eliminowaniu tych, których miara nak³adania siê z wybran¹ ramk¹, okreœlona wskaŸnikiem IoU (Intersection over Union), przekracza zadany próg~\cite{Geron2019}. W rezultacie pozostaj¹ jedynie ramki najlepiej reprezentuj¹ce poszczególne obiekty, co zapewnia czytelnoœæ i jednoznacznoœæ wyników detekcji. Mechanizm ten jest szczególnie istotny w scenach o wysokim zagêszczeniu obiektów, gdzie wiele anchorów mo¿e wskazywaæ na ten sam element obrazu. 
 
-\subsection{Etap 5: Filtrowanie wyników — Non-Maximum Suppression}
+\textbf{Etap 6: Techniki treningowe i generalizacja}
 
-Po wygenerowaniu wszystkich predykcji nastêpuje etap filtrowania, podczas którego eliminowane s¹ powtarzaj¹ce siê detekcje za pomoc¹ algorytmu \textit{Non-Maximum Suppression (NMS)}. Algorytm ten wybiera tylko te ramki, które maj¹ najwy¿szy wspó³czynnik ufnoœci i nie nak³adaj¹ siê istotnie na siebie wzglêdem wskaŸnika IoU (Intersection over Union)~\cite{Géron2019, Goodfellow2016}.
+YOLOv4, oprócz zmian architektury, wykorzystuje tak¿e szereg zaawansowanych technik treningowych, takich jak \textit{mosaic data augmentation}, \textit{dropblock regularization} oraz funkcja straty \textit{CIoU loss}, które poprawiaj¹ zdolnoœæ modelu do generalizacji~\cite{Bochkovskiy2020}. Mosaic augmentation polega na ³¹czeniu fragmentów kilku obrazów w jeden przyk³ad treningowy, co zwiêksza ró¿norodnoœæ danych, natomiast DropBlock wprowadza losowe wyzerowywanie bloków aktywacji, ograniczaj¹c zjawisko przeuczenia~\cite{Bochkovskiy2020,Geron2019}. Z kolei CIoU loss uwzglêdnia nie tylko nak³adanie siê ramek, ale tak¿e odleg³oœæ miêdzy ich œrodkami oraz proporcje, co prowadzi do dok³adniejszej optymalizacji parametrów ramek ograniczaj¹cych~\cite{Bochkovskiy2020}. 
 
-\subsection{Zastosowania YOLOv4}
+Zastosowanie tych metod powoduje, ¿e YOLOv4 osi¹ga wysok¹ dok³adnoœæ predykcji przy zachowaniu krótkiego czasu inferencji, co czyni go szczególnie atrakcyjnym w zastosowaniach czasu rzeczywistego, zw³aszcza na platformach o ograniczonych zasobach obliczeniowych. Jest to kluczowe zarówno w systemach wbudowanych, jak i w aplikacjach wymagaj¹cych przetwarzania strumieni wideo na ¿ywo. 
 
-Dziêki wysokiej szybkoœci dzia³ania i dok³adnoœci, YOLOv4 znajduje zastosowanie w wielu dziedzinach, takich jak systemy monitoringu, inteligentne miasta, analiza wideo, a tak¿e w badaniach nad autonomiczn¹ jazd¹. Integracja YOLOv4 z symulatorem CARLA pozwala na trenowanie i testowanie modeli detekcji w realistycznych warunkach miejskich z uwzglêdnieniem dynamicznych scenariuszy ruchu drogowego~\cite{carla, yolo_usage}.
+\textbf{Etap 7: Zastosowania YOLO/YOLOv4, w tym integracja z CARLA}
 
+Dziêki wysokiej szybkoœci dzia³ania i precyzyjnej detekcji obiektów, YOLOv4 znajduje zastosowanie w wielu dziedzinach, takich jak systemy monitoringu wizyjnego, inteligentne miasta, analiza wideo, robotyka czy systemy bezpieczeñstwa~\cite{yolo_usage}. Szczególnie istotn¹ grupê zastosowañ stanowi¹ systemy wspomagania kierowcy oraz badania nad autonomiczn¹ jazd¹, gdzie konieczne jest niezawodne wykrywanie obiektów w dynamicznych i z³o¿onych scenach drogowych. 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-\section{Zasada dzia³ania algorytmu YOLOv4}
-
-Algorytmy wykrywania obiektów stanowi¹ fundament wspó³czesnych systemów przetwarzania obrazu, umo¿liwiaj¹c automatyczn¹ identyfikacjê i lokalizacjê obiektów na obrazach cyfrowych. Wœród nich szczególn¹ pozycjê zajmuje rodzina algorytmów YOLO (You Only Look Once), a w szczególnoœci jej rozwiniêcie – YOLOv4. Model ten, opublikowany w 2020 roku przez Bochkovskiy'ego jako kontynuacja wczeœniejszych prac Redmona i Farhadiego, charakteryzuje siê wyj¹tkowym kompromisem pomiêdzy szybkoœci¹ dzia³ania a dok³adnoœci¹ predykcji \cite{Bochkovskiy2020}. 
-
-YOLOv4 to detektor jednokrokowy (ang. \textit{one-stage detector}), który wykonuje predykcjê bezpoœrednio na pe³nym obrazie wejœciowym, bez koniecznoœci generowania regionów propozycji, jak ma to miejsce w klasycznych podejœciach dwukrokowych (np. Faster R-CNN). Takie podejœcie przek³ada siê na istotne przyspieszenie procesu detekcji oraz mo¿liwoœæ zastosowania modelu w aplikacjach czasu rzeczywistego.
-
-\section*{Ogólna koncepcja YOLOv4}
-
-Zasadnicz¹ ide¹, jaka przyœwieca modelom YOLO, jest jednorazowe przetwarzanie obrazu w celu jednoczesnego rozpoznania i lokalizacji wszystkich obiektów. Oznacza to, ¿e zamiast dzieliæ problem na kilka etapów (np. selekcjê regionów, ekstrakcjê cech, klasyfikacjê), sieæ neuronowa wykonuje wszystkie te czynnoœci w ramach jednej przepustki przez architekturê.
-
-YOLOv4 otrzymuje jako wejœcie obraz RGB o okreœlonym, przeskalowanym rozmiarze (najczêœciej $416 \times 416$ lub $608 \times 608$ pikseli). Obraz ten przechodzi przez g³êbok¹ sieæ neuronow¹, której zadaniem jest wygenerowanie zestawu predykcji w postaci wspó³rzêdnych ramek ograniczaj¹cych (ang. \textit{bounding boxes}), przypisanych klas oraz poziomu ufnoœci dla ka¿dego wykrytego obiektu.
-
-\section*{Etap 1: Przekszta³cenie obrazu i ekstrakcja cech}
-
-Pierwszym krokiem przetwarzania w YOLOv4 jest przeskalowanie obrazu do standardowego rozmiaru, co pozwala na zapewnienie spójnoœci w czasie inferencji. Nastêpnie obraz jest przekazywany do g³êbokiej sieci konwolucyjnej zwanej \textit{backbone}, której celem jest wyekstrahowanie reprezentacji cech obrazu.
-
-W przypadku YOLOv4 jako ekstraktor cech wykorzystywana jest sieæ \textbf{CSPDarknet53}, bêd¹ca udoskonalon¹ wersj¹ Darknet-53, która wprowadza mechanizmy takie jak \textit{cross-stage partial connections} w celu poprawy gradientów oraz redukcji z³o¿onoœci obliczeniowej \cite{Bochkovskiy2020}. Cechy te s¹ nastêpnie przekazywane do dalszych modu³ów detekcyjnych.
-
-\section*{Etap 2: Wieloskalowa predykcja detekcji}
-
-W celu poprawy skutecznoœci wykrywania obiektów o ró¿nych rozmiarach, YOLOv4 wprowadza predykcje detekcji na trzech poziomach rozdzielczoœci:
-\begin{itemize}
-	\item $13 \times 13$ — dla du¿ych obiektów,
-	\item $26 \times 26$ — dla œrednich obiektów,
-	\item $52 \times 52$ — dla ma³ych obiektów.
-\end{itemize}
-
-Taki mechanizm umo¿liwia detekcjê zarówno obiektów dominuj¹cych na obrazie, jak i tych marginalnych, np. pieszych czy znaków drogowych z oddali.
-
-Ka¿da z wymienionych siatek odpowiada za generowanie predykcji w ramach przyleg³ych fragmentów obrazu. Na przyk³ad, w siatce $13 \times 13$, ka¿dy z 169 kwadratów pokrywa oko³o $32 \times 32$ piksele obrazu wejœciowego.
-
-\section*{Etap 3: Ramki ograniczaj¹ce i obliczanie prawdopodobieñstw}
-
-Ka¿da kratka siatki (ang. \textit{grid cell}) generuje kilka propozycji ramek ograniczaj¹cych, tzw. \textit{anchor boxes}. W YOLOv4 liczba ta wynosi zazwyczaj 3 na ka¿dy poziom rozdzielczoœci, co daje w sumie 9 ramek przypisanych do ka¿dego punktu siatki. Dla ka¿dej ramki predykcjonowane s¹:
-\begin{itemize}
-	\item wspó³rzêdne œrodka $(x, y)$ ramki (wzglêdem komórki siatki),
-	\item szerokoœæ $(w)$ i wysokoœæ $(h)$,
-	\item wartoœæ \textit{objectness score}, czyli prawdopodobieñstwo, ¿e ramka zawiera obiekt,
-	\item wektor prawdopodobieñstw przynale¿noœci do ka¿dej z klas.
-\end{itemize}
-
-Predykcje s¹ generowane z wykorzystaniem funkcji aktywacji sigmoid dla wspó³rzêdnych i funkcji softmax dla klasyfikacji klas. Wspó³rzêdne s¹ obliczane wzglêdem rozmiaru obrazu, przy czym przekszta³cenia nieliniowe (np. funkcja sigmoidalna dla $x$ i $y$, eksponent dla $w$ i $h$) zapewniaj¹ stabilnoœæ predykcji.
-
-\section*{Etap 4: Klasyfikacja i liczba obs³ugiwanych klas}
-
-YOLOv4 zosta³ domyœlnie przetrenowany na zbiorze danych COCO (Common Objects in Context), który zawiera 80 ró¿nych klas obiektów, takich jak: osoby, samochody, zwierzêta, rowery, meble, sprzêt elektroniczny itd. Liczbê klas mo¿na jednak dostosowaæ do konkretnego zastosowania, dokonuj¹c transferu uczenia na w³asnym zbiorze danych \cite{Lin2014}.
-
-Szczególnie interesuj¹cym i praktycznym przypadkiem zastosowania YOLOv4 jest jego integracja z symulatorem CARLA do testowania algorytmów autonomicznej jazdy i systemów wspomagania kierowcy. W kontekœcie symulatora CARLA, YOLOv4 jest w stanie skutecznie wykrywaæ kluczowe obiekty infrastruktury drogowej, takie jak:
-\begin{itemize}
-	\item samochody osobowe i ciê¿arowe,
-	\item piesi,
-	\item rowerzyœci,
-	\item sygnalizacja œwietlna,
-	\item znaki drogowe,
-	\item inne pojazdy autonomiczne lub awatary.
-\end{itemize}
-
-Dziêki zastosowaniu wieloskalowej detekcji, nawet obiekty o niewielkich rozmiarach, poruszaj¹ce siê w dalszych planach sceny, mog¹ zostaæ skutecznie rozpoznane. Zastosowanie YOLOv4 w CARLA pozwala nie tylko na ocenê skutecznoœci detekcji w warunkach zbli¿onych do rzeczywistych, ale równie¿ na trening i weryfikacjê algorytmów podejmowania decyzji oraz trajektorii ruchu pojazdów. Dziêki mo¿liwoœci kontrolowania warunków pogodowych, ruchu ulicznego i zachowañ pieszych, integracja YOLOv4 z CARLA umo¿liwia prowadzenie symulacji o wysokiej wartoœci badawczej.
-
-\section*{Etap 5: Eliminacja nadmiarowych ramek – Non-Maximum Suppression}
-
-Po wygenerowaniu zbioru predykcji, model mo¿e wykryæ ten sam obiekt wielokrotnie. Aby ograniczyæ nadmiarowe ramki, stosuje siê algorytm \textit{Non-Maximum Suppression} (NMS). Polega on na zachowaniu tylko tej ramki, która uzyska³a najwy¿szy poziom ufnoœci dla danego obiektu, oraz na eliminacji pozosta³ych ramek, których stopieñ nak³adania siê (IoU — Intersection over Union) przekracza okreœlony próg \cite{Géron2019}.
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Integracja YOLOv4 z symulatorem CARLA umo¿liwia trenowanie i testowanie modeli detekcji w realistycznych, kontrolowanych warunkach miejskich, z uwzglêdnieniem ró¿norodnych scenariuszy ruchu drogowego, zmiennych warunków pogodowych oraz oœwietleniowych~\cite{carla}. W takim œrodowisku model mo¿e wykrywaæ kluczowe obiekty infrastruktury drogowej, miêdzy innymi pojazdy osobowe i ciê¿arowe, pieszych, rowerzystów, sygnalizacjê œwietln¹ oraz znaki drogowe, a tak¿e inne pojazdy autonomiczne~\cite{carla,yolo_usage}. Pozwala to nie tylko oceniæ skutecznoœæ samej detekcji, lecz tak¿e testowaæ algorytmy podejmowania decyzji, planowania trajektorii oraz unikania kolizji, co ma kluczowe znaczenie w rozwoju systemów autonomicznej jazdy. 
 
 \subsection{Architektura YOLOv4}
 
@@ -427,3 +355,24 @@ Obraz ten trafia nastêpnie do sieci neuronowej YOLOv4, która zwraca ramki ograni
 \end{lstlisting}
 
 Tak przygotowane dane s¹ nastêpnie przetwarzane i wizualizowane w œrodowisku symulatora CARLA.
+
+\section{Schemat ewaluacji offline}
+
+Oprócz testów on-line, w których YOLOv4 dzia³a³ bezpoœrednio w symulatorze CARLA, opracowano równie¿ schemat ewaluacji offline. Jego celem by³o szczegó³owe porównanie rezultatów detekcji sieci z danymi referencyjnymi (\textit{ground truth}) generowanymi przez symulator, z wykorzystaniem metryki Intersection over Union (IoU) \cite{carla,visoiou}. 
+
+Proponowana procedura sk³ada siê z kilku kolejnych etapów.
+\begin{enumerate}
+	\item \textbf{Generowanie danych referencyjnych w CARLA.}  
+	Podczas symulacji rejestrowane s¹ klatki z kamery RGB zamontowanej na ego–pojeŸdzie oraz odpowiadaj¹ce im informacje o aktorach w scenie. Skrypt \texttt{bounding\_boxes.py} odczytuje strukturê \texttt{carla.BoundingBox} dla ka¿dego pojazdu, przelicza wierzcho³ki bry³y 3D do uk³adu wspó³rzêdnych kamery i rzutuje je na p³aszczyznê obrazu, wyznaczaj¹c ostatecznie prostok¹tne obramowanie 2D (bbox 2D). Dla ka¿dej klatki zapisywany jest plik JSON zawieraj¹cy listê obiektów z nazw¹ klasy, wspó³rzêdnymi prostok¹ta w pikselach oraz identyfikatorem klatki/obrazu, który pozwala jednoznacznie powi¹zaæ anotacje z konkretnym plikiem JPG. 
+	
+	\item \textbf{Detekcja obiektów za pomoc¹ YOLOv4.}  
+	W drugim kroku YOLOv4, zaimplementowane w bibliotece Ultralytics, jest uruchamiane w trybie wsadowym na zestawie obrazów zapisanych wczeœniej z kamery symulatora. Dla ka¿dego pliku JPG model zwraca listê wykrytych obiektów wraz z klas¹, wspó³czynnikiem pewnoœci (ang. \textit{confidence}) oraz wspó³rzêdnymi proponowanego bounding boxa 2D. Wyniki s¹ eksportowane do osobnego pliku JSON, w którym ka¿da detekcja zawiera: nazwê obrazu, nazwê klasy, wspó³rzêdne prostok¹ta i wartoœæ confidence \cite{ultralytics_docs,ultralytics_python}. 
+	
+	\item \textbf{Parowanie detekcji z anotacjami CARLA.}  
+	Skrypt ewaluacyjny wczytuje równolegle pliki JSON z anotacjami CARLA oraz pliki z predykcjami YOLOv4. Dla ka¿dej klatki obrazu wyszukiwane s¹ pary prostok¹tów: jeden pochodz¹cy z CARLA (ground truth) oraz drugi wygenerowany przez YOLOv4, nale¿¹ce do tej samej klasy obiektu (np. \textit{car}). Nastêpnie dla ka¿dej mo¿liwej pary obliczana jest wartoœæ IoU, a dopasowanie wybierane jest na podstawie najwiêkszej wartoœci IoU powy¿ej zadanego progu (np. 0{,}5). Pozwala to zapobiec sytuacjom, w których wiele predykcji przypisano by do tego samego obiektu. 
+	
+	\item \textbf{Obliczanie metryk jakoœciowych.}  
+	Na etapie koñcowym skrypt zlicza poprawne dopasowania (TP – \textit{true positive}), pominiête obiekty (FN – \textit{false negative}) oraz nadmiarowe detekcje YOLOv4 (FP – \textit{false positive}). Na tej podstawie wyznaczane s¹ statystyki jakoœciowe, takie jak œrednia wartoœæ IoU, precyzja (precision) czy czu³oœæ (recall) dla wybranych scen i warunków pogodowych. Dodatkowo zapisywane s¹ rozk³ady IoU (np. histogramy), co pozwala zidentyfikowaæ przypadki skrajne – bardzo dobre oraz bardzo s³abe dopasowania. Wyniki te stanowi¹ podstawê do analizy wp³ywu warunków oœwietleniowych i atmosferycznych na dok³adnoœæ detekcji YOLOv4. 
+\end{enumerate}
+
+Zaproponowany schemat ewaluacji offline umo¿liwia powtarzaln¹, zautomatyzowan¹ ocenê jakoœci dzia³ania modelu YOLOv4 na danych generowanych w symulatorze CARLA. Oddzielenie etapu generowania klatek od etapu detekcji i ewaluacji u³atwia równie¿ dalsze eksperymentowanie, np. z innymi wersjami modelu YOLO, dodatkowymi klasami obiektów czy zmodyfikowanymi ustawieniami kamery, bez koniecznoœci ponownego wykonywania kosztownych symulacji. 

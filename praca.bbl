@@ -3,37 +3,42 @@
 \bibitem{esezam}
 Politechnika Warszawska.
 \newblock Zasoby z e-sezamu: Architektura yolov4 i konwolucyjne sieci
-  neuronowe, 2025-04-04.
+  neuronowe, 2025.
 
 \bibitem{yolo_usage}
 Joseph Redmon and Ali Farhadi.
 \newblock Yolov3: An incremental improvement.
-\newblock \url{https://arxiv.org/abs/1804.02767}, 2018-04-08.
+\newblock \url{https://arxiv.org/abs/1804.02767}, 2018.
 
 \bibitem{carla}
-Koltun~Vladlen Ros~German.
+German Ros and Vladlen Koltun.
 \newblock Carla simulator.
 \newblock \url{https://carla.readthedocs.io/en/latest/start_introduction/},
-  2025-02-12.
+  2025.
 
 \bibitem{devEpicgames}
 Epic Games.
 \newblock Coordinate system and spaces in unreal engine.
 \newblock
   \url{https://dev.epicgames.com/documentation/en-us/unreal-engine/coordinate-system-and-spaces-in-unreal-engine},
-  2025-05-18.
+  2025.
 
 \bibitem{devEpicgamesUnits}
 Epic Games.
 \newblock Units of measurement in unreal engine.
 \newblock
   \url{https://dev.epicgames.com/documentation/en-us/unreal-engine/units-of-measurement-in-unreal-engine},
-  2025-05-18.
+  2025.
+
+\bibitem{carla_bounding_boxes}
+{CARLA Simulator Team}.
+\newblock Bounding boxes tutorial, 2022.
+\newblock Dostêp: 29.12.2025.
 
 \bibitem{unreal-engine}
 Epic Games.
 \newblock Unreal engine documentation.
-\newblock \url{https://docs.unrealengine.com/4.27/en-US/}, 2025-03-26.
+\newblock \url{https://docs.unrealengine.com/4.27/en-US/}, 2025.
 
 \bibitem{ren2015faster}
 Shaoqing Ren, Kaiming He, Ross~B. Girshick, and Jian Sun.
@@ -44,8 +49,8 @@ Shaoqing Ren, Kaiming He, Ross~B. Girshick, and Jian Sun.
 \bibitem{girshick2015fast}
 Ross Girshick.
 \newblock Fast r-cnn.
-\newblock In {\em Proceedings of the IEEE international conference on computer
-  vision}, pages 1440--1448, 2015.
+\newblock In {\em Proceedings of the IEEE International Conference on Computer
+  Vision}, pages 1440--1448, 2015.
 
 \bibitem{liu2016ssd}
 Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed,
@@ -57,47 +62,64 @@ Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed,
 \bibitem{yolov4_paper}
 Alexey Bochkovskiy, Chien-Yao Wang, and Hong-Yuan~Mark Liao.
 \newblock Yolov4: Optimal speed and accuracy of object detection.
-\newblock \url{https://arxiv.org/abs/2004.10934}, 2020-04-23.
+\newblock \url{https://arxiv.org/abs/2004.10934}, 2020.
 
 \bibitem{cnn_survey}
 Yann LeCun, Yoshua Bengio, and Geoffrey Hinton.
 \newblock Deep learning.
-\newblock \url{https://www.nature.com/articles/nature14539}, 2015-05-28.
+\newblock \url{https://www.nature.com/articles/nature14539}, 2015.
 
 \bibitem{Redmon2016}
 Joseph Redmon, Santosh Divvala, Ross Girshick, and Ali Farhadi.
 \newblock You only look once: Unified, real-time object detection.
 \newblock \url{https://arxiv.org/abs/1506.02640}, 2016.
 
+\bibitem{Bochkovskiy2020}
+Alexey Bochkovskiy, Chien-Yao Wang, and Hong-Yuan~Mark Liao.
+\newblock Yolov4: Optimal speed and accuracy of object detection.
+\newblock {\em arXiv preprint arXiv:2004.10934}, 2020.
+
 \bibitem{Goodfellow2016}
 Ian Goodfellow, Yoshua Bengio, and Aaron Courville.
 \newblock {\em Deep Learning}.
 \newblock MIT Press, Cambridge, MA, 2016.
 
-\bibitem{Bochkovskiy2020}
-Alexey Bochkovskiy, Chien-Yao Wang, and Hong-Yuan~Mark Liao.
-\newblock Yolov4: Optimal speed and accuracy of object detection.
-\newblock \url{https://arxiv.org/abs/2004.10934}, 2020.
-
-\bibitem{Géron2019}
-Aurélien Géron.
+\bibitem{Geron2019}
+Aur{\'e}lien G{\'e}ron.
 \newblock {\em Hands-On Machine Learning with Scikit-Learn, Keras, and
   TensorFlow}.
 \newblock O'Reilly Media, Sebastopol, CA, 2019.
-
-\bibitem{Aggarwal2018}
-Charu~C. Aggarwal.
-\newblock {\em Neural Networks and Deep Learning}.
-\newblock Springer, Cham, 2018.
 
 \bibitem{Sze2017}
 Vivienne Sze, Yu-Hsin Chen, Tien-Ju Yang, and Joel Emer.
 \newblock {\em Efficient Processing of Deep Neural Networks}.
 \newblock Morgan \& Claypool, San Rafael, CA, 2017.
 
+\bibitem{Aggarwal2018}
+Charu~C. Aggarwal.
+\newblock {\em Neural Networks and Deep Learning}.
+\newblock Springer, Cham, 2018.
+
 \bibitem{Lin2014}
-Tsung-Yi et~al. Lin.
+Tsung-Yi Lin, Michael Maire, Serge Belongie, Lubomir Bourdev, Ross Girshick,
+  James Hays, Pietro Perona, Deva Ramanan, C.~Lawrence Zitnick, and Piotr
+  Doll{\'a}r.
 \newblock Microsoft coco: Common objects in context.
-\newblock \url{https://arxiv.org/abs/1405.0312}, 2025-04-12.
+\newblock \url{https://arxiv.org/abs/1405.0312}, 2014.
+
+\bibitem{visoiou}
+{VISO AI}.
+\newblock Understanding intersection over union (iou) for model accuracy, 2025.
+\newblock Dostêp: 09.01.2026.
+
+\bibitem{ultralytics_docs}
+{Ultralytics}.
+\newblock Ultralytics yolo documentation, 2025.
+\newblock Dostêp: 09.01.2026.
+
+\bibitem{ultralytics_python}
+{Ultralytics}.
+\newblock Python usage - ultralytics yolo, 2025.
+\newblock Dostêp: 09.01.2026.
 
 \end{thebibliography}

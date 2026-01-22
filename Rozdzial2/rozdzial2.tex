@@ -289,9 +289,7 @@ S¹ to:
 	\caption[Œwiat³a pojazdu]{Obraz przedstawiaj¹cy œwiat³a pojazdu.}
 \end{figure} 
 
-\subsection{Wspó³rzêdne i jednostki miary}
-
-\subsection*{Uk³ad wspó³rzêdnych}
+\subsection{Reprezentacja obiektów w przestrzeni 3D i definicja Bounding Box}
 
 Symulator CARLA \cite{carla} oraz Unreal Engine 4 (UE4) stosuj¹ lewoskrêtny uk³ad wspó³rzêdnych kartezjañski z osi¹ Z skierowan¹ w górê (Z-up). Oznacza to:
 
@@ -326,13 +324,54 @@ W UE4 i CARLA:
 	\item \textbf{Pozycjonowanie obiektów}: odbywa siê poprzez okreœlenie ich lokalizacji wzglêdem tego punktu, np. \texttt{actor.set\_location(FVector(x, y, z))}.
 \end{itemize}
 
-\subsection*{Podsumowanie}
+	Ka¿dy obiekt dynamiczny (tzw. aktor), taki jak pojazd czy pieszy, posiada swoj¹ pozycjê w globalnym uk³adzie wspó³rzêdnych œwiata, okreœlan¹ wzglêdem punktu $(0,0,0)$ mapy. Kluczowym elementem w procesie detekcji i generowania danych ucz¹cych jest zrozumienie, w jaki sposób fizyczna bry³a obiektu jest reprezentowana numerycznie za pomoc¹ prostopad³oœcianu ograniczaj¹cego, zwanego \textit{bounding box} \cite{carla, carla_bounding_boxes}.
 
-\begin{itemize}
-	\item \textbf{Uk³ad wspó³rzêdnych}: Lewoskrêtny, Z-up.
-	\item \textbf{Punkt (0, 0, 0)}: Centrum œwiata gry.
-	\item \textbf{Jednostka miary}: 1 jednostka = 1 cm w rzeczywistoœci.
-\end{itemize}
+\subsubsection{Relacja miêdzy punktem Origin a œrodkiem geometrycznym}
+
+	Ka¿dy aktor w symulacji posiada swój punkt odniesienia, zwany \textit{Origin} lub \textit{Pivot Point}. W przypadku pojazdów punkt ten jest zazwyczaj zlokalizowany na poziomie pod³o¿a, w po³owie odleg³oœci miêdzy osiami kó³, co u³atwia obliczenia fizyki jazdy. Nale¿y jednak wyraŸnie odró¿niæ punkt \textit{Origin} aktora od œrodka jego obrysu (\textit{Bounding Box Center}).
+
+Struktura \texttt{carla.BoundingBox} definiuje geometriê obiektu za pomoc¹ dwóch kluczowych wektorów:
+\begin{enumerate}
+	\item \texttt{location}: Okreœla przesuniêcie œrodka geometrycznego prostopad³oœcianu wzglêdem punktu \textit{Origin} aktora. Wektor ten $(x_c, y_c, z_c)$ jest wyra¿ony w lokalnym uk³adzie wspó³rzêdnych pojazdu. Przyk³adowo, dla samochodu osobowego œrodek bry³y znajduje siê zazwyczaj wy¿ej (oœ Z > 0) i mo¿e byæ przesuniêty wzd³u¿ osi pod³u¿nej wzglêdem osi kó³.
+	\item \texttt{extent}: Jest to wektor $(e_x, e_y, e_z)$ okreœlaj¹cy po³owê wymiarów prostopad³oœcianu wzd³u¿ ka¿dej z osi lokalnych. Oznacza to, ¿e ca³kowite wymiary obiektu wynosz¹ odpowiednio: d³ugoœæ $2 \cdot e_x$, szerokoœæ $2 \cdot e_y$ oraz wysokoœæ $2 \cdot e_z$.
+\end{enumerate}
+
+Wspó³rzêdne wierzcho³ków bounding boxa nie s¹ przechowywane wprost, lecz s¹ obliczane dynamicznie na podstawie jego œrodka oraz wektora \texttt{extent}. Dla lokalnego uk³adu odniesienia, wierzcho³ki $V_{local}$ zdefiniowane s¹ jako kombinacje dodawania i odejmowania wartoœci \texttt{extent} od œrodka \texttt{location} \cite{carla_bounding_boxes}.
+
+%\begin{figure}[H]
+%	\centering
+%	% Tutaj wstaw grafikê ilustruj¹c¹ wektory extent i relacjê origin-center
+%	% Nazwij plik np. bbox_vectors_diagram.png
+%	\includegraphics[width=0.8\textwidth]{Rysunki/Rozdzial2/bbox_vectors_diagram.png}
+%	\caption{Schemat definicji Bounding Boxa: relacja miêdzy punktem Origin aktora, œrodkiem Bounding Boxa (Center) oraz wektorem Extent okreœlaj¹cym wymiary bry³y.}
+%	\label{fig:bbox_diagram}
+%\end{figure}
+
+\subsubsection{Transformacja do uk³adu wspó³rzêdnych œwiata}
+
+Aby wyznaczyæ po³o¿enie wierzcho³ków bounding boxa w globalnej przestrzeni 3D symulacji, konieczne jest wykonanie transformacji macierzowej. Proces ten uwzglêdnia aktualn¹ pozycjê i rotacjê pojazdu na mapie. Wykorzystywana jest do tego macierz transformacji $M_{actor}$, która sk³ada siê z translacji (pozycji aktora wzglêdem punktu 0,0,0 œwiata) oraz rotacji (k¹tów \textit{roll, pitch, yaw}).
+
+Po³o¿enie dowolnego wierzcho³ka $V_{world}$ w przestrzeni œwiata obliczane jest zgodnie z zale¿noœci¹:
+\begin{equation}
+	V_{world} = M_{actor} \cdot V_{local}
+\end{equation}
+Gdzie $V_{local}$ to wspó³rzêdna wierzcho³ka w uk³adzie lokalnym pojazdu (uwzglêdniaj¹ca przesuniêcie \texttt{location} i wymiar \texttt{extent}). Operacja ta pozwala na precyzyjne umiejscowienie obrysu pojazdu w œwiecie 3D, niezale¿nie od jego orientacji czy pochylenia wynikaj¹cego z fizyki zawieszenia \cite{carla}.
+
+\subsubsection{Rzutowanie z przestrzeni 3D na p³aszczyznê obrazu 2D}
+
+Ostatnim etapem, niezbêdnym do wygenerowania danych referencyjnych dla algorytmu YOLO (tzw. \textit{ground truth}), jest rzutowanie trójwymiarowych wierzcho³ków bounding boxa na dwuwymiarow¹ p³aszczyznê obrazu z kamery. Proces ten, realizowany m.in. w skrypcie \texttt{bounding\_boxes.py}, wymaga znajomoœci parametrów wewnêtrznych i zewnêtrznych kamery.
+
+Rzutowanie odbywa siê w dwóch krokach:
+\begin{enumerate}
+	\item \textbf{Transformacja Œwiat $\rightarrow$ Kamera:} Punkty ze œwiata 3D s¹ przeliczane do uk³adu wspó³rzêdnych kamery przy u¿yciu macierzy \textit{World-to-Camera} (bêd¹cej odwrotnoœci¹ transformacji kamery w œwiecie).
+	\item \textbf{Projekcja perspektywiczna:} Punkty z uk³adu kamery s¹ rzutowane na p³aszczyznê obrazu przy u¿yciu macierzy kalibracji $K$ (macierz parametrów wewnêtrznych), która zale¿y od rozdzielczoœci obrazu oraz k¹ta widzenia (FOV).
+\end{enumerate}
+
+Wzór opisuj¹cy projekcjê punktu $P_{3D} = [x, y, z]^T$ na punkt obrazu $p_{2D} = [u, v]^T$ (we wspó³rzêdnych jednorodnych) przyjmuje postaæ:
+\begin{equation}
+	s \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = K \cdot [R | t] \cdot \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix}
+\end{equation}
+Gdzie $K$ to macierz wewnêtrzna kamery, $[R|t]$ to macierz transformacji z uk³adu œwiata do uk³adu kamery, a $s$ to wspó³czynnik skaluj¹cy. Ostateczny prostok¹t 2D (bbox 2D) wyznaczany jest poprzez znalezienie minimalnych i maksymalnych wartoœci wspó³rzêdnych $(u, v)$ spoœród wszystkich 8 rzutowanych wierzcho³ków bry³y 3D. Takie podejœcie gwarantuje, ¿e wygenerowany obrys 2D w pe³ni obejmuje widoczny obiekt na zdjêciu \cite{carla_bounding_boxes}.
 
 \section{Instalacja symulatora Carla}
 

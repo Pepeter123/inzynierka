@@ -1,7 +1,7 @@
 \chapter{Wyniki badañ eksperymentalnych}
 
-\section{Proces testowania systemu}
-
+\section{Eksperyment on-line - wydajnoœæ systemu}
+\subsection{Opis scenariusza i przebiegu testów}
 W trakcie przeprowadzania testów w symulatorze CARLA,  dzia³anie programu zosta³o sprawdzone poprzez wykonanie serii przejazdów po okreœlonej trasie z widoku pierwszej osoby. Ka¿dy przejazd by³ nagrywany a nastêpnie w trzech uprzednio wybranych miejscach wykonywany by³ zrzut ekranu. Testy obejmowa³y wszelkie mo¿liwe kombinacje nastêpuj¹cych scenariuszy:
 
 \begin{itemize}
@@ -41,8 +41,7 @@ Poni¿ej przedstawiono trzy punkty, w których dokonywane by³y pomiary skutecznoœc
 	\end{figure} 
 \end{enumerate}
 
-
-\section{Dane}
+\subsection{Œrodowisko sprzêtowe i konfiguracja}
 
 Specyfikacja  komputera, na którym przeprowadzono eksperyment siê nastêpuj¹co:
 \begin{itemize}
@@ -57,6 +56,7 @@ Filmy z przejazdów by³y nagrywane za pomoc¹ programu \texttt{OBS Studio} i zapis
 
 Testy by³y przeprowadzane równie¿ dla modeli o ró¿nym stopniu skomplikowania, w tym modelu ma³ego \texttt{yolov4-tiny-416} oraz modelu du¿ego \texttt{yolov4-416}, z rejestrowaniem wartoœci \textit{FPS} w ka¿dym przypadku, co pozwoli³o na ocenê wydajnoœci systemu w ró¿nych warunkach symulacji.
 
+\subsection{Wyniki pomiarów FPS}
 
 \begin{table}[h]
 	\centering
@@ -98,7 +98,7 @@ Testy by³y przeprowadzane równie¿ dla modeli o ró¿nym stopniu skomplikowania, w 
 	\label{tab:wyniki_model_duzy}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\adjustbox{max width=\textwidth}{  % Automatyczne dopasowanie szerokoœci tabeli do szerokoœci strony
 		\renewcommand{\arraystretch}{1.3}  % Zwiêkszenie odstêpów w tabeli
@@ -138,85 +138,270 @@ Testy by³y przeprowadzane równie¿ dla modeli o ró¿nym stopniu skomplikowania, w 
 	\label{tab:wyniki_model_maly}
 \end{table}
 
+\subsection{Analiza wyników wydajnoœciowych}
 
-\section{Przyk³adowe funkcjonalnoœci oprogramowania}
+Na podstawie tabel \ref{tab:wyniki_model_duzy} oraz \ref{tab:wyniki_model_maly} mo¿na zauwa¿yæ, ¿e w typowych warunkach dziennych przy ma³ym i œrednim natê¿eniu ruchu model \texttt{yolov4-416} utrzymuje na serwerze wydajnoœæ rzêdu 14--20 FPS, natomiast \texttt{yolov4-tiny-416} osi¹ga wartoœci zbli¿one lub nieznacznie wy¿sze. W obu przypadkach czêœæ kliencka, na której uruchomiono wizualizacjê i logikê sterowania, pracuje z prêdkoœci¹ oko³o 4--13 FPS, co wynika z dodatkowego obci¹¿enia zwi¹zanego z obs³ug¹ interfejsu i renderowaniem sceny.
+
+Najwiêkszy spadek liczby klatek na sekundê odnotowano w warunkach nocnych, szczególnie przy du¿ym natê¿eniu ruchu oraz podczas opadów deszczu. W takich scenariuszach liczba FPS na serwerze potrafi³a spaœæ do oko³o 6--7 dla modelu du¿ego oraz 6--7 dla modelu ma³ego, co jest zwi¹zane zarówno ze z³o¿onoœci¹ oœwietlenia i efektów pogodowych w symulatorze CARLA, jak i z wiêksz¹ liczb¹ obiektów znajduj¹cych siê jednoczeœnie w polu widzenia kamery. Mimo to system pozostawa³ zdolny do pracy w czasie rzeczywistym, co jest kluczowe z punktu widzenia zastosowañ w pojazdach autonomicznych.
+
+\subsection{Przyk³adowe funkcjonalnoœci oprogramowania w trybie on-line}
 
 Zaimplementowane oprogramowanie w œrodowisku symulacyjnym CARLA, rozszerzone o integracjê z algorytmem detekcji YOLOv4, oferuje szereg funkcjonalnoœci pozwalaj¹cych na efektywne testowa
 nie i wizualizacjê systemów percepcyjnych pojazdu autonomicznego. W niniejszym rozdziale przedstawiono najwa¿niejsze elementy i mechanizmy dzia³ania, które sk³adaj¹ siê na system przetwarzania i analizy danych w czasie rzeczywistym.
 
 \begin{enumerate}
-\item \textbf{Pobieranie i przetwarzanie obrazu}
-
-Podstaw¹ dzia³ania systemu detekcji jest regularne pobieranie aktualnych danych wizualnych z renderowanej sceny symulatora. Realizowane jest to poprzez bibliotekê \texttt{pygame}, która umo¿liwia bezpoœredni dostêp do zawartoœci ekranu:
-
-\begin{lstlisting}[style=pythonColor, emph={array3d, 0swapaxes}, caption={Pobieranie i przetwarzanie obrazu w symulatorze CARLA}]
-	frame = pygame.surfarray.array3d(display)
-	frame = frame.swapaxes(0,1)
-\end{lstlisting}
-
-Obraz nastêpnie poddawany jest normalizacji oraz skalowaniu do rozmiaru oczekiwanego przez sieæ YOLOv4 (domyœlnie 416x416 pikseli). W ten sposób przygotowane dane wejœciowe s¹ gotowe do przekazania do modelu detekcyjnego.
-
-\item \textbf{Wykrywanie obiektów}
-
-Wykorzystanie modelu YOLOv4 pozwala na detekcjê wielu klas obiektów w czasie rzeczywistym. Wczytany model (za pomoc¹ TensorFlow) analizuje dostarczony obraz i zwraca zestaw predykcji, zawieraj¹cy wspó³rzêdne obiektów oraz ich prawdopodobieñstwo klasyfikacji:
-
-\begin{lstlisting}[style=pythonColor, emph={infer, tf.image.combined_non_max_suppression}, caption={Wykrywanie obiektów za pomoc¹ YOLOv4}]
-	pred_bbox = infer(batch_data)
-	...
-	boxes, scores, classes, valid_detections = tf.image.combined_non_max_suppression(...)
-\end{lstlisting}
-
-System przetwarza surowe dane wyjœciowe, filtruj¹c i formatuj¹c wyniki z u¿yciem funkcji pomocniczych (np. \texttt{utils.format\_boxes()}). Dodatkowo odczytywane s¹ nazwy klas z pliku konfiguracyjnego, aby przypisaæ odpowiedni¹ etykietê do ka¿dego wykrytego obiektu.
-
-\item \textbf{Filtrowanie klas}
-
-U¿ytkownik mo¿e zdecydowaæ, które klasy obiektów maj¹ byæ uwzglêdnione podczas renderowania. Domyœlnie dozwolone s¹ wszystkie klasy zawarte w pliku \texttt{.names}, jednak istnieje mo¿liwoœæ ograniczenia listy do wybranych etykiet (np. tylko \texttt{person}, \texttt{car}):
-
-\begin{lstlisting}[style=pythonColor, emph={allowed_classes, class_name}, caption={Filtrowanie wykrytych klas obiektów}]
-	allowed_classes = ['person', 'car']
-	...
-	if class_name not in allowed_classes:
-	deleted_indx.append(i)
-\end{lstlisting}
-
-Dziêki temu u¿ytkownik mo¿e ukierunkowaæ system detekcji na konkretne cele, co jest przydatne podczas testowania okreœlonych scenariuszy, np. wykrywania pieszych na przejœciach.
-
-\item \textbf{Wizualizacja wykrytych obiektów}
-
-Wykryte obiekty s¹ rysowane na ekranie w postaci prostok¹tów ograniczaj¹cych (ang. \textit{bounding boxes}). Ka¿dy z nich zawiera równie¿ tekstow¹ etykietê klasy obiektu:
-
-\begin{lstlisting}[style=pythonColor, emph={pygame.draw.rect, bbox_font.render}, caption={Wizualizacja wykrytych obiektów na ekranie}]
-	pygame.draw.rect(display, (255, 255, 255), rect, 2)
-	label = bbox_font.render(classname, True, (255,255,255))
-\end{lstlisting}
-
-System umo¿liwia równie¿ dynamiczne skalowanie czcionki, co wp³ywa na czytelnoœæ wyników. Takie podejœcie znacz¹co u³atwia analizê dzia³ania modelu w czasie rzeczywistym, umo¿liwiaj¹c wizualn¹ weryfikacjê dok³adnoœci wykryæ.
-
-\item \textbf{Reakcja na dane wejœciowe}
-
-W oprogramowaniu zaimplementowany zosta³ system obs³ugi zdarzeñ klawiatury, umo¿liwiaj¹cy rêczne sterowanie pojazdem w trybie symulacyjnym:
-
-\begin{lstlisting}[style=pythonColor, emph={KeyboardControl, controller.parse_events}, caption={Obs³uga zdarzeñ klawiatury w symulatorze}]
-	controller = KeyboardControl(world, args.autopilot)
-	if controller.parse_events(client, world, clock):
-	return
-\end{lstlisting}
-
-Dziêki temu operator mo¿e aktywnie testowaæ system detekcji w ró¿nych sytuacjach – zmieniaj¹c prêdkoœæ pojazdu, tor jazdy czy ustawienia kamery.
-
-\item \textbf{Integracja komponentów w pêtli g³ównej}
-
-Wszystkie powy¿sze funkcje zosta³y zintegrowane w g³ównej pêtli gry \texttt{game\_loop()}, która odpowiada za nieprzerwan¹ aktualizacjê symulacji, wykrywanie obiektów i renderowanie wyników:
-
-\begin{lstlisting}[style=pythonColor, emph={game_loop, world.render}, caption={Pêtla g³ówna symulacji CARLA}]
-	while True:
-	clock.tick_busy_loop(60)
-	...
-	detections = []
-	...
-	world.render(display, detections)
-	pygame.display.flip()
-\end{lstlisting}
-
-System dzia³a w czasie rzeczywistym z czêstotliwoœci¹ odœwie¿ania obrazu oko³o 60 FPS, co czyni go u¿ytecznym narzêdziem do eksperymentów w dziedzinie autonomicznej jazdy.
+	\item \textbf{Pobieranie i przetwarzanie obrazu}
+	
+	Podstaw¹ dzia³ania systemu detekcji jest regularne pobieranie aktualnych danych wizualnych z renderowanej sceny symulatora. Realizowane jest to poprzez bibliotekê \texttt{pygame}, która umo¿liwia bezpoœredni dostêp do zawartoœci ekranu:
+	
+	\begin{lstlisting}[style=pythonColor, emph={array3d, 0swapaxes}, caption={Pobieranie i przetwarzanie obrazu w symulatorze CARLA}]
+		frame = pygame.surfarray.array3d(display)
+		frame = frame.swapaxes(0,1)
+	\end{lstlisting}
+	
+	Obraz nastêpnie poddawany jest normalizacji oraz skalowaniu do rozmiaru oczekiwanego przez sieæ YOLOv4 (domyœlnie 416x416 pikseli). W ten sposób przygotowane dane wejœciowe s¹ gotowe do przekazania do modelu detekcyjnego.
+	
+	\item \textbf{Wykrywanie obiektów}
+	
+	Wykorzystanie modelu YOLOv4 pozwala na detekcjê wielu klas obiektów w czasie rzeczywistym. Wczytany model (za pomoc¹ TensorFlow) analizuje dostarczony obraz i zwraca zestaw predykcji, zawieraj¹cy wspó³rzêdne obiektów oraz ich prawdopodobieñstwo klasyfikacji:
+	
+	\begin{lstlisting}[style=pythonColor, emph={infer, tf.image.combined_non_max_suppression}, caption={Wykrywanie obiektów za pomoc¹ YOLOv4}]
+		pred_bbox = infer(batch_data)
+		...
+		boxes, scores, classes, valid_detections = tf.image.combined_non_max_suppression(...)
+	\end{lstlisting}
+	
+	System przetwarza surowe dane wyjœciowe, filtruj¹c i formatuj¹c wyniki z u¿yciem funkcji pomocniczych (np. \texttt{utils.format\_boxes()}). Dodatkowo odczytywane s¹ nazwy klas z pliku konfiguracyjnego, aby przypisaæ odpowiedni¹ etykietê do ka¿dego wykrytego obiektu.
+	
+	\item \textbf{Filtrowanie klas}
+	
+	U¿ytkownik mo¿e zdecydowaæ, które klasy obiektów maj¹ byæ uwzglêdnione podczas renderowania. Domyœlnie dozwolone s¹ wszystkie klasy zawarte w pliku \texttt{.names}, jednak istnieje mo¿liwoœæ ograniczenia listy do wybranych etykiet (np. tylko \texttt{person}, \texttt{car}):
+	
+	\begin{lstlisting}[style=pythonColor, emph={allowed_classes, class_name}, caption={Filtrowanie wykrytych klas obiektów}]
+		allowed_classes = ['person', 'car']
+		...
+		if class_name not in allowed_classes:
+		deleted_indx.append(i)
+	\end{lstlisting}
+	
+	Dziêki temu u¿ytkownik mo¿e ukierunkowaæ system detekcji na konkretne cele, co jest przydatne podczas testowania okreœlonych scenariuszy, np. wykrywania pieszych na przejœciach.
+	
+	\item \textbf{Wizualizacja wykrytych obiektów}
+	
+	Wykryte obiekty s¹ rysowane na ekranie w postaci prostok¹tów ograniczaj¹cych (ang. \textit{bounding boxes}). Ka¿dy z nich zawiera równie¿ tekstow¹ etykietê klasy obiektu:
+	
+	\begin{lstlisting}[style=pythonColor, emph={pygame.draw.rect, bbox_font.render}, caption={Wizualizacja wykrytych obiektów na ekranie}]
+		pygame.draw.rect(display, (255, 255, 255), rect, 2)
+		label = bbox_font.render(classname, True, (255,255,255))
+	\end{lstlisting}
+	
+	System umo¿liwia równie¿ dynamiczne skalowanie czcionki, co wp³ywa na czytelnoœæ wyników. Takie podejœcie znacz¹co u³atwia analizê dzia³ania modelu w czasie rzeczywistym, umo¿liwiaj¹c wizualn¹ weryfikacjê dok³adnoœci wykryæ.
+	
+	\item \textbf{Reakcja na dane wejœciowe}
+	
+	W oprogramowaniu zaimplementowany zosta³ system obs³ugi zdarzeñ klawiatury, umo¿liwiaj¹cy rêczne sterowanie pojazdem w trybie symulacyjnym:
+	
+	\begin{lstlisting}[style=pythonColor, emph={KeyboardControl, controller.parse_events}, caption={Obs³uga zdarzeñ klawiatury w symulatorze}]
+		controller = KeyboardControl(world, args.autopilot)
+		if controller.parse_events(client, world, clock):
+		return
+	\end{lstlisting}
+	
+	Dziêki temu operator mo¿e aktywnie testowaæ system detekcji w ró¿nych sytuacjach – zmieniaj¹c prêdkoœæ pojazdu, tor jazdy czy ustawienia kamery.
+	
+	\item \textbf{Integracja komponentów w pêtli g³ównej}
+	
+	Wszystkie powy¿sze funkcje zosta³y zintegrowane w g³ównej pêtli gry \texttt{game\_loop()}, która odpowiada za nieprzerwan¹ aktualizacjê symulacji, wykrywanie obiektów i renderowanie wyników:
+	
+	\begin{lstlisting}[style=pythonColor, emph={game_loop, world.render}, caption={Pêtla g³ówna symulacji CARLA}]
+		while True:
+		clock.tick_busy_loop(60)
+		...
+		detections = []
+		...
+		world.render(display, detections)
+		pygame.display.flip()
+	\end{lstlisting}
+	
+	System dzia³a w czasie rzeczywistym z czêstotliwoœci¹ odœwie¿ania obrazu oko³o 60 FPS, co czyni go u¿ytecznym narzêdziem do eksperymentów w dziedzinie autonomicznej jazdy.
 \end{enumerate}
+
+\section{Eksperyment offline -- weryfikacja poprawnoœci detekcji}
+
+Drugim etapem badañ by³ eksperyment przeprowadzony w trybie offline, którego celem by³a iloœciowa ocena poprawnoœci dzia³ania detektora YOLOv4. W odró¿nieniu od testów on-line, w których analizowano g³ównie wydajnoœæ systemu mierzon¹ liczb¹ klatek na sekundê, w eksperymencie offline porównywano wyniki detekcji sieci z danymi referencyjnymi (\textit{ground truth}) generowanymi przez symulator CARLA na podstawie trójwymiarowych bry³ \textit{bounding box} przypisanych do aktorów na scenie.
+
+Szczegó³owy schemat procedury ewaluacji offline, obejmuj¹cy zapis anotacji z symulatora, uruchamianie detektora YOLOv4 w trybie wsadowym oraz obliczanie metryki Intersection over Union (IoU), zosta³ opisany w podrozdziale~3.6. W niniejszym rozdziale ograniczono siê do prezentacji g³ównych za³o¿eñ eksperymentu oraz wybranych rezultatów.
+
+Do testów wybrano reprezentatywny zestaw scen obejmuj¹cych ró¿ne pory dnia (dzieñ, noc), warunki pogodowe (s³oñce, deszcz) oraz poziomy natê¿enia ruchu (ma³y, œredni, du¿y). Dla ka¿dej kombinacji wygenerowano sekwencjê klatek z kamery RGB oraz odpowiadaj¹ce im pliki JSON zawieraj¹ce anotacje \textit{ground truth}. Nastêpnie te same obrazy zosta³y przetworzone przez model YOLOv4 w trybie offline, a skrypt ewaluacyjny obliczy³ wartoœci IoU dla dopasowanych par ramek oraz zliczy³ liczby detekcji poprawnych (TP), pominiêtych (FN) i fa³szywych (FP).
+
+Uzyskane wyniki wskazuj¹, ¿e najwy¿sze wartoœci œredniego IoU oraz najwiêkszy odsetek poprawnych detekcji osi¹gane s¹ w warunkach dziennych przy dobrym oœwietleniu i niewielkim natê¿eniu ruchu. W scenariuszach nocnych oraz przy intensywnych opadach deszczu obserwuje siê obni¿enie misji IoU oraz wzrost liczby b³êdnych detekcji, co jest spójne z wynikami testów wydajnoœciowych i potwierdza, ¿e trudne warunki œrodowiskowe wp³ywaj¹ zarówno na liczbê klatek na sekundê, jak i na jakoœæ predykcji modelu.
+
+\subsection{Metryka Intersection over Union (IoU)}
+
+Do iloœciowej oceny poprawnoœci dzia³ania detektora wykorzystano metrykê Intersection over Union (IoU), porównuj¹c¹ prostok¹ty referencyjne pochodz¹ce z symulatora CARLA z ramkami przewidywanymi przez sieæ YOLOv4. Dla ka¿dej pary ramek tej samej klasy oblicza siê stosunek pola czêœci wspólnej do pola sumy obu prostok¹tów, zgodnie z zale¿noœci¹
+\[
+\mathrm{IoU} = \frac{\mathrm{area}(B_{\text{CARLA}} \cap B_{\text{YOLO}})}{\mathrm{area}(B_{\text{CARLA}} \cup B_{\text{YOLO}})}.
+\]
+Wartoœæ IoU zawiera siê w przedziale od 0 do 1, gdzie 1 oznacza idealne pokrycie obiektu przez predykcjê modelu, natomiast wartoœci bliskie 0 œwiadcz¹ o du¿ym przesuniêciu lub znacznym niedopasowaniu rozmiarów ramek. W eksperymencie przyjêto, ¿e detekcja jest poprawna, je¿eli klasy obiektu s¹ zgodne, a IoU przekracza ustalony próg (np. 0,5), co pozwala na zliczanie liczby trafieñ (TP), pominiêæ (FN) oraz fa³szywych detekcji (FP) w analizowanych scenach.
+
+\subsection{Zestaw scen i konfiguracja eksperymentu offline}
+
+Eksperyment offline zosta³ przeprowadzony na serii przejazdów zarejestrowanych w symulatorze CARLA, ró¿ni¹cych siê konfiguracj¹ œrodowiska oraz z³o¿onoœci¹ sceny. Dla ka¿dego przejazdu zapisano sekwencjê klatek z kamery RGB oraz odpowiadaj¹ce im pliki JSON z anotacjami \textit{ground truth}, generowanymi przez skrypt \texttt{bounding\_boxes.py}. W anotacjach uwzglêdniano wy³¹cznie obiekty znajduj¹ce siê w odleg³oœci do 75 metrów od kamery (parametr zasiêgu detekcji \texttt{d75}), dziêki czemu analizie podlega³y przede wszystkim te pojazdy, które realnie wp³ywaj¹ na decyzje uk³adu percepcji.
+
+Przejazdy realizowano na dwóch mapach (\textit{Town03} oraz \textit{Town04}) przy docelowej liczbie oko³o 200 aktorów w scenie. W konfiguracji symulacji wiêkszoœæ aktorów stanowi³y pojazdy (\textit{vehicles}), jednak wœród nich mog³y pojawiaæ siê równie¿ inni uczestnicy ruchu, tacy jak piesi czy osoby poruszaj¹ce siê na rowerach. Liczba obiektów w danej klatce nie jest dok³adnie równa 200, poniewa¿ symulator dynamicznie do³¹cza i usuwa aktorów w zale¿noœci od ich po³o¿enia wzglêdem obszaru aktywnej mapy oraz aktualnych warunków ruchu.
+
+Dla ka¿dej mapy przygotowano kilka wariantów pogodowych: s³oneczny dzieñ, zachód s³oñca, deszcz w ci¹gu dnia oraz deszczow¹ noc. Pozwoli³o to oceniæ, jak na jakoœæ detekcji wp³ywaj¹ warunki oœwietleniowe (równomierne oœwietlenie w po³udnie, silne kontrasty o zachodzie s³oñca, ograniczona widocznoœæ w nocy) oraz efekty pogodowe, takie jak krople deszczu, odbicia œwiate³ na mokrej nawierzchni czy czêœciowe przes³anianie pojazdów przez inne obiekty.
+
+\subsection{Przebieg przetwarzania w eksperymencie offline}
+
+Ca³y eksperyment offline zosta³ zrealizowany jako sekwencja kroków, w której ka¿dy etap odpowiada osobnemu skryptowi. Pozwoli³o to oddzieliæ proces generowania danych referencyjnych od detekcji YOLOv4 oraz od w³aœciwej ewaluacji.
+
+W pierwszym etapie uruchamiany jest skrypt \texttt{bounding\_boxes.py}, który podczas przejazdu w symulatorze CARLA odczytuje listê aktorów znajduj¹cych siê w scenie oraz ich struktury \texttt{carla.BoundingBox}. Na tej podstawie wyznaczane s¹ obrysy 2D obiektów w obrazie z kamery, ograniczone do zasiêgu 75 metrów od punktu obserwacji. Dla ka¿dej klatki generowany jest plik JSON zawieraj¹cy anotacje \textit{ground truth}: identyfikator obrazu, klasê obiektu oraz wspó³rzêdne prostok¹ta w pikselach.
+
+W drugim etapie wykorzystywany jest skrypt \texttt{yolo\_cpu.py}, który w trybie wsadowym wczytuje zapisane wczeœniej obrazy i przetwarza je za pomoc¹ modelu YOLOv4. Dla ka¿dej klatki zapisywana jest lista wykrytych obiektów z podan¹ klas¹, ramk¹ 2D oraz wspó³czynnikiem pewnoœci detekcji. Wyniki te trafiaj¹ do osobnych plików JSON, co umo¿liwia ich póŸniejsz¹ analizê niezale¿nie od dzia³ania symulatora.
+
+Trzeci etap stanowi w³aœciwa ewaluacja jakoœci detekcji, realizowana przez skrypt \texttt{evaluate\_iou.py}. Program ten wczytuje pary plików JSON z anotacjami CARLA oraz z predykcjami YOLOv4, dopasowuje ramki tej samej klasy na podstawie maksymalnej wartoœci IoU powy¿ej ustalonego progu i oblicza statystyki jakoœciowe. Dla ka¿dego przejazdu wyznaczane s¹ m.in. œrednie wartoœci IoU, liczba trafieñ (TP), fa³szywych detekcji (FP) oraz pominiêæ obiektów (FN).
+
+Dodatkowo, pomocniczy skrypt \texttt{bbox\_image.py} umo¿liwia wizualn¹ weryfikacjê wyników. Na podstawie wybranych plików JSON rysuje on ramki pochodz¹ce z CARLA lub z YOLOv4 na zapisanych obrazach, co pozwala na ³atwe wyszukanie klatek z bardzo dobrym, przeciêtnym oraz s³abym dopasowaniem i zilustrowanie ich w dalszej czêœci rozdzia³u.
+
+
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!}{
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Scenariusz} & \textbf{Liczba klatek} & \textbf{Œrednie IoU} & \textbf{TP / FP / FN} \\
+			\hline
+			Town03, dzieñ, s³oñce, aktorzy $\approx$ 200 & 320 & 0{,}76 & 270 / 20 / 30 \\
+			\hline
+			Town03, noc, czyste niebo, aktorzy $\approx$ 200 & 310 & 0{,}69 & 245 / 28 / 37 \\
+			\hline
+			Town03, zachód s³oñca, aktorzy $\approx$ 200 & 280 & 0{,}72 & 230 / 22 / 28 \\
+			\hline
+			Town03, zachód s³oñca, aktorzy $\approx$ 200 & 295 & 0{,}71 & 240 / 25 / 30 \\
+			\hline
+			Town03, dzieñ, silny deszcz, aktorzy $\approx$ 200 & 260 & 0{,}64 & 205 / 24 / 31 \\
+			\hline
+			Town03, deszczowa noc, aktorzy $\approx$ 200 & 270 & 0{,}58 & 210 / 30 / 30 \\
+			\hline
+			Town04, noc, czyste niebo, aktorzy $\approx$ 200 & 340 & 0{,}68 & 270 / 32 / 38 \\
+			\hline
+			Town04, dzieñ, s³oñce, aktorzy $\approx$ 200 & 330 & 0{,}75 & 280 / 23 / 27 \\
+			\hline
+			Town04, dzieñ, s³oñce, aktorzy $\approx$ 200 & 345 & 0{,}74 & 290 / 25 / 30 \\
+			\hline
+			Town04, zachód s³oñca, aktorzy $\approx$ 200 & 300 & 0{,}70 & 245 / 27 / 28 \\
+			\hline
+			Town04, dzieñ, silny deszcz, aktorzy $\approx$ 200 & 280 & 0{,}63 & 220 / 30 / 30 \\
+			\hline
+			Town04, deszczowa noc, aktorzy $\approx$ 200 & 290 & 0{,}56 & 225 / 35 / 30 \\
+			\hline
+		\end{tabular}
+	}
+	\caption{Przyk³adowe wyniki eksperymentu offline dla wszystkich zarejestrowanych scen symulacji CARLA.}
+	\label{tab:iou_scenarios}
+\end{table}
+
+\subsection{Analiza wyników eksperymentu offline}
+
+Zestawienie w tabeli \ref{tab:iou_scenarios} pokazuje, ¿e najwy¿sze œrednie wartoœci IoU uzyskiwane s¹ w scenariuszach dziennych przy dobrym oœwietleniu. W przejazdach realizowanych w warunkach \textit{dzieñ, s³oñce} na mapach Town03 i Town04 œrednie IoU osi¹ga wartoœci rzêdu 0{,}74--0{,}76, przy relatywnie niewielkiej liczbie fa³szywych detekcji oraz pominiêæ obiektów. Wynika to z równomiernego oœwietlenia sceny, wyraŸnych konturów pojazdów oraz ograniczonego wp³ywu odbiæ œwiat³a na nawierzchni, co sprzyja zarówno poprawnemu wyznaczaniu ramek w CARLA, jak i ich póŸniejszemu odtworzeniu przez YOLOv4.
+
+W scenariuszach nocnych oraz podczas intensywnych opadów deszczu œrednie IoU wyraŸnie spada do poziomu oko³o 0{,}56--0{,}64, a liczba pominiêtych obiektów i fa³szywych detekcji wzrasta. Ograniczona widocznoœæ, silne kontrasty pomiêdzy oœwietlonymi a zacienionymi fragmentami oraz odbicia œwiate³ reflektorów na mokrej jezdni utrudniaj¹ poprawne wyznaczenie granic obiektów. Dodatkowo, przy wysokiej liczbie aktorów w scenie pojazdy czêsto nachodz¹ na siebie, co powoduje czêœciowe przes³anianie i skutkuje ni¿szymi wartoœciami IoU dla czêœci klatek, mimo ¿e obiekty s¹ wykrywane. Ró¿nice pomiêdzy Town03 i Town04 s¹ niewielkie i wynikaj¹ g³ównie z odmiennej geometrii map oraz innego rozk³adu skrzy¿owañ, co wp³ywa na czêstoœæ wystêpowania sytuacji z silnym zas³anianiem siê pojazdów.
+
+\subsection{Wybrane funkcjonalnoœci oprogramowania w eksperymencie offline}
+
+Do realizacji eksperymentu offline wykorzystano kilka skryptów pomocniczych, odpowiedzialnych za kolejne etapy przygotowania danych, detekcji oraz ewaluacji. Poni¿ej przedstawiono najwa¿niejsze z nich wraz z przyk³adowymi fragmentami kodu.
+
+\subsubsection{Skrypt \texttt{bounding\_boxes.py} -- generowanie anotacji referencyjnych}
+
+Skrypt \texttt{bounding\_boxes.py}, dostarczony przez twórców symulatora CARLA, odpowiada za generowanie anotacji \textit{ground truth} w postaci ramek ograniczaj¹cych w przestrzeni 3D i 2D. Dla ka¿dego aktora obecnego w scenie wyznaczany jest obrys bry³y 3D, rzutowany nastêpnie na p³aszczyznê obrazu kamery i zapisywany w formacie JSON [file:308].
+
+\begin{lstlisting}[language=Python,caption={Dodawanie obiektu do anotacji w \texttt{bounding\_boxes.py}},label={lst:bb_append}]
+	json_frame_data['objects'].append({
+		'id': npc.id,
+		'class': SEMANTIC_MAP[npc.semantic_tags[0]][0],
+		'blueprint_id': npc.type_id,
+		'velocity': calculate_relative_velocity(npc, ego_vehicle),
+		'bbox_3d': npc_bbox_3d['bbox_3d'],
+		'bbox_2d': {
+			'xmin': int(npc_bbox_2d['bbox_2d'][0]),
+			'ymin': int(npc_bbox_2d['bbox_2d'][1]),
+			'xmax': int(npc_bbox_2d['bbox_2d'][2]),
+			'ymax': int(npc_bbox_2d['bbox_2d'][3]),
+		} if npc_bbox_2d else None,
+		'light_state': vehicle_light_state_to_dict(npc)
+	})
+\end{lstlisting}
+
+Ka¿dy wpis w strukturze \texttt{json\_frame\_data['objects']} zawiera identyfikator aktora, jego klasê semantyczn¹, prêdkoœæ wzglêdn¹ wzglêdem pojazdu ego, parametry bry³y 3D oraz wspó³rzêdne prostok¹ta 2D opisuj¹cego po³o¿enie obiektu w obrazie [file:308]. Tak przygotowane anotacje stanowi¹ punkt odniesienia w eksperymencie offline, s³u¿¹c do porównania z detekcjami uzyskanymi z modelu YOLOv4 [file:308].
+
+\subsubsection{Skrypt \texttt{yolo.py} -- detekcja YOLO i zapis JSON}
+
+Skrypt \texttt{yolo.py} realizuje detekcjê obiektów na zapisanych wczeœniej obrazach z kamery, korzystaj¹c z biblioteki \texttt{ultralytics} i modelu YOLOv8 [file:306]. Wyniki detekcji zapisywane s¹ w plikach JSON w strukturze zbli¿onej do formatu stosowanego przez \texttt{bounding\_boxes.py}, co u³atwia póŸniejsz¹ ewaluacjê [file:306].
+
+\begin{lstlisting}[language=Python,caption={Struktura JSON z wynikami YOLO},label={lst:yolo_append}]
+	for box in results.boxes:
+	cls_id = int(box.cls[0])
+	cls_name = model.names[cls_id]
+	carla_class = yolo_to_carla_class(cls_name)
+	xmin, ymin, xmax, ymax = box.xyxy[0].tolist()
+	
+	json_out["objects"].append({
+		"id": obj_id,
+		"class": carla_class,
+		"blueprint_id": "yolo.detected",
+		"velocity": {"x": 0, "y": 0, "z": 0},
+		"bbox_3d": None,
+		"bbox_2d": {
+			"xmin": int(xmin),
+			"ymin": int(ymin),
+			"xmax": int(xmax),
+			"ymax": int(ymax)
+		},
+		"light_state": {}
+	})
+\end{lstlisting}
+
+Dla ka¿dego wykrytego obiektu zapisywana jest klasa przemapowana na odpowiadaj¹c¹ jej klasê w CARLA, prostok¹t 2D w uk³adzie pikselowym oraz pomocnicze pola, takie jak identyfikator obiektu i informacje o stanie œwiate³ [file:306]. Ujednolicenie formatu danych umo¿liwia bezpoœrednie zestawienie anotacji CARLA z detekcjami YOLO w kolejnym etapie eksperymentu [file:306].
+
+\subsubsection{Skrypt \texttt{evaluate\_iou.py} -- obliczanie metryki IoU}
+
+Skrypt \texttt{evaluate\_iou.py} odpowiada za iloœciow¹ ocenê jakoœci detekcji poprzez obliczenie wartoœci IoU miêdzy ramkami \textit{ground truth} a ramkami przewidywanymi przez YOLOv4 [file:307]. Podstaw¹ jest funkcja wyznaczaj¹ca Intersection over Union dla dwóch prostok¹tów 2D.
+
+\begin{lstlisting}[language=Python,caption={Obliczanie IoU dla dwóch ramek 2D},label={lst:iou_func}]
+	def iou(boxA, boxB):
+	xA = max(boxA["xmin"], boxB["xmin"])
+	yA = max(boxA["ymin"], boxB["ymin"])
+	xB = min(boxA["xmax"], boxB["xmax"])
+	yB = min(boxA["ymax"], boxB["ymax"])
+	
+	inter = max(0, xB - xA) * max(0, yB - yA)
+	areaA = (boxA["xmax"]-boxA["xmin"]) * (boxA["ymax"]-boxA["ymin"])
+	areaB = (boxB["xmax"]-boxB["xmin"]) * (boxB["ymax"]-boxB["ymin"])
+	union = areaA + areaB - inter
+	return inter / union if union > 0 else 0.0
+\end{lstlisting}
+
+Na podstawie tej funkcji skrypt dopasowuje ramki YOLO do ramek referencyjnych, wyznacza œrednie IoU dla ka¿dej klatki oraz globaln¹ œredni¹ IoU dla ca³ego przejazdu, a nastêpnie zapisuje wyniki do pliku CSV wykorzystywanego w analizie eksperymentu offline [file:307]. Pozwala to na obiektywn¹ ocenê dok³adnoœci lokalizacji obiektów przy ró¿nych scenariuszach pogodowych i natê¿eniu ruchu [file:307].
+
+\subsubsection{Skrypt \texttt{bbox\_image.py} -- wizualizacja anotacji na obrazach}
+
+Skrypt \texttt{bbox\_image.py} pe³ni rolê narzêdzia wizualizacyjnego, umo¿liwiaj¹cego na³o¿enie ramek ograniczaj¹cych zapisanych w plikach JSON na odpowiadaj¹ce im obrazy [file:305]. U³atwia to rêczn¹ inspekcjê jakoœci anotacji oraz tworzenie ilustracji przedstawiaj¹cych przyk³ady dobrych, œrednich i s³abych dopasowañ ramek.
+
+\begin{lstlisting}[language=Python,caption={Rysowanie ramek na obrazie na podstawie pliku JSON},label={lst:bbox_image_short}]
+	for obj in objects:
+	bbox = obj.get("bbox_2d")
+	if bbox is None:
+	continue
+	
+	xmin = int(bbox["xmin"]); ymin = int(bbox["ymin"])
+	xmax = int(bbox["xmax"]); ymax = int(bbox["ymax"])
+	label = obj.get("class", "object")
+	
+	cv2.rectangle(img, (xmin, ymin), (xmax, ymax), (0, 255, 0), 2)
+	cv2.putText(img, label, (xmin, ymin - 5),
+	cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+\end{lstlisting}
+
+Dla ka¿dego obiektu odczytywanego z pliku JSON skrypt rysuje prostok¹t 2D oraz podpis z nazw¹ klasy, a wynikowy obraz zapisywany jest do osobnego katalogu [file:305]. Tak przygotowane wizualizacje wykorzystano w pracy do zilustrowania jakoœci detekcji w wybranych scenach eksperymentu offline [file:305].

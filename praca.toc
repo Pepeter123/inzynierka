@@ -9,44 +9,53 @@
 \contentsline {subsection}{\numberline {2.2.2}Sensory}{8}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Pogoda}{14}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}O\'swietlenie}{16}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Wsp\'o\IeC {\l }rz\k edne i jednostki miary}{17}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}Instalacja symulatora Carla}{18}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Wymagania sprz\k etowe}{18}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Instalacja i konfiguracja dla systemu Ubuntu}{19}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Instalacja Unreal Engine}{19}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Pobranie \'zr\'ode\IeC {\l } CARLA i kompilacja}{19}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Uruchomienie symulatora CARLA}{20}{subsection.2.3.5}%
-\contentsline {section}{\numberline {2.4}Skrypt do manualnego sterowania w symulatorze CARLA}{20}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Struktura skryptu}{21}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Logika dzia\IeC {\l }ania pliku \texttt {manual\_control.py}}{21}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}P\k etla gry (Game Loop)}{23}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Tryb asynchroniczny i synchroniczny}{23}{subsection.2.4.4}%
-\contentsline {subsection}{\numberline {2.4.5}Implementacja synchronizacji w \texttt {manual\_control.py}}{24}{subsection.2.4.5}%
-\contentsline {subsection}{\numberline {2.4.6}Analiza p\k etli g\IeC {\l }\'ownej \texttt {game\_loop()}}{24}{subsection.2.4.6}%
-\contentsline {subsection}{\numberline {2.4.7}Znaczenie dla integracji z algorytmami zewn\k etrznymi}{25}{subsection.2.4.7}%
-\contentsline {subsection}{\numberline {2.4.8}Sterowanie pojazdem z poziomu klawiatury}{25}{subsection.2.4.8}%
-\contentsline {subsection}{\numberline {2.4.9}P\k etla gry - Game Loop}{26}{subsection.2.4.9}%
-\contentsline {subsection}{\numberline {2.4.10}Sterowanie pojazdem za pomoc\k a klawiatury}{27}{subsection.2.4.10}%
-\contentsline {subsection}{\numberline {2.4.11}Czyszczenie zasob\'ow (Cleanup)}{28}{subsection.2.4.11}%
-\contentsline {chapter}{\numberline {3}System rozpoznawania obraz\'ow}{29}{chapter.3}%
-\contentsline {section}{\numberline {3.1}YOLOv4 i konwolucyjne sieci neuronowe}{34}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Konwolucyjne sieci neuronowe (CNN)}{34}{subsection.3.1.1}%
-\contentsline {section}{\numberline {3.2}Zasada dzia\IeC {\l }ania algorytmu YOLO i YOLOv4}{35}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Zasada dzia\IeC {\l }ania algorytmu YOLO i YOLOv4}{36}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Etap 1: Podzia\IeC {\l } obrazu na siatk\k e detekcyjn\k a}{36}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Etap 2: Predykcja atrybut\'ow obiekt\'ow}{36}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Etap 3: Przetwarzanie danych przez sie\'c neuronow\k a}{36}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Etap 4: Detekcja na wielu skalach}{36}{subsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.3.5}Etap 5: Filtrowanie wynik\'ow \IeC {\textemdash } Non-Maximum Suppression}{37}{subsection.3.3.5}%
-\contentsline {subsection}{\numberline {3.3.6}Zastosowania YOLOv4}{37}{subsection.3.3.6}%
-\contentsline {section}{\numberline {3.4}Zasada dzia\IeC {\l }ania algorytmu YOLOv4}{37}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Architektura YOLOv4}{40}{subsection.3.4.1}%
-\contentsline {section}{\numberline {3.5}Zalety, wydajno\'s\'c i zastosowania algorytmu YOLOv4}{41}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Instalacja systemu YOLO}{42}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Testowanie instalacji}{43}{subsection.3.6.1}%
-\contentsline {section}{\numberline {3.7}Integracja detektora YOLOv4 z symulatorem CARLA}{44}{section.3.7}%
+\contentsline {subsection}{\numberline {2.2.5}Reprezentacja obiekt\'ow w przestrzeni 3D i definicja Bounding Box}{17}{subsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.5.1}Relacja mi\k edzy punktem Origin a \'srodkiem geometrycznym}{18}{subsubsection.2.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.2.5.2}Transformacja do uk\IeC {\l }adu wsp\'o\IeC {\l }rz\k ednych \'swiata}{19}{subsubsection.2.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.2.5.3}Rzutowanie z przestrzeni 3D na p\IeC {\l }aszczyzn\k e obrazu 2D}{19}{subsubsection.2.2.5.3}%
+\contentsline {section}{\numberline {2.3}Instalacja symulatora Carla}{20}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Wymagania sprz\k etowe}{20}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Instalacja i konfiguracja dla systemu Ubuntu}{20}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Instalacja Unreal Engine}{21}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Pobranie \'zr\'ode\IeC {\l } CARLA i kompilacja}{21}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Uruchomienie symulatora CARLA}{22}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}Skrypt do manualnego sterowania w symulatorze CARLA}{22}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Struktura skryptu}{22}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Logika dzia\IeC {\l }ania pliku \texttt {manual\_control.py}}{23}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}P\k etla gry (Game Loop)}{24}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Tryb asynchroniczny i synchroniczny}{25}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.5}Implementacja synchronizacji w \texttt {manual\_control.py}}{25}{subsection.2.4.5}%
+\contentsline {subsection}{\numberline {2.4.6}Analiza p\k etli g\IeC {\l }\'ownej \texttt {game\_loop()}}{26}{subsection.2.4.6}%
+\contentsline {subsection}{\numberline {2.4.7}Znaczenie dla integracji z algorytmami zewn\k etrznymi}{26}{subsection.2.4.7}%
+\contentsline {subsection}{\numberline {2.4.8}Sterowanie pojazdem z poziomu klawiatury}{27}{subsection.2.4.8}%
+\contentsline {subsection}{\numberline {2.4.9}P\k etla gry - Game Loop}{28}{subsection.2.4.9}%
+\contentsline {subsection}{\numberline {2.4.10}Sterowanie pojazdem za pomoc\k a klawiatury}{29}{subsection.2.4.10}%
+\contentsline {subsection}{\numberline {2.4.11}Czyszczenie zasob\'ow (Cleanup)}{29}{subsection.2.4.11}%
+\contentsline {chapter}{\numberline {3}System rozpoznawania obraz\'ow}{31}{chapter.3}%
+\contentsline {section}{\numberline {3.1}YOLOv4 i konwolucyjne sieci neuronowe}{36}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Konwolucyjne sieci neuronowe (CNN)}{36}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Zasada dzia\IeC {\l }ania algorytmu YOLO i YOLOv4}{36}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Architektura YOLOv4}{39}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Zalety, wydajno\'s\'c i zastosowania algorytmu YOLOv4}{40}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Instalacja systemu YOLO}{42}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Testowanie instalacji}{43}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.5}Integracja detektora YOLOv4 z symulatorem CARLA}{43}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Schemat ewaluacji offline}{44}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Wyniki bada\'n eksperymentalnych}{46}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Proces testowania systemu}{46}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Dane}{48}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Przyk\IeC {\l }adowe funkcjonalno\'sci oprogramowania}{49}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Dyskusja rezultat\'ow i wnioski ko\'ncowe}{52}{chapter.5}%
+\contentsline {section}{\numberline {4.1}Eksperyment on-line - wydajno\'s\'c systemu}{46}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Opis scenariusza i przebiegu test\'ow}{46}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}\'Srodowisko sprz\k etowe i konfiguracja}{48}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Wyniki pomiar\'ow FPS}{49}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Analiza wynik\'ow wydajno\'sciowych}{49}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Przyk\IeC {\l }adowe funkcjonalno\'sci oprogramowania w trybie on-line}{50}{subsection.4.1.5}%
+\contentsline {section}{\numberline {4.2}Eksperyment offline -- weryfikacja poprawno\'sci detekcji}{52}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Metryka Intersection over Union (IoU)}{52}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Zestaw scen i konfiguracja eksperymentu offline}{53}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Przebieg przetwarzania w eksperymencie offline}{53}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Analiza wynik\'ow eksperymentu offline}{54}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Wybrane funkcjonalno\'sci oprogramowania w eksperymencie offline}{55}{subsection.4.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.5.1}Skrypt \texttt {bounding\_boxes.py} -- generowanie anotacji referencyjnych}{55}{subsubsection.4.2.5.1}%
+\contentsline {subsubsection}{\numberline {4.2.5.2}Skrypt \texttt {yolo.py} -- detekcja YOLO i zapis JSON}{55}{subsubsection.4.2.5.2}%
+\contentsline {subsubsection}{\numberline {4.2.5.3}Skrypt \texttt {evaluate\_iou.py} -- obliczanie metryki IoU}{56}{subsubsection.4.2.5.3}%
+\contentsline {subsubsection}{\numberline {4.2.5.4}Skrypt \texttt {bbox\_image.py} -- wizualizacja anotacji na obrazach}{56}{subsubsection.4.2.5.4}%
+\contentsline {chapter}{\numberline {5}Dyskusja rezultat\'ow i wnioski ko\'ncowe}{58}{chapter.5}%
