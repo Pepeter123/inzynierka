@@ -1,34 +1,34 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Domy\'slna mapa - Town01}}{7}{figure.caption.3}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Mapa Town04}}{7}{figure.caption.4}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Korek drogowy}}{8}{figure.caption.5}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Sensor odpowiadaj\k acy za kolizje}}{9}{figure.caption.7}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Kamera g\IeC {\l }\k ebi orygina\IeC {\l }}}{9}{figure.caption.8}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Kamera g\IeC {\l }\k ebi po konwersji}}{10}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Kamera g\IeC {\l }\k ebi logarytmiczna}}{10}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Sensor GNSS}}{10}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Sensor IMU}}{11}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Sensor pDrzeci\k ecia linii}}{11}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Sensor LIDAR}}{13}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Sensor detekcji obiekt\'ow}}{13}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces Sensor radaru}}{14}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces Lekki deszcz o zachodzie s\IeC {\l }o\'nca}}{15}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Zachmurzona noc}}{15}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.16}{\ignorespaces Mocny deszcz w po\IeC {\l }udnie}}{16}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.17}{\ignorespaces \'Swiat\IeC {\l }a uliczne}}{16}{figure.caption.20}%
-\contentsline {figure}{\numberline {2.18}{\ignorespaces \'Swiat\IeC {\l }a pojazdu}}{17}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.19}{\ignorespaces Schemat blokowy dzia\IeC {\l }ania pliku \texttt {manual\_control.py}}}{23}{figure.caption.24}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Domy\'slna mapa - Town01}}{6}{figure.caption.3}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Mapa Town04}}{6}{figure.caption.4}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Korek drogowy}}{7}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Sensor odpowiadaj\k acy za kolizje}}{8}{figure.caption.7}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Kamera g\IeC {\l }\k ebi orygina\IeC {\l }}}{8}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Kamera g\IeC {\l }\k ebi po konwersji}}{9}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Kamera g\IeC {\l }\k ebi logarytmiczna}}{9}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Sensor GNSS}}{9}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Sensor IMU}}{10}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Sensor pDrzeci\k ecia linii}}{10}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Sensor LIDAR}}{12}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Sensor detekcji obiekt\'ow}}{12}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces Sensor radaru}}{13}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces Lekki deszcz o zachodzie s\IeC {\l }o\'nca}}{14}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.15}{\ignorespaces Zachmurzona noc}}{14}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.16}{\ignorespaces Mocny deszcz w po\IeC {\l }udnie}}{15}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.17}{\ignorespaces \'Swiat\IeC {\l }a uliczne}}{15}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.18}{\ignorespaces \'Swiat\IeC {\l }a pojazdu}}{16}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.19}{\ignorespaces Schemat blokowy dzia\IeC {\l }ania pliku \texttt {manual\_control.py}}}{22}{figure.caption.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces RCNN}}{32}{figure.caption.25}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces fastRCNN}}{33}{figure.caption.26}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces fasterRCNN2}}{34}{figure.caption.27}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces SSD}}{34}{figure.caption.28}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat struktury konwolucyjnej sieci neuronowej~\cite {esezam}.}}{36}{figure.caption.30}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Architektura YOLOv4. Zawiera backbone, neck i head~\cite {yolo_usage}.}}{40}{figure.caption.31}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Yolo Test}}{43}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces RCNN}}{31}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces fastRCNN}}{32}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces fasterRCNN2}}{33}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces SSD}}{33}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat struktury konwolucyjnej sieci neuronowej~\cite {esezam}.}}{35}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Architektura YOLOv4. Zawiera backbone, neck i head~\cite {yolo_usage}.}}{39}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Yolo Test}}{42}{figure.caption.37}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces sun10car20ppl1}}{47}{figure.caption.38}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces night20car40ppl2}}{47}{figure.caption.39}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces rainsun10car20ppl3}}{48}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces sun10car20ppl1}}{46}{figure.caption.38}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces night20car40ppl2}}{46}{figure.caption.39}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces rainsun10car20ppl3}}{47}{figure.caption.40}%
 \addvspace {10\p@ }

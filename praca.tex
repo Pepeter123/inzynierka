@@ -3,113 +3,113 @@
 \input{Pakiety/pakiety.tex}
 \input{Ustawienia/ustawienia.tex}
 
-
 %==========================================================================================
-% Dane na temat pracy do wype?nienia
+% Dane na temat pracy do wype³nienia
 %==========================================================================================
 \author{Piotr Noga}
-\kierunek{Informatyka \\ Specjalnoœæ: Sieciowe Systemy Informatyczne \\ Studia stacjonarne}
-\grupa{43INF-SSI}		% np. 101AiRDz
-\title{System do wykrywania i rozpoznawania obiektów na obrazie z kamery samochodowej z wykorzystaniem symulatora carla}
-\tytulAngielski{Title of diploma}
+\kierunek{Praca in¿ynierska \\ Informatyka \\ Specjalnoœæ: Sieciowe Systemy Informatyczne \\ Studia stacjonarne}
+\grupa{43INF-SSI}
+\title{System do wykrywania i rozpoznawania obiektów na obrazie z kamery samochodowej z wykorzystaniem symulatora CARLA
+	\\[1em]
+	A system for detecting and recognizing objects in images from a car camera using the CARLA simulator}
 \uczelnia{Uniwersytet Zielonogórski}
-\wydzial{Wydzia³ Nauk In¿ynieryjno-Technicznych \\ Instytut Automatyki, Elektroniki i Elektrotechniki
-}
-\praca{Praca in¿ynierska} % pozostawi? w?a?ciwe
-\promotor{Dr hab. In¿. Marek Kowal, prof. UZ}
-\konsultant{stopieñ naukowy, imiê i~nazwisko konsultanta} 	% nie usuwa? w~przypadku braku lecz pozostawi? puste czyli: \konsultant{}
+\wydzial{Wydzia³ Nauk In¿ynieryjno-Technicznych}
+\praca{}
+\promotor{Dr hab. in¿. Marek Kowal, prof. UZ}
 \konsultant{}
 \miasto{Zielona Góra}
-\miesiac{kwiecieñ}	% miesi?c z?o?enia pracy
-\rok{2025}
-\dzien{} 			% dzie? podpisania o?wiadczenia (cyfrowo) np. 10
-\mm{mm} 				% miesiac podpisania o?wiadczenia (cyfrowo) np. 01 (stycze?)
+\miesiac{luty}
+\rok{2026}
+\dzien{}
+\mm{mm}
 
 %==========================================================================================
-% Uwaga! polecenie \myemptypage dodaje pust? stron? do tre?ci. Praca oddana do dziekanatu powinna by? zbudowana zgodnie z~szablonem znajduj?cym si? na stronie WEIT (z jedn? stron? pust? nast?puj?c? po karcie pracy), jednak je?eli student planuje wydruk dla siebie, zalecane jest zast?pienie polece? \newpage poleceniem \myemptypage. Skutkuje to utworzeniem bardziej przejrzystego uk?adu zgodnego z~zaleceniami pisania ksi??ek, czyli rozpoczynanie nowych treci na prawej stronie.
-%==========================================================================================
-
-
-%==========================================================================================
-% Dokument glowny
+% Dokument g³ówny
 %==========================================================================================
 \begin{document}
-\pagenumbering{roman}
-%=========================================================================================
-% Strona tytu?owa
-%=========================================================================================
-\thispagestyle{empty}
-\stronatytulowa
-\thispagestyle{empty}
-\pustastrona
-\newpage
-%=========================================================================================
-% O?wiadczenie o~wspó?realizacji pracy - w~przypadku braku zakomentowa? lub usun?? sekcj?
-%========================================================================================
-%\autorDwa{Imi? i~nazwisko wspó³autora}
-%\wspolrealizacjaTrescJeden{wykaz czynno?ci wykonanych przez t? osob?}
-%\wspolrealizacjaTrescDwa{wykaz czynno?ci wykonanych przez t? osob?}
-%\wspolrealizacja
-%\newpage
-
-%\thispagestyle{empty}
-%\pustastrona
-%\newpage
-
-%========================================================================================
-% Streszczenie
-%========================================================================================
-\normalsize
-\input{Streszczenie/Streszczenie.tex}
-\newpage
-%\myemptypage
-
-%========================================================================================
-% Spis tresci, spis tabel i~rysunków
-%========================================================================================
-%spis tresci
+	
+	%=========================================================================================
+	% Strona tytu³owa – zgodnie z nowym wzorem WNIT
+	%=========================================================================================
+	\pagenumbering{roman}
+	\thispagestyle{empty}
+	\begin{center}
+		\textbf{UNIWERSYTET ZIELONOGÓRSKI}\\[0.5cm]
+		\textbf{Wydzia³ Nauk In¿ynieryjno-Technicznych}\\[3cm]
+		
+		Praca in¿ynierska\\[0.8cm]
+		
+		Kierunek: Informatyka\\[0.3cm]
+		Specjalnoœæ: Sieciowe Systemy Informatyczne\\[0.3cm]
+		Studia stacjonarne\\[3cm]
+		
+		\textbf{System do wykrywania i rozpoznawania obiektów na obrazie z kamery samochodowej z wykorzystaniem symulatora CARLA}\\[0.8cm]
+		\textbf{A system for detecting and recognizing objects in images from a car camera using the CARLA simulator}\\[3cm]
+		
+		Piotr Noga\\[1.5cm]
+		
+		\raggedright
+		Promotor:\\
+		Dr hab. in¿. Marek Kowal, prof. UZ\\[3cm]
+		
+		\raggedleft
+		Zielona Góra, luty 2026
+	\end{center}
+	\clearpage
+	
+	%=========================================================================================
+	% Pusta strona po karcie tytu³owej (wymóg szablonu)
+	%=========================================================================================
+	\thispagestyle{empty}
+	\pustastrona
+	\newpage
+	
+	%========================================================================================
+	% Streszczenie
+	%========================================================================================
+	\normalsize
+	\input{Streszczenie/Streszczenie.tex}
+	\newpage
+	
+	%========================================================================================
+	% Spis treœci, spis tabel i rysunków
+	%========================================================================================
 	\tableofcontents
 	\newpage
-	%\myemptypage
-%spis rysunków
- 	\listoffigures
+	
+	\listoffigures
 	\newpage
-	%\myemptypage
-%spis tabel
+	
 	\listoftables
 	\newpage
-%spis listingów
+	
 	{\raggedbottom
 		\lstlistoflistings\raggedbottom}
-	%\myemptypage
-
-%========================================================================================
-% Licznik Stron
-%========================================================================================
-\newcounter{licznikStron}
-\setcounter{licznikStron}{\value{page}}
-\setcounter{licznikStron}{1}
-\pagenumbering{arabic}
-\setcounter{page}{\value{licznikStron}}
-
-%========================================================================================
-% Tresc
-%========================================================================================
-\input{Rozdzial1/rozdzial1.tex}
-\input{Rozdzial2/rozdzial2.tex}
-\input{Rozdzial3/rozdzial3.tex}
-\input{Rozdzial4/rozdzial4.tex}
-\input{Rozdzial5/rozdzial5.tex}
-
-
-%========================================================================================
-% Literatura
-%========================================================================================
-
-\begin{flushleft}
-	\bibliography{bibliografia/bibliografia}
-\end{flushleft}
-
+	\newpage
+	
+	%========================================================================================
+	% Treœæ – od tego miejsca arabskie numerowanie stron od 1
+	%========================================================================================
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+	\pagestyle{fancy}    % nag³ówki tylko w treœci
+	
+	%========================================================================================
+	% Treœæ
+	%========================================================================================
+	\input{Rozdzial1/rozdzial1.tex}
+	\input{Rozdzial2/rozdzial2.tex}
+	\input{Rozdzial3/rozdzial3.tex}
+	\input{Rozdzial4/rozdzial4.tex}
+	\input{Rozdzial5/rozdzial5.tex}
+	
+	%========================================================================================
+	% Literatura
+	%========================================================================================
+	\begin{flushleft}
+		\bibliography{bibliografia/bibliografia}
+	\end{flushleft}
+	
 \end{document}
 %========================================================================================
 % Koniec dokumentu
