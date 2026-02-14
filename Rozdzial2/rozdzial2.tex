@@ -1,36 +1,42 @@
-\chapter{Symulator Carla}
-CARLA (Carl Learning to Act), czyli otwarty symulator jazdy miejskiej zosta³ stworzony do wspierania szkoleñ, treningów, tworzenia prototypów i walidacji autonomicznych systemów jazdy zarówno na poziomie percepcji jak i kontroli. System jest otwart¹ platform¹ stworzon¹ przez specjalistyczny zespó³ grafików cyfrowych. Obejmuje uk³ady urbanistyczne, modele pojazdów, budynki, pieszych oraz znaki drogowe. Symulacja umo¿liwia elastyczn¹ konfiguracjê, któr¹ mo¿na wykorzystaæ do strategicznego szkolenia jazdy, uzyskaæ wspó³rzêdne GPS, prêdkoœæ, przyspieszenie pojazdu czy te¿ informacje zwi¹zane z kolizj¹ b¹dŸ wykroczeniami drogowymi. Poza tym CARLA wykorzystuje warunki œrodowiskowe, jak warunki meteorologiczne oraz godzina. System wykorzystywany jest do manipulowania tras¹, któr¹ trzeba pokonaæ przy danych warunkach drogowych i œrodowiskowych~\cite{carla}. 
+\chapter{Symulator CARLA}
 
+CARLA (Car Learning to Act) jest otwartym symulatorem jazdy miejskiej, przeznaczonym do wspierania szkoleñ, treningów, tworzenia prototypów oraz walidacji autonomicznych systemów jazdy zarówno na poziomie percepcji, jak i kontroli. System stanowi otwart¹ platformê stworzon¹ przez specjalistyczny zespó³ grafików i in¿ynierów, obejmuj¹c¹ uk³ady urbanistyczne, modele pojazdów, budynki, pieszych oraz znaki drogowe. Symulacja umo¿liwia elastyczn¹ konfiguracjê scenariuszy, pozyskiwanie wspó³rzêdnych GPS, prêdkoœci i przyspieszeñ pojazdów, a tak¿e informacji o kolizjach i wykroczeniach drogowych. Œrodowisko pozwala równie¿ na modyfikacjê warunków pogodowych i pory dnia, co u³atwia testowanie algorytmów w zró¿nicowanych warunkach ruchu~\cite{carla}.
 
 %=================================================================================================
-\section{Architektura systemu Carla}
-Symulator sk³ada siê ze skalowanej architektury klient - serwer. Serwer odpowiada za wszystko, co jest zwi¹zane z sam¹ symulacj¹, czyli renderowanie czujników, obliczanie fizyczne, aktualizacje stanu œwiata oraz aktorów. Z kolei strona klienta sk³ada siê z sumy modu³ów klienckich kontroluj¹cych logikê aktorów na scenie i ustalaj¹cych warunki panuj¹ce na œwiecie. Osi¹ga to poprzez wykorzystanie interfejsu API CARLA (w Pythonie lub C++), warstwie poœrednicz¹cej miêdzy serwerem a klientem, która stale ewoluuje, aby zapewniæ nowe funkcje (www.carla.org). Aby zrozumieæ system CARLA nale¿y poznaæ jego funkcje i elementy, dziêki którym osi¹ga wiele mo¿liwoœci. Poni¿ej wymieniono niektóre z nich:
+\section{Architektura systemu CARLA}
+
+Symulator CARLA bazuje na silniku graficznym Unreal Engine 4 (UE4), który odpowiada za realistyczne odwzorowanie œrodowiska symulacyjnego, w tym geometrii œwiata, pojazdów, pieszych oraz warunków atmosferycznych~\cite{unreal-engine}. Na sil\textsf{}niku UE4 zbudowana jest skalowalna architektura typu klient–serwer, stanowi¹ca podstawê dzia³ania symulatora. 
+
+Serwer odpowiada za wszystkie elementy zwi¹zane z przebiegiem symulacji, w szczególnoœci za renderowanie œwiata i aktorów, obliczanie zjawisk fizycznych oraz generowanie pomiarów z czujników. Z kolei strona klienta sk³ada siê z modu³ów kontroluj¹cych logikê aktorów na scenie i konfiguruj¹cych warunki panuj¹ce w œwiecie. Komunikacja miêdzy klientem a serwerem odbywa siê za pomoc¹ interfejsu API CARLA (dostêpnego m.in. w Pythonie i C++), który jest stale rozwijany, aby udostêpniaæ nowe funkcje~\cite{carla}.
+
+Poni¿ej przedstawiono wybrane elementy systemu:
+
 \begin{itemize}
 	\item Mened¿er ruchu, czyli wbudowany system, który przejmuje kontrole nad pojazdami. Dzia³a jako przewodnik dostarczony przez CARLA do odtworzenia œrodowisk miejskich z realistycznymi zachowaniami.
 	\item Czujniki, na których polegaj¹ pojazdy podczas przekazywania informacji o swoim otoczeniu. S¹ to specyficzni aktorzy pod³¹czeni do pojazdu a dane, które otrzymuj¹ mog¹ byæ przechowywane i wyszukiwane w celu u³atwienia procesu. Obecnie projekt obs³uguje ich ró¿ne typy - kamery, radary, lidary, itd.
 	\item Rejestrator, czyli funkcja s³u¿¹ca do odtwarzania symulacji krok po kroku dla ka¿dego aktora na œwiecie. Dziêki niej u¿ytkownik ma dostêp do ka¿dego miejsca na œwiecie w dowolnym momencie osi czasu. 
-	\item Most ROS i implementacja Autoware, które zapewni¹ integracjê symulatora z innymi œrodowiskami uczenia siê.
-	\item Otwarte zasoby, czyli u³atwienie tworzenia ró¿nych map miejskich z kontrol¹ warunków pogodowych i bibliotek¹ planów z szerokim zestawem aktorów do wykorzystania. 
-	\item Scenariusz jazdy. Aby u³atwiæ proces uczenia siê pojazdów, CARLA zapewnia seriê tras opisuj¹cych ró¿ne sytuacje do iteracji. Stanowi¹ one równie¿ podstawê wyzwania CARLA, otwartego dla ka¿dego, kto chce przetestowaæ swoje rozwi¹zania i znaleŸæ siê w tabeli liderów.
+	\item Most ROS i implementacja Autoware, które zapewni¹ integracjê symulatora z innymi œrodowiskami do uczenia maszynowego i testowania jazdy autonomicznej.
+	\item Otwarte zasoby, czyli u³atwienie tworzenia ró¿nych map miejskich z kontrol¹ warunków pogodowych i bibliotek¹ planów miast z szerokim zestawem aktorów do wykorzystania. 
+	\item Scenariusz jazdy. Aby u³atwiæ proces uczenia i testowania pojazdów autonomicznych, CARLA zapewnia seriê tras opisuj¹cych ró¿ne sytuacje, które mog¹ byæ wielokrotnie wykorzystywane w kolejnych iteracjach eksperymentów. Scenariusze te stanowi¹ równie¿ podstawê wyzwañ CARLA (CARLA Challenge), otwartych dla wszystkich u¿ytkowników zainteresowanych ewaluacj¹ w³asnych rozwi¹zañ oraz porównaniem ich wyników w publicznych rankingach.
 \end{itemize}
 
 \section{Mo¿liwoœci symulatora}
-CARLA wykorzystywany jest do badania trzech podejœæ autonomicznej jazdy:
+CARLA wykorzystywana jest do badania trzech podejœæ do autonomicznej jazdy:
 
-I - klasyczny, modu³owy potok, który obejmuje oparty na wizji modu³ percepcji, planer oparty na regu³ach i kontroler manewrów.
+I. Podejœcie klasyczne (modu³owe) – obejmuj¹ce potok przetwarzania sk³adaj¹cy siê z modu³u percepcji opartego na danych wizyjnych, planera trajektorii bazuj¹cego na regu³ach oraz modu³u sterowania realizuj¹cego manewry pojazdu.
 
-II - g³êboka sieæ odtwarzaj¹ca dane sensoryczne na polecenie przeszkolonych poprzez naukê naœladowania kierowców.
+II. Podejœcie oparte na uczeniu naœladowczym (imitation learning) – wykorzystuj¹ce g³êbok¹ sieæ neuronow¹, która na podstawie danych sensorycznych generuje polecenia steruj¹ce, ucz¹c siê zachowañ kierowców na podstawie zarejestrowanych przyk³adów.
 
-III - rozbudowana sieæ przeszkolona od pocz¹tku do koñca poprzez uczenie siê ze wzmocnieniem.
+III. Podejœcie end-to-end z uczeniem ze wzmocnieniem – wykorzystuj¹ce rozbudowan¹ sieæ neuronow¹ trenowan¹ od pocz¹tku do koñca w œrodowisku symulacyjnym z zastosowaniem metod uczenia ze wzmocnieniem.
 
-Symulator Carla oferuje u¿ytkownikowi mo¿liwoœci konfiguracji œrodowiska, w którym odbywa siê symulacja. Miêdzy innymi utworzenie w³asnej mapy rozwoju z elementami w postaci budynków, pojazdów oraz pieszych, czy te¿ korzystanie z gotowych œrodowisk utworzonych przez autorów projektu. Œrodowisko umo¿liwia symulowanie warunków pogodowych, oraz sterowanie sygnalizacj¹ œwietln¹ za pomoc¹ funkcji opisanych w jêzyku Python. W œrodowisku Carla, zaimplementowane s¹ tak¿e sensory, które odgrywaj¹ istotn¹ rolê w przypadku kolizji czy te¿ ustawiania atrybutów kamery. 
+Symulator Carla oferuje u¿ytkownikowi mo¿liwoœci konfiguracji œrodowiska, w którym odbywa siê symulacja. Miêdzy innymi utworzenie w³asnej mapy z elementami w postaci budynków, pojazdów oraz pieszych, czy te¿ korzystanie z gotowych œrodowisk utworzonych przez autorów projektu. Œrodowisko umo¿liwia symulowanie warunków pogodowych, oraz sterowanie sygnalizacj¹ œwietln¹ za pomoc¹ funkcji opisanych w jêzyku Python. W œrodowisku Carla, zaimplementowane s¹ tak¿e sensory, które odgrywaj¹ istotn¹ rolê w przypadku kolizji czy te¿ ustawiania atrybutów kamery. 
 
 \subsection{Œwiat}
 
 
-Mapa jest jednym z g³ównych elementów œwiata symulatora. Zawiera zarówno model 3D miejscowoœci, jak i definicjê dróg. Definicja dróg na mapie oparta jest na pliku OpenDRIVE, standardowym formacie definicji dróg z adnotacjami. Sposób, w jaki standard 1.4 OpenDRIVE definiuje drogi, pasy ruchu, skrzy¿owania itp. determinuje funkcjonalnoœæ API Pythona oraz uzasadnienie podejmowanych decyzji.
+Mapa jest jednym z g³ównych elementów œwiata symulatora. Zawiera zarówno model 3D miejscowoœci, jak i definicjê dróg. Definicja dróg na mapie oparta jest na pliku OpenDRIVE, standardowym formacie definicji dróg z adnotacjami. Sposób, w jaki standard 1.4 OpenDRIVE definiuje drogi, pasy ruchu, skrzy¿owania itp. wp³ywa na funkcjonalnoœæ interfejsu API w jêzyku Python.
 
-API Python dzia³a jako wysokopoziomowy system zapytañ do nawigacji po tych drogach. Jest ono stale rozwijane, aby zapewniæ szerszy zestaw narzêdzi
+API Python dzia³a jako wysokopoziomowy system zapytañ do nawigacji po tych drogach. Jest ono stale rozwijane, aby zapewniæ szerszy zestaw narzêdzi.
 
 \begin{figure}[H]
 	\centering
@@ -148,8 +154,7 @@ Sensor IMU dostarcza natomiast miary, które akcelerometr, ¿yroskop i kompas mog³
 	\caption[Sensor IMU]{Widok sensora IMU.}
 \end{figure} 
 
-Detektor wtargniêcia na pas ruchu 
-Rejestruje zdarzenie za ka¿dym razem, gdy jego rodzic przekroczy oznaczenie pasa ruchu. Czujnik wykorzystuje dane drogowe dostarczane przez opis mapy OpenDRIVE, aby okreœliæ, czy pojazd macierzysty naje¿d¿a na inny pas ruchu, bior¹c pod uwagê przestrzeñ miêdzy ko³ami. Nale¿y jednak zwróciæ uwagê na pewne kwestie:
+Detektor wtargniêcia na pas ruchu rejestruje zdarzenie za ka¿dym razem, gdy jego rodzic przekroczy oznaczenie pasa ruchu. Czujnik wykorzystuje dane drogowe dostarczane przez opis mapy OpenDRIVE, aby okreœliæ, czy pojazd macierzysty naje¿d¿a na inny pas ruchu, bior¹c pod uwagê przestrzeñ miêdzy ko³ami. Nale¿y jednak zwróciæ uwagê na nastêpuj¹ce kwestie:
 
 Rozbie¿noœci pomiêdzy plikiem OpenDRIVE a map¹ spowoduj¹ powstanie nieprawid³owoœci, takich jak przecinaj¹ce siê pasy ruchu, które nie s¹ widoczne na mapie.
 Wyjœcie pobiera listê oznaczeñ przecinaj¹cych siê pasów: obliczenia s¹ wykonywane w OpenDRIVE i uwzglêdniaj¹ ca³¹ przestrzeñ pomiêdzy czterema ko³ami jako ca³oœæ. W zwi¹zku z tym, w tym samym czasie mo¿e byæ przekraczanych wiêcej ni¿ jeden pas ruchu.
@@ -161,7 +166,7 @@ Wyjœcie pobiera listê oznaczeñ przecinaj¹cych siê pasów: obliczenia s¹ wykonywan
 	\caption[Sensor pDrzeciêcia linii]{Obraz przyk³adu przeciêcia linii.}
 \end{figure} 
 
-Sensor LIDAR (eng. Light Detection and Ranging) - ten czujnik symuluje obracaj¹cy siê LIDAR zaimplementowany przy u¿yciu ray-casting. Punkty s¹ obliczane przez dodanie lasera dla ka¿dego kana³u rozmieszczonego w pionowym FOV. Obrót jest symulowany poprzez obliczenie k¹ta poziomego, o jaki obróci³ siê Lidar w danej klatce. Chmura punktów jest obliczana przez wykonanie ray-cast dla ka¿dego lasera w ka¿dym kroku.
+Sensor LIDAR (eng. Light Detection and Ranging) -czujnik symuluj¹cy obrotowy skaner laserowy, w którym generowanie pomiarów realizowane jest z wykorzystaniem metody ray castingu. Punkty generowane s¹ poprzez emisjê promieni laserowych dla ka¿dego kana³u, rozmieszczonych w zakresie pionowego pola widzenia (FOV). Obrót jest symulowany poprzez obliczenie k¹ta poziomego, o jaki obróci³ siê LIDAR w danej klatce. Chmura punktów generowana jest poprzez wykonanie operacji ray castingu dla ka¿dego promienia lasera w ka¿dym kroku symulacji.
 
 Pomiar LIDAR-owy zawiera paczkê z wszystkimi punktami wygenerowanymi w przedziale czasu 1/FPS. Podczas tego interwa³u fizyka nie jest aktualizowana, wiêc wszystkie punkty w pomiarze odzwierciedlaj¹ ten sam "statyczny obraz" sceny.
 
@@ -175,16 +180,14 @@ Gdzie:
 	\item $b$ -- Odleg³oœæ od punktu trafienia do czujnika.
 \end{itemize}
 
-Dla wiêkszego realizmu, punkty w chmurze mog¹ byæ zrzucane. Jest to prosty sposób na symulowanie strat spowodowanych zewnêtrznymi perturbacjami. Mo¿na to zrobiæ ³¹cz¹c dwa ró¿ne sposoby.
-
-Pierwszym sposobem jest general drop-off, czyli proporcja punktów, które s¹ odpadane losowo. Jest to wykonywane przed œledzeniem, co oznacza, ¿e odpadaj¹ce punkty nie s¹ obliczane, a zatem poprawia wydajnoœæ. Jeœli wartoœæ ustawimy na 0,5, po³owa punktów zostanie zrzucona.
+W celu zwiêkszenia realizmu symulacji LIDAR umo¿liwia losowe odrzucanie punktów chmury (general drop-off), co pozwala modelowaæ straty pomiarowe oraz poprawiæ wydajnoœæ obliczeniow¹. Ustawienie parametru na wartoœæ 0,5 powoduje odrzucenie 50\% punktów.
 \begin{lstlisting}[style=praca]
 	dropoff\_general\_rate = 0.5)
 \end{lstlisting}
 
-Drugim sposobem zaœ jest zrzucanie na podstawie intensywnoœci. Dla ka¿dego wykrytego punktu wykonywane jest dodatkowe zrzucanie z prawdopodobieñstwem opartym na obliczonej intensywnoœci. Prawdopodobieñstwo to jest okreœlane przez dwa parametry. \verb|dropoff_zero_intensity| jest prawdopodobieñstwem zrzucenia punktów o zerowej intensywnoœci. \verb|dropoff_intensity_limit| jest progiem intensywnoœci, powy¿ej którego punkty nie bêd¹ zrzucane. Prawdopodobieñstwo zrzucenia punktu w zakresie jest liniow¹ proporcj¹ opart¹ na tych dwóch parametrach. \\
+Drugim mechanizmem jest zrzucanie punktów zale¿ne od intensywnoœci odbicia. Dla ka¿dego wykrytego punktu wykonywana jest dodatkowa operacja odrzucenia z prawdopodobieñstwem wyznaczanym na podstawie obliczonej intensywnoœci sygna³u. Prawdopodobieñstwo to definiowane jest przez dwa parametry: \verb|dropoff_zero_intensity|, okreœlaj¹cy prawdopodobieñstwo odrzucenia punktów o zerowej intensywnoœci, oraz \verb|dropoff_intensity_limit|,  wyznaczaj¹cy próg intensywnoœci, powy¿ej którego punkty nie s¹ odrzucane. W zakresie pomiêdzy tymi wartoœciami prawdopodobieñstwo zrzucenia punktu zmienia siê liniowo jako funkcja intensywnoœci. \\
 
-Dodatkowo, atrybut \verb|noise_stddev| tworzy model szumu, aby symulowaæ nieoczekiwane odchylenia, które pojawiaj¹ siê w rzeczywistych czujnikach. Dla wartoœci dodatnich, ka¿dy punkt jest losowo perturbowany wzd³u¿ wektora promienia lasera. W rezultacie otrzymujemy czujnik LIDAR z doskona³ym pozycjonowaniem k¹towym, ale zaszumionym pomiarem odleg³oœci.
+Dodatkowo, atrybut \verb|noise_stddev| tworzy model szumu, aby symulowaæ nieoczekiwane odchylenia, które pojawiaj¹ siê w rzeczywistych czujnikach. Dla wartoœci dodatnich, ka¿dy punkt jest losowo zak³ócany wzd³u¿ wektora promienia lasera. W rezultacie otrzymujemy czujnik LIDAR z doskona³ym pozycjonowaniem k¹towym, ale zaszumionym pomiarem odleg³oœci.
 
 \begin{figure}[H]
 	\centering
@@ -192,6 +195,7 @@ Dodatkowo, atrybut \verb|noise_stddev| tworzy model szumu, aby symulowaæ nieocze
 	\label{fig:SensorLIDAR}
 	\caption[Sensor LIDAR]{Obraz sensora LIDAR.}
 \end{figure} 
+
 Detektor przeszkód rejestruje zdarzenie za ka¿dym razem, gdy aktor macierzysty ma przed sob¹ przeszkodê. W celu przewidywania przeszkód, czujnik tworzy przed pojazdem macierzystym kszta³t kapsu³y i wykorzystuje go do sprawdzania, czy nie dochodzi do kolizji. Aby zapewniæ wykrywanie kolizji z ka¿dym rodzajem obiektu, serwer tworzy "fa³szywych" aktorów dla elementów takich jak budynki lub krzewy, dziêki czemu mo¿na pobraæ znacznik semantyczny w celu ich identyfikacji.
 
 \begin{figure}[H]
@@ -201,7 +205,7 @@ Detektor przeszkód rejestruje zdarzenie za ka¿dym razem, gdy aktor macierzysty m
 	\caption[Sensor detekcji obiektów]{Obraz sensora detekcji obiektów.}
 \end{figure} 
 
-Sensor radaru jest to czujnik tworz¹cy widok sto¿kowy, który jest t³umaczony na mapê punktow¹ 2D elementów w zasiêgu wzroku i ich prêdkoœci wzglêdem czujnika. Mo¿e to byæ wykorzystane do kszta³towania elementów i oceny ich ruchu i kierunku. Ze wzglêdu na u¿ycie wspó³rzêdnych biegunowych, punkty bêd¹ skupione wokó³ œrodka widoku.
+Sensor radaru jest czujnikiem generuj¹cym sto¿kowy obszar detekcji, w obrêbie którego wykrywane s¹ obiekty znajduj¹ce siê w zasiêgu sensora. Dane radarowe reprezentowane s¹ w postaci dwuwymiarowej mapy punktów, zawieraj¹cej informacje o po³o¿eniu wykrytych elementów oraz ich prêdkoœci wzglêdnej wzglêdem czujnika. Informacje te mog¹ byæ wykorzystywane do analizy ruchu obiektów, okreœlania ich kierunku oraz oceny dynamiki sceny. Ze wzglêdu na zastosowanie wspó³rzêdnych biegunowych, gêstoœæ punktów jest najwiêksza w pobli¿u osi widzenia sensora.
 
 \begin{figure}[H]
 	\centering
@@ -216,7 +220,7 @@ Sensor radaru jest to czujnik tworz¹cy widok sto¿kowy, który jest t³umaczony na 
 
 \subsection{Pogoda}
 
-Pogoda nie jest klas¹ sam¹, lecz zbiorem parametrów dostêpnych w œwiecie symulatora CARLA. Parametryzacja zawiera w sobie elementy takie jak po³o¿enie s³oñca, zachmurzenie, wiatr, mg³ê, deszcz, œnieg a tak¿e wiele innych, aby umo¿liwiæ testowanie programu w ka¿dych mo¿liwych warunkach pogodowych. Aby zdefiniowaæ w³asn¹ pogodê u¿ywa siê klasy pomocniczej \verb|carla.WeathrrParameters| \\
+Pogoda w symulatorze CARLA nie jest reprezentowana jako odrêbna klasa, lecz jako zbiór parametrów œrodowiskowych dostêpnych w œwiecie symulacji. Parametry te obejmuj¹ m.in. po³o¿enie s³oñca, stopieñ zachmurzenia, si³ê wiatru, mg³ê, deszcz, œnieg oraz inne czynniki, co umo¿liwia testowanie aplikacji w szerokim zakresie warunków atmosferycznych. Aby zdefiniowaæ w³asn¹ pogodê u¿ywa siê klasy pomocniczej \verb|carla.WeathrrParameters| \\
 
 \begin{lstlisting}[style=praca, caption={caption text}]
 	weather = carla.WeatherParameters( cloudiness=80.0, precipitation=30.0, 
@@ -232,7 +236,7 @@ Pogoda nie jest klas¹ sam¹, lecz zbiorem parametrów dostêpnych w œwiecie symulat
 \end{figure} 
 
 
-Dostêpne s¹ równie¿ gotowe ustawienia pogody, które mo¿na bezpoœrednio zastosowaæ w symulacji jazdy samochodem. Lista zawieraj¹ca przygotowane warunki drogowe znajduje siê w klasie \verb|arla.WeathrrParameters|.
+Dostêpne s¹ równie¿ gotowe ustawienia pogody, które mo¿na bezpoœrednio zastosowaæ w symulacji jazdy samochodem. Lista zawieraj¹ca przygotowane warunki drogowe znajduje siê w klasie \verb|carla.WeathrrParameters|.
 
 \begin{lstlisting}[style=praca]
 	world.set_weather(carla.WeatherParameters.WetCloudySunset)
@@ -245,10 +249,10 @@ Dostêpne s¹ równie¿ gotowe ustawienia pogody, które mo¿na bezpoœrednio zastosowa
 	\caption[Zachmurzona noc]{Obraz przedstawiaj¹cy zachmurzon¹ noc.}
 \end{figure} 
 
-Istnieje równie¿ mo¿liwoœæ dostosowania pogody za pomoc¹ dwóch skryptów zapewnione przez symulator CARLA. 
+Istnieje równie¿ mo¿liwoœæ dostosowania pogody za pomoc¹ dwóch skryptów dostarczanych w pakiecie symulatora CARLA. 
 S¹ to:
 \begin{itemize}
-	\item \verb|environment.py| (in PythonAPI/util) — Zapewnia dostêp do parametrów pogodowych i œwietlnych, dziêki czemu mo¿na je zmieniaæ w czasie rzeczywistym.
+	\item \verb|environment.py| (in PythonAPI/util) — Zapewnia dostêp do parametrów pogodowych i oœwietleniowych, dziêki czemu mo¿na je zmieniaæ w czasie rzeczywistym.
 	\item \verb|dynamic_weather.py| (in PythonAPI/examples) — W³¹cza okreœlony cykl pogodowy przygotowany przez deweloperów dla ka¿dej mapy CARLA.
 \end{itemize}
 
@@ -264,7 +268,7 @@ S¹ to:
 \subsection{Oœwietlenie}
 
 Œwiat³a uliczne w³¹czaj¹ siê automatycznie, gdy symulacja przechodzi w tryb nocny. Œwiat³a zosta³y umieszczone przez twórców mapy i s¹ dostêpne jako obiekty carla.Light. W³aœciwoœci takie jak kolor i natê¿enie œwiat³a mog¹ byæ dowolnie zmieniane. Zmienna \verb|light_state| typu \verb|carla.LightState| pozwala ustawiæ je wszystkie w jednym wywo³aniu.
-Œwiat³a uliczne s¹ kategoryzowane za pomoc¹ ich atrybutu \verb|light_group|, typu \verb|carla.LightGroup|. Pozwala to na sklasyfikowanie œwiate³ jako œwiat³a uliczne, œwiat³a budynków... Aby obs³u¿yæ grupy œwiate³ w jednym wywo³aniu, mo¿na pobraæ instancjê \verb|carla.LightManager|
+Œwiat³a uliczne s¹ kategoryzowane za pomoc¹ ich atrybutu \verb|light_group|, typu \verb|carla.LightGroup|. Pozwala to na sklasyfikowanie œwiate³ jako œwiat³a uliczne lub œwiat³a budynków. Aby obs³u¿yæ grupy œwiate³ w jednym wywo³aniu, mo¿na pobraæ instancjê \verb|carla.LightManager|.
 
 \begin{figure}[H]
 	\centering
@@ -324,7 +328,7 @@ W UE4 i CARLA:
 	\item \textbf{Pozycjonowanie obiektów}: odbywa siê poprzez okreœlenie ich lokalizacji wzglêdem tego punktu, np. \texttt{actor.set\_location(FVector(x, y, z))}.
 \end{itemize}
 
-	Ka¿dy obiekt dynamiczny (tzw. aktor), taki jak pojazd czy pieszy, posiada swoj¹ pozycjê w globalnym uk³adzie wspó³rzêdnych œwiata, okreœlan¹ wzglêdem punktu $(0,0,0)$ mapy. Kluczowym elementem w procesie detekcji i generowania danych ucz¹cych jest zrozumienie, w jaki sposób fizyczna bry³a obiektu jest reprezentowana numerycznie za pomoc¹ prostopad³oœcianu ograniczaj¹cego, zwanego \textit{bounding box} \cite{carla, carla_bounding_boxes}.
+	Ka¿dy obiekt dynamiczny (tzw. aktor), taki jak pojazd czy pieszy, posiada swoj¹ pozycjê w globalnym uk³adzie wspó³rzêdnych œwiata, okreœlan¹ wzglêdem punktu $(0,0,0)$ mapy. Kluczowym elementem w procesie detekcji i generowania danych ucz¹cych jest zrozumienie, w jaki sposób fizyczna bry³a obiektu jest reprezentowana numerycznie za pomoc¹ prostopad³oœcianu ograniczaj¹cego, zwanego \textit{bounding box-em} \cite{carla, carla_bounding_boxes}.
 
 \subsubsection{Relacja miêdzy punktem Origin a œrodkiem geometrycznym}
 
@@ -494,8 +498,8 @@ Plik \verb|manual_control.py| zosta³ zaprojektowany modularnie i obejmuje kilka 
 \end{itemize}
 Ka¿dy z tych etapów pe³ni fundamentaln¹ rolê w zapewnieniu poprawnej i wydajnej pracy symulacji.
 
-\subsection{Logika dzia³ania pliku \texttt{manual\_control.py}}
-Plik \verb|manual_control.py| realizuje pe³ny cykl ¿ycia aplikacji symulacyjnej: od inicjalizacji œrodowiska, przez obs³ugê sterowania rêcznego, a¿ po prawid³owe zakoñczenie symulacji. Jego struktura zosta³a przedstawiona na schemacie blokowym (rysunek \ref{fig:manual_control_diagram}).
+\subsection{Logika dzia³ania programu \texttt{manual\_control.py}}
+Program \verb|manual_control.py| realizuje pe³ny cykl ¿ycia aplikacji symulacyjnej: od inicjalizacji œrodowiska, przez obs³ugê sterowania rêcznego, a¿ po prawid³owe zakoñczenie symulacji. Jego struktura zosta³a przedstawiona na schemacie blokowym (rysunek \ref{fig:manual_control_diagram}).
 
 \begin{figure}[H]
 	\centering

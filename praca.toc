@@ -2,8 +2,8 @@
 \contentsline {section}{\numberline {1.1}Wprowadzenie}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Cel i zakres pracy}{2}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Struktura pracy}{3}{section.1.3}%
-\contentsline {chapter}{\numberline {2}Symulator Carla}{4}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Architektura systemu Carla}{4}{section.2.1}%
+\contentsline {chapter}{\numberline {2}Symulator CARLA}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Architektura systemu CARLA}{4}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Mo\.zliwo\'sci symulatora}{5}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}\'Swiat}{5}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Sensory}{7}{subsection.2.2.2}%
@@ -21,7 +21,7 @@
 \contentsline {subsection}{\numberline {2.3.5}Uruchomienie symulatora CARLA}{21}{subsection.2.3.5}%
 \contentsline {section}{\numberline {2.4}Skrypt do manualnego sterowania w symulatorze CARLA}{21}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Struktura skryptu}{21}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Logika dzia\IeC {\l }ania pliku \texttt {manual\_control.py}}{22}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.2}Logika dzia\IeC {\l }ania programu \texttt {manual\_control.py}}{22}{subsection.2.4.2}%
 \contentsline {subsection}{\numberline {2.4.3}P\k etla gry (Game Loop)}{23}{subsection.2.4.3}%
 \contentsline {subsection}{\numberline {2.4.4}Tryb asynchroniczny i synchroniczny}{24}{subsection.2.4.4}%
 \contentsline {subsection}{\numberline {2.4.5}Implementacja synchronizacji w \texttt {manual\_control.py}}{24}{subsection.2.4.5}%
