@@ -20,15 +20,15 @@
 \contentsline {figure}{\numberline {2.18}{\ignorespaces \'Swiat\IeC {\l }a pojazdu}}{16}{figure.caption.21}%
 \contentsline {figure}{\numberline {2.19}{\ignorespaces Schemat blokowy dzia\IeC {\l }ania pliku \texttt {manual\_control.py}}}{22}{figure.caption.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces RCNN}}{31}{figure.caption.25}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces fastRCNN}}{32}{figure.caption.26}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces fasterRCNN2}}{33}{figure.caption.27}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces SSD}}{33}{figure.caption.28}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat struktury konwolucyjnej sieci neuronowej~\cite {esezam}.}}{35}{figure.caption.30}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Architektura YOLOv4. Zawiera backbone, neck i head~\cite {yolo_usage}.}}{39}{figure.caption.31}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Yolo Test}}{42}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces RCNN}}{29}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces fastRCNN}}{30}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces fasterRCNN2}}{31}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces SSD}}{31}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat struktury konwolucyjnej sieci neuronowej~\cite {esezam}.}}{33}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Architektura YOLOv4. Zawiera backbone, neck i head~\cite {yolo_usage}.}}{37}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Yolo Test}}{40}{figure.caption.39}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces sun10car20ppl1}}{46}{figure.caption.38}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces night20car40ppl2}}{46}{figure.caption.39}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces rainsun10car20ppl3}}{47}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces sun10car20ppl1}}{44}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces night20car40ppl2}}{44}{figure.caption.41}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces rainsun10car20ppl3}}{45}{figure.caption.42}%
 \addvspace {10\p@ }

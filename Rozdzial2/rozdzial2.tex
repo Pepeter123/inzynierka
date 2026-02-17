@@ -485,7 +485,13 @@ Aby zweryfikowaæ poprawnoœæ dzia³ania, mo¿na uruchomiæ przyk³adowy skrypt Python
 Je¿eli wszystkie kroki zosta³y wykonane poprawnie, symulator CARLA powinien dzia³aæ, a skrypt Python powinien uruchomiæ siê bez problemów.
 
 \section{Skrypt do manualnego sterowania w symulatorze CARLA}
-Plik \verb|manual_control.py| w symulatorze CARLA jest skryptem umo¿liwiaj¹cym rêczne sterowanie pojazdem za pomoc¹ klawiatury oraz myszy. Stanowi on jedno z podstawowych narzêdzi do testowania, eksploracji oraz analizy œrodowiska symulacyjnego, dostarczaj¹c u¿ytkownikowi pe³n¹ kontrolê nad pojazdem w czasie rzeczywistym.
+\label{sec:manual_control}
+
+Skrypt \verb|manual_control.py| dostarczany wraz z symulatorem CARLA
+umo¿liwia rêczne sterowanie pojazdem z poziomu klawiatury oraz podgl¹d
+obrazu z kamer w czasie rzeczywistym. Stanowi on punkt wyjœcia do dalszej
+integracji z zewnêtrznymi algorytmami przetwarzania danych, takimi jak
+systemy detekcji obiektów.
 
 \subsection{Struktura skryptu}
 Plik \verb|manual_control.py| zosta³ zaprojektowany modularnie i obejmuje kilka kluczowych sekcji, z których ka¿da realizuje specyficzny etap dzia³ania aplikacji:
@@ -510,7 +516,7 @@ Program \verb|manual_control.py| realizuje pe³ny cykl ¿ycia aplikacji symulacyjn
 
 G³ówne komponenty systemu:
 \begin{itemize}
-	\item \textbf{Main Loop} – odpowiada za przetwarzanie zdarzeñ wejœciowych, aktualizacjê stanu œwiata oraz renderowanie grafiki.
+	\item \textbf{Main Loop - game\_loop()} – odpowiada za przetwarzanie zdarzeñ wejœciowych, aktualizacjê stanu œwiata oraz renderowanie grafiki.
 	\item \textbf{CameraManager} – umo¿liwia zarz¹dzanie widokami kamer i przetwarzanie danych z czujników wizualnych.
 	\item \textbf{World} – zarz¹dza ca³ym œwiatem symulacji, w tym pojazdem u¿ytkownika, pogod¹ oraz czujnikami.
 	\item \textbf{KeyboardControl} – przetwarza sygna³y z klawiatury i przek³ada je na konkretne komendy steruj¹ce pojazdem.
@@ -519,201 +525,151 @@ G³ówne komponenty systemu:
 \end{itemize}
 
 Komunikacja miêdzy tymi komponentami odbywa siê w sposób asynchroniczny, zapewniaj¹c p³ynne dzia³anie symulacji oraz wysok¹ responsywnoœæ interfejsu u¿ytkownika.
-\subsection{Pêtla gry (Game Loop)}
-G³ówna pêtla symulacyjna, realizowana w funkcji \verb|game_loop()|, odpowiedzialna jest za cykliczne aktualizowanie stanu œrodowiska oraz reagowanie na zdarzenia wejœciowe. Jej g³ówne zadania obejmuj¹:
+\subsection{G³ówna pêtla gry - \texttt{game\_loop()}}
+\label{subsec:game_loop}
 
-\begin{enumerate}
-	\item \textbf{Odczyt stanu klawiatury} – umo¿liwia wykrywanie naciœniêtych klawiszy w czasie rzeczywistym.
-	\item \textbf{Analizê wejœcia u¿ytkownika} – wywo³anie funkcji \verb|parse_control_input()| celem przetworzenia danych wejœciowych.
-	\item \textbf{Zastosowanie kontroli do pojazdu} – przekazanie utworzonych komend steruj¹cych do pojazdu poprzez metodê \verb|apply_control()|.
-	\item \textbf{Synchronizacjê klatek} – zapewnienie p³ynnoœci animacji przy u¿yciu \verb|clock.tick(30)|, co ustala sta³¹ liczbê 30 FPS.
-\end{enumerate}
+G³ówna logika dzia³ania programu \verb|manual_control.py| zosta³a
+zaimplementowana w funkcji \verb|game_loop()|, która pe³ni rolê pêtli gry
+(\textit{game loop}). W ka¿dej iteracji pêtla ta odczytuje stan wejœcia
+od u¿ytkownika, aktualizuje sterowanie pojazdem oraz kontroluje tempo
+symulacji, zapewniaj¹c p³ynne dzia³anie programu.
 
-Przyk³adowy kod realizacji pêtli gry:
-
-\begin{lstlisting}[style=pythonColor, emph={Client, get_world, VehicleControl, Clock, get_pressed, parse_control_input, get_actors, apply_control, tick}, caption={Przyk³ad kodu pêtli gry - Game Loop}]
+\begin{lstlisting}[style=pythonColor, emph={Client, get\_world, VehicleControl, Clock, get\_pressed, parse\_control\_input, get\_actors, apply\_control, tick}, caption={Przyk³adowy kod pêtli gry -- \texttt{game\_loop()}}]
 	def main():
-	client = carla.Client('localhost', 2000)
-	world = client.get_world()
-	control = carla.VehicleControl()
+	client = carla.Client('localhost', 2000)        # Inicjalizacja klienta CARLA
+	world = client.get_world()                      # Pobranie œwiata symulacji
+	control = carla.VehicleControl()                # Obiekt sterowania pojazdem
 	
-	pygame.init()
-	clock = pygame.time.Clock()
+	pygame.init()                                   # Inicjalizacja pygame
+	clock = pygame.time.Clock()                     # Zegar do kontrolowania FPS
 	
 	try:
 	while True:
-	keys = pygame.key.get_pressed()
-	control = parse_control_input(keys)
+	keys = pygame.key.get_pressed()         # Pobieranie stanu klawiszy
+	control = parse_control_input(keys)     # Analiza wejœcia od u¿ytkownika
 	
-	vehicle = world.get_actors().filter('vehicle.*')[0]
-	vehicle.apply_control(control)
+	vehicle = world.get_actors().filter('vehicle.*')[0]  # Pobranie pojazdu
+	vehicle.apply_control(control)          # Zastosowanie sterowania
 	
-	clock.tick(30)
+	clock.tick(30)                          # Ograniczenie liczby klatek na sekundê
 	except KeyboardInterrupt:
 	pass
 \end{lstlisting}
 
-\subsection{Tryb asynchroniczny i synchroniczny}
-
-Symulator CARLA umo¿liwia uruchamianie œrodowiska symulacyjnego w dwóch podstawowych trybach: asynchronicznym oraz synchronicznym. Zrozumienie ich ró¿nic i sposobu implementacji w kodzie Ÿród³owym, a szczególnie w kontekœcie pêtli g³ównej symulacji, ma kluczowe znaczenie dla skutecznej integracji z zewnêtrznymi systemami przetwarzania, takimi jak np. algorytmy detekcji obiektów w czasie rzeczywistym.
-W trybie \textbf{asynchronicznym}, który jest domyœlnym ustawieniem symulatora, œwiat gry jest aktualizowany niezale¿nie od klienta. Oznacza to, ¿e symulacja dzia³a z w³asn¹ czêstotliwoœci¹ i nie oczekuje na sygna³y od zewnêtrznych aplikacji. Dane z sensorów, takich jak kamery czy lidary, mog¹ byæ wiêc niespójne wzglêdem stanu symulacji w momencie ich odczytu, co mo¿e skutkowaæ niedok³adnoœciami podczas analizy lub uczenia modeli \cite{carla}.
-
-W przeciwieñstwie do tego, tryb \textbf{synchroniczny} pozwala klientowi kontrolowaæ tempo symulacji. W tym trybie ka¿da klatka symulacji jest generowana dopiero po wywo³aniu metody \verb|world.tick()| przez klienta. Dziêki temu mo¿liwe jest pe³ne zsynchronizowanie stanu œwiata z danymi z sensorów, co jest niezbêdne w wielu zastosowaniach wymagaj¹cych precyzji, takich jak testowanie algorytmów percepcji w pojazdach autonomicznych.
-
-\subsection{Implementacja synchronizacji w \texttt{manual\_control.py}}
-
-Tryb synchroniczny jest aktywowany w pliku \verb|manual_control.py| poprzez odpowiedni¹ konfiguracjê ustawieñ œwiata gry. Kluczowy fragment kodu odpowiedzialny za aktywacjê tego trybu przedstawia siê nastêpuj¹co:
-
-\begin{verbatim}
-	settings = world.get_settings()
-	settings.synchronous_mode = True
-	settings.fixed_delta_seconds = 0.05
-	world.apply_settings(settings)
-\end{verbatim}
-
-Ustawienie parametru \verb|synchronous_mode| na \verb|True| oraz okreœlenie \verb|fixed_delta_seconds| (np. 0.05 s odpowiadaj¹ce 20 FPS) pozwala osi¹gn¹æ spójne, deterministyczne zachowanie symulacji. W przypadku uruchomienia skryptu z parametrem \verb|--sync|, aktywowany zostaje synchroniczny mechanizm sterowania symulacj¹.
-
-\subsection{Analiza pêtli g³ównej \texttt{game\_loop()}}
-
-G³ówna pêtla symulacji, zdefiniowana w funkcji \verb|game_loop()|, realizuje krokow¹ kontrolê nad œwiatem gry. Przyk³adowy fragment tej pêtli wygl¹da nastêpuj¹co:
-
-\begin{verbatim}
-	while True:
-	if args.sync:
-	sim_world.tick()
-	clock.tick_busy_loop(60)
-	if controller.parse_events(client, world, clock, args.sync):
-	return
-	world.tick(clock)
-	world.render(display)
-	pygame.display.flip()
-\end{verbatim}
-
-Jej dzia³anie mo¿na roz³o¿yæ na kilka kroków:
-
+Dzia³anie pêtli \verb|game_loop()| mo¿na opisaæ w nastêpuj¹cych krokach:
 \begin{enumerate}
-	\item \textbf{Synchronizacja z serwerem:} Jeœli aktywowany zosta³ tryb synchroniczny (\verb|args.sync|), klient wywo³uje metodê \verb|sim_world.tick()|, co inicjuje przetworzenie jednej klatki symulacji po stronie serwera.
-	\item \textbf{Ograniczenie liczby klatek:} Funkcja \verb|clock.tick_busy_loop(60)| ogranicza liczbê iteracji pêtli do 60 na sekundê, a tak¿e oblicza czas miêdzy kolejnymi iteracjami.
-	\item \textbf{Przetwarzanie zdarzeñ wejœciowych:} Metoda \verb|parse_events(...)| obs³uguje zdarzenia Pygame, takie jak naciœniêcia klawiszy, zamkniêcie aplikacji itp. Jeœli u¿ytkownik zainicjuje zakoñczenie programu, pêtla zostaje przerwana.
-	\item \textbf{Aktualizacja stanu lokalnego:} Wywo³anie \verb|world.tick(clock)| s³u¿y do wewnêtrznej aktualizacji komponentów klienta – takich jak interfejs u¿ytkownika (HUD), kamery czy dane z sensorów. W trybie synchronicznym nie powoduje ono przesuniêcia œwiata gry, lecz jedynie uzupe³nia dane ju¿ wygenerowane przez \verb|sim_world.tick()|.
-	\item \textbf{Renderowanie:} Funkcja \verb|world.render(display)| przygotowuje obraz do wyœwietlenia, a \verb|pygame.display.flip()| aktualizuje ekran, pokazuj¹c najnowsz¹ ramkê wraz z interfejsem graficznym.
+	\item \textbf{Inicjalizacja komponentów}: tworzeni s¹ klient CARLA,
+	obiekt œwiata \verb|world|, obiekt sterowania \verb|VehicleControl|
+	oraz zegar \verb|Clock|, a biblioteka \verb|pygame| jest przygotowywana
+	do obs³ugi wejœcia z klawiatury.
+	
+	\item \textbf{Pobranie stanu klawiszy}: funkcja
+	\verb|pygame.key.get_pressed()| odczytuje aktualny stan wszystkich
+	klawiszy na klawiaturze.
+	
+	\item \textbf{Przetwarzanie wejœcia u¿ytkownika}: funkcja
+	\verb|parse_control_input(keys)| interpretuje wciœniête klawisze (np.
+	\verb|W|, \verb|S|, \verb|A|, \verb|D|, spacja) i na tej podstawie ustawia
+	parametry \verb|throttle|, \verb|brake| oraz \verb|steer| w obiekcie
+	\verb|carla.VehicleControl|.
+	
+	\item \textbf{Zastosowanie sterowania}: skonfigurowany obiekt
+	\verb|VehicleControl| przekazywany jest do metody
+	\verb|vehicle.apply_control(control)|, co powoduje wykonanie odpowiedniej
+	akcji przez pojazd (przyspieszenie, hamowanie, skrêt).
+	
+	\item \textbf{Kontrola liczby klatek na sekundê}: funkcja
+	\verb|clock.tick(30)| ogranicza czêstotliwoœæ wykonywania pêtli do
+	30 iteracji na sekundê, co zapewnia p³ynnoœæ symulacji i stabilne
+	warunki testowania.
 \end{enumerate}
 
-Dziêki takiej konstrukcji pêtli mo¿liwa jest pe³na kontrola nad przebiegiem symulacji. Co istotne, w trybie synchronicznym to klient dyktuje tempo, co jest kluczowe w zastosowaniach zwi¹zanych z uczeniem maszynowym i testowaniem detekcji obiektów (np. YOLO), gdzie wymagana jest spójnoœæ miêdzy stanem œrodowiska a danymi sensorycznymi.
+\subsection{Tryby asynchroniczny i synchroniczny w symulatorze CARLA}
+\label{subsec:async_sync_modes}
+
+Symulator CARLA umo¿liwia uruchamianie œrodowiska w dwóch podstawowych trybach: asynchronicznym oraz synchronicznym. W trybie asynchronicznym serwer symulacji samodzielnie aktualizuje œwiat z w³asn¹ czêstotliwoœci¹, niezale¿nie od dzia³añ klienta. W trybie synchronicznym ka¿da klatka symulacji generowana jest dopiero po wywo³aniu odpowiedniej metody po stronie klienta, co pozwala œciœle zsynchronizowaæ stan œwiata z danymi z czujników.
+
+\subsubsection*{Tryb asynchroniczny (domyœlny)}
+
+Tryb asynchroniczny jest ustawieniem domyœlnym po uruchomieniu symulatora CARLA i pod³¹czeniu klienta, takiego jak skrypt \verb|manual_control.py|. Serwer aktualizuje fizykê, po³o¿enie aktorów oraz dane z czujników z maksymaln¹ mo¿liw¹ czêstotliwoœci¹, niezale¿nie od tego, jak szybko klient przetwarza otrzymywane informacje. Pêtla gry po stronie klienta mo¿e skupiæ siê na obs³udze wejœcia u¿ytkownika z klawiatury, aktualizacji interfejsu HUD oraz renderowaniu obrazu, podczas gdy serwer w tle nieprzerwanie prowadzi symulacjê. Wad¹ tego trybu jest brak gwarancji, ¿e obraz z kamer i inne pomiary bêd¹ dok³adnie odpowiada³y temu samemu krokowi czasowemu, co utrudnia precyzyjne gromadzenie danych do trenowania i ewaluacji algorytmów detekcji obiektów.
+
+W pocz¹tkowej fazie przeprowadzanych eksperymentów tryb asynchroniczny okaza³ siê niewystarczaj¹cy przy testowaniu algorytmu YOLO w czasie rzeczywistym. Serwer symulatora generowa³ kolejne klatki szybciej, ni¿ klient by³ w stanie je przetwarzaæ, co prowadzi³o do rozjechania siê czasowego danych: ramki detekcji odnosi³y siê do poprzednich stanów œwiata, a nie do aktualnie renderowanego obrazu. W efekcie obrysy obiektów, takich jak piesi czy pojazdy, by³y rysowane z wyraŸnym opóŸnieniem, czêsto w miejscach, w których obiekt znajdowa³ siê jedynie w poprzednich klatkach. Problem ten zosta³ wyeliminowany dopiero po prze³¹czeniu symulacji w tryb synchroniczny, w którym ka¿da klatka obrazu jest jednoznacznie powi¹zana z odpowiadaj¹cymi jej wynikami detekcji.
+
+%\begin{figure}[H]
+%	\centering
+%	% \includegraphics[width=\textwidth]{RysunkiRozdzial2_async_mode.png}
+%	\caption{Widok symulatora CARLA w domyœlnym trybie asynchronicznym.}
+%	\label{fig:carla_async_mode}
+%\end{figure}
+
+\subsubsection*{Tryb synchroniczny i uruchamianie z poziomu terminala}
+
+Tryb synchroniczny zapewnia deterministyczne i powtarzalne dzia³anie symulacji, w którym ka¿da klatka jest jednoznacznie powi¹zana z kompletem danych z czujników. Klient wywo³uje metodê \verb|world.tick()| tylko wtedy, gdy jest gotowy na pobranie kolejnej próbki danych, co pozwala œciœle zsynchronizowaæ stan œwiata z obrazami z kamer, chmurami punktów LIDAR oraz innymi pomiarami. Jest to szczególnie istotne przy przygotowywaniu zbiorów danych dla modeli detekcji obiektów, takich jak YOLO, gdzie dla ka¿dej klatki obrazu wymagane s¹ dok³adnie odpowiadaj¹ce jej adnotacje.
+
+Prze³¹czenie symulacji w tryb synchroniczny wymaga jawnego wymuszenia tego ustawienia po stronie klienta. W kodzie odbywa siê to poprzez zmianê konfiguracji œwiata:
+
+\begin{lstlisting}[style=pythonColor, emph={get\_settings, synchronous\_mode, fixed\_delta\_seconds, apply\_settings}, caption={Konfiguracja trybu synchronicznego w kodzie klienta}]
+	settings = world.get_settings()
+	settings.synchronous_mode = True
+	settings.fixed_delta_seconds = 0.05  # np. 20 FPS
+	world.apply_settings(settings)
+\end{lstlisting}
+
+Skrypt \verb|manual_control.py| udostêpnia w tym celu prze³¹cznik w linii poleceñ, który aktywuje tryb synchroniczny. Uruchomienie klienta z poziomu terminala mo¿e wygl¹daæ nastêpuj¹co:
+
+\begin{lstlisting}[caption={Uruchomienie skryptu manual\_control.py w trybie synchronicznym (Linux)}]
+	python3 manual_control.py --sync
+\end{lstlisting}
+
+lub w systemie Windows:
+
+\begin{lstlisting}[caption={Uruchomienie skryptu manual\_control.py w trybie synchronicznym (Windows)}]
+	python manual_control.py --sync
+\end{lstlisting}
+
+Podanie parametru \verb|--sync| powoduje, ¿e w kodzie klienta ustawiany jest tryb synchroniczny oraz ewentualny sta³y krok czasowy, a nastêpnie wywo³ywana jest metoda \verb|world.apply_settings(settings)|, co prze³¹cza serwer w tryb synchroniczny. Zalet¹ takiej organizacji jest mo¿liwoœæ œcis³ego sprzê¿enia symulacji z zewnêtrznymi algorytmami, które mog¹ przetworzyæ dane z bie¿¹cej klatki i dopiero potem zainicjowaæ przejœcie do nastêpnego kroku czasowego. Wad¹ jest natomiast to, ¿e ca³kowita prêdkoœæ symulacji zale¿y od wydajnoœci klienta – im d³u¿ej trwa przetwarzanie danych, tym wolniej generowane s¹ kolejne klatki.
+
+%\begin{figure}[H]
+%	\centering
+%	% \includegraphics[width=\textwidth]{RysunkiRozdzial2_sync_mode.png}
+%	\caption{Widok symulatora CARLA w wymuszonym trybie synchronicznym.}
+%	\label{fig:carla_sync_mode}
+%\end{figure}
 
 \subsection{Znaczenie dla integracji z algorytmami zewnêtrznymi}
 
 Zastosowanie trybu synchronicznego jest szczególnie istotne w kontekœcie integracji z zewnêtrznymi algorytmami analizy danych, np. systemami opartymi o YOLO. W takich przypadkach przetwarzanie obrazu musi byæ zgodne ze stanem symulacji, aby wykrywane obiekty odpowiada³y ich rzeczywistej pozycji i prêdkoœci. Brak synchronizacji mo¿e prowadziæ do b³êdnych detekcji i zaburzenia procesu wnioskowania.
 
-
 \subsection{Sterowanie pojazdem z poziomu klawiatury}
 
 Jednym z g³ównych elementów interakcji u¿ytkownika z pojazdem w symulatorze CARLA jest sterowanie przy pomocy klawiatury. W tym celu skrypt \texttt{manual\_control.py} wykorzystuje bibliotekê \texttt{pygame}, która pozwala na obs³ugê wejœcia u¿ytkownika i monitorowanie stanu klawiszy. G³ówna funkcja odpowiedzialna za to zadanie to \texttt{parse\_control\_input()}, która analizuje naciœniête klawisze i na ich podstawie dostosowuje parametry sterowania pojazdem.
 
-Przyk³adowy kod do obs³ugi sterowania pojazdem:
-
-\begin{lstlisting}[style=pythonColor, emph={parse\_control\_input, get\_pressed, VehicleControl}, caption={Przyk³adowy kod w jêzyku Python odpowiedzialny za sterowanie pojazdem z klawiatury}]
+\begin{lstlisting}[style=pythonColor, emph={parse\_control\_input, get\_pressed, VehicleControl}, caption={Przyk³adowy kod obs³ugi sterowania pojazdem z klawiatury}]
 	import pygame
 	
 	def parse_control_input():
-	keys = pygame.key.get_pressed()  # Pobranie stanu klawiszy
-	control = carla.VehicleControl()  # Obiekt sterowania pojazdem
+	keys = pygame.key.get_pressed()       # Pobranie stanu klawiszy
+	control = carla.VehicleControl()      # Obiekt sterowania pojazdem
 	
-	if keys[pygame.K_w]:  # Przyspieszanie (gaz)
-	control.throttle = 1.0  
-	if keys[pygame.K_s]:  # Hamowanie
-	control.brake = 1.0  
-	if keys[pygame.K_a]:  # Skrêt w lewo
-	control.steer = -1.0  
-	if keys[pygame.K_d]:  # Skrêt w prawo
-	control.steer = 1.0  
-	
-	return control  # Zwrócenie obiektu sterowania
-\end{lstlisting}
-
-Opis kodu:
-
-\begin{itemize}
-	\item \textbf{Pobranie stanu klawiszy:} Funkcja \texttt{pygame.key.get\_pressed()} zwraca tablicê wartoœci logicznych dla wszystkich klawiszy, umo¿liwiaj¹c interakcjê z pojazdem. Wartoœæ \texttt{True} oznacza, ¿e dany klawisz jest wciœniêty.
-	\item \textbf{Tworzenie obiektu sterowania:} Obiekt \texttt{carla.VehicleControl()} jest u¿ywany do przekazywania parametrów sterowania do symulowanego pojazdu. Wœród w³aœciwoœci tego obiektu znajduj¹ siê:
-	\begin{itemize}
-		\item \texttt{throttle} – stopieñ przyspieszenia (wartoœæ od 0.0 do 1.0),
-		\item \texttt{brake} – stopieñ hamowania (wartoœæ od 0.0 do 1.0),
-		\item \texttt{steer} – k¹t skrêtu (wartoœæ od -1.0 do 1.0, gdzie -1.0 oznacza skrêt w lewo, a 1.0 w prawo).
-	\end{itemize}
-	\item \textbf{Sterowanie pojazdem:} Na podstawie wciœniêtych klawiszy funkcja ustawia odpowiednie wartoœci w obiekcie \texttt{control}. Na przyk³ad:
-	\begin{itemize}
-		\item \texttt{W} powoduje przyspieszanie pojazdu (\texttt{throttle = 1.0}),
-		\item \texttt{S} uruchamia hamowanie (\texttt{brake = 1.0}),
-		\item \texttt{A} i \texttt{D} steruj¹ k¹tem skrêtu.
-	\end{itemize}
-	\item \textbf{Zwrócenie obiektu sterowania:} Po przetworzeniu stanu klawiszy funkcja zwraca obiekt \texttt{control}, który jest nastêpnie u¿ywany do sterowania pojazdem w symulacji.
-\end{itemize}
-
-\subsection{Pêtla gry - Game Loop}
-
-W symulatorze CARLA plik \texttt{manual\_control.py} zawiera funkcjê \texttt{game\_loop()}, która pe³ni rolê g³ównej pêtli symulacyjnej, odpowiedzialnej za interakcjê u¿ytkownika ze œwiatem symulowanym oraz za aktualizacjê i renderowanie otoczenia w czasie rzeczywistym. Funkcja ta inicjalizuje wszystkie niezbêdne komponenty œrodowiska, nawi¹zuje po³¹czenie z serwerem CARLA, a nastêpnie wykonuje ci¹g³¹ iteracjê (pêtlê nieskoñczon¹), a¿ do zakoñczenia programu przez u¿ytkownika. W przypadku symulatora CARLA pêtla gry wykonuje nastêpuj¹ce kroki:
-
-\begin{enumerate}
-	\item \textbf{Pobranie stanu klawiszy:} Funkcja \texttt{pygame.key.get\_pressed()} umo¿liwia monitorowanie stanu wszystkich klawiszy na klawiaturze, co pozwala na kontrolowanie pojazdu. Odczyt stanu klawiszy jest kluczowy do sterowania ruchem pojazdu (np. przyspieszanie, hamowanie, skrêt w lewo lub prawo).
-	\item \textbf{Przetwarzanie wejœcia u¿ytkownika:} Funkcja \texttt{parse\_control\_input(keys)} analizuje stan klawiszy i na tej podstawie ustawia odpowiednie parametry sterowania pojazdem. Na przyk³ad, jeœli u¿ytkownik wciœnie klawisz \texttt{W}, wartoœæ \texttt{throttle} zostaje ustawiona na \texttt{1.0}, co powoduje przyspieszenie pojazdu.
-	\item \textbf{Zastosowanie kontroli do pojazdu:} Funkcja \texttt{vehicle.apply\_control(control)} wysy³a skonfigurowany obiekt sterowania do pojazdu, aby ten wykona³ odpowiedni¹ akcjê (np. przyspieszenie, hamowanie, skrêt).
-	\item \textbf{Kontrola liczby klatek na sekundê:} Funkcja \texttt{clock.tick(30)} zapewnia, ¿e symulacja nie bêdzie dzia³a³a za szybko, umo¿liwiaj¹c p³ynne sterowanie pojazdem i zachowanie w³aœciwej synchronizacji w grze.
-\end{enumerate}
-
-Przyk³adowy fragment kodu pêtli gry:
-
-\begin{lstlisting}[style=pythonColor, emph={Client, get_world, VehicleControl, Clock, get_pressed, parse_control_input, get_actors, apply_control, tick}, caption={Przyk³ad kodu pêtli gry - Game Loop}]
-	def main():
-	client = carla.Client('localhost', 2000)  # Inicjalizacja klienta CARLA
-	world = client.get_world()  # Pobranie œwiata symulacji
-	control = carla.VehicleControl()  # Obiekt sterowania pojazdem
-	
-	pygame.init()  # Inicjalizacja pygame
-	clock = pygame.time.Clock()  # Inicjalizacja zegara dla kontrolowania FPS
-	
-	try:
-	while True:
-	keys = pygame.key.get_pressed()  # Pobieranie stanu klawiszy
-	control = parse_control_input(keys)  # Analiza wejœcia od u¿ytkownika
-	
-	vehicle = world.get_actors().filter('vehicle.*')[0]  # Pobranie pojazdu
-	vehicle.apply_control(control)  # Zastosowanie kontroli do pojazdu
-	
-	clock.tick(30)  # Ograniczenie liczby klatek na sekundê
-	except KeyboardInterrupt:
-	pass
-\end{lstlisting}
-
-\subsection{Sterowanie pojazdem za pomoc¹ klawiatury}
-Sterowanie pojazdem odbywa siê g³ównie przy pomocy klawiatury, wykorzystuj¹c bibliotekê \verb|pygame| do obs³ugi zdarzeñ wejœciowych. G³ówn¹ funkcj¹ odpowiedzialn¹ za przetwarzanie sygna³ów od u¿ytkownika jest \verb|parse_control_input()|, która analizuje aktualny stan klawiatury i przek³ada go na komendy steruj¹ce pojazdem.
-
-\begin{lstlisting}[style=pythonColor, emph={parse_control_input, get_pressed, VehicleControl}, caption={Przyk³adowy kod obs³ugi sterowania pojazdem z klawiatury}]
-	import pygame
-	
-	def parse_control_input():
-	keys = pygame.key.get_pressed()
-	control = carla.VehicleControl()
-	
-	if keys[pygame.K_w]:
+	if keys[pygame.K_w]:                  # Przyspieszanie (gaz)
 	control.throttle = 1.0
-	if keys[pygame.K_s]:
+	if keys[pygame.K_s]:                  # Hamowanie
 	control.brake = 1.0
-	if keys[pygame.K_a]:
+	if keys[pygame.K_a]:                  # Skrêt w lewo
 	control.steer = -1.0
-	if keys[pygame.K_d]:
+	if keys[pygame.K_d]:                  # Skrêt w prawo
 	control.steer = 1.0
 	
-	return control
+	return control                        # Zwrócenie obiektu sterowania
 \end{lstlisting}
 
 \noindent
-Opis kodu:
+Dzia³anie funkcji mo¿na podsumowaæ nastêpuj¹co:
 \begin{itemize}
-	\item \textbf{Pobieranie stanu klawiszy} – funkcja \verb|pygame.key.get_pressed()| umo¿liwia detekcjê aktualnie wciœniêtych klawiszy.
-	\item \textbf{Tworzenie obiektu sterowania} – \verb|carla.VehicleControl| umo¿liwia ustawienie parametrów takich jak przyspieszenie, hamowanie czy skrêt.
-	\item \textbf{Ustawianie parametrów} – przypisanie odpowiednich wartoœci do w³aœciwoœci \verb|throttle|, \verb|brake| i \verb|steer| w zale¿noœci od interakcji u¿ytkownika.
-	\item \textbf{Zwrócenie obiektu} – gotowy obiekt sterowania zostaje przes³any do funkcji steruj¹cej pojazdem w œwiecie symulacyjnym.
+	\item \textbf{Pobieranie stanu klawiszy} – funkcja \verb|pygame.key.get_pressed()| zwraca tablicê wartoœci logicznych dla wszystkich klawiszy, umo¿liwiaj¹c detekcjê aktualnie wciœniêtych przycisków.
+	\item \textbf{Tworzenie obiektu sterowania} – obiekt \verb|carla.VehicleControl| przechowuje parametry steruj¹ce pojazdem, takie jak \verb|throttle| (przyspieszenie), \verb|brake| (hamowanie) oraz \verb|steer| (k¹t skrêtu).
+	\item \textbf{Ustawianie parametrów} – na podstawie wciœniêtych klawiszy przypisywane s¹ odpowiednie wartoœci do w³aœciwoœci \verb|throttle|, \verb|brake| i \verb|steer|, np. klawisz \verb|W| powoduje przyspieszanie pojazdu, a \verb|S| uruchamia hamowanie.
+	\item \textbf{Zwrócenie obiektu sterowania} – po przetworzeniu stanu klawiatury funkcja zwraca skonfigurowany obiekt \verb|control|, który nastêpnie jest przekazywany do metody \verb|vehicle.apply_control(control)| odpowiedzialnej za wykonanie manewru w œwiecie symulacyjnym.
 \end{itemize}
 
 \subsection{Czyszczenie zasobów (Cleanup)}
@@ -727,7 +683,7 @@ Proces ten obejmuje:
 
 Przyk³adowy kod funkcji czyszcz¹cej:
 
-\begin{lstlisting}[style=pythonColor, emph={cleanup, get_actors, destroy}, caption={Kod funkcji odpowiedzialnej za czyszczenie zasobów}]
+\begin{lstlisting}[style=pythonColor, emph={cleanup, get\_actors, destroy}, caption={Kod funkcji odpowiedzialnej za czyszczenie zasobów}]
 	def cleanup(world):
 	actors = world.get_actors()
 	for actor in actors:

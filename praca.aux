@@ -96,43 +96,42 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2.10}{\ignorespaces Instalacja zale\.zno\'sci Pythona}}{21}{lstlisting.2.10}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2.11}{\ignorespaces Uruchamianie przyk\IeC {\l }adowego skryptu}}{21}{lstlisting.2.11}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Skrypt do manualnego sterowania w symulatorze CARLA}{21}{section.2.4}\protected@file@percent }
+\newlabel{sec:manual_control}{{2.4}{21}{Skrypt do manualnego sterowania w symulatorze CARLA}{section.2.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Struktura skryptu}{21}{subsection.2.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Logika dzia\IeC {\l }ania programu \texttt  {manual\_control.py}}{22}{subsection.2.4.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2.19}{\ignorespaces Schemat blokowy dzia\IeC {\l }ania pliku \texttt  {manual\_control.py}}}{22}{figure.caption.24}\protected@file@percent }
 \newlabel{fig:manual_control_diagram}{{2.19}{22}{Schemat blokowy dzia³ania pliku \texttt {manual\_control.py}}{figure.caption.24}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}P\k etla gry (Game Loop)}{23}{subsection.2.4.3}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.12}{\ignorespaces Przyk\IeC {\l }ad kodu p\k etli gry - Game Loop}}{23}{lstlisting.2.12}\protected@file@percent }
-\citation{carla}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Tryb asynchroniczny i synchroniczny}{24}{subsection.2.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Implementacja synchronizacji w \texttt  {manual\_control.py}}{24}{subsection.2.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Analiza p\k etli g\IeC {\l }\'ownej \texttt  {game\_loop()}}{25}{subsection.2.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Znaczenie dla integracji z algorytmami zewn\k etrznymi}{25}{subsection.2.4.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.8}Sterowanie pojazdem z poziomu klawiatury}{26}{subsection.2.4.8}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.13}{\ignorespaces Przyk\IeC {\l }adowy kod w j\k ezyku Python odpowiedzialny za sterowanie pojazdem z klawiatury}}{26}{lstlisting.2.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.9}P\k etla gry - Game Loop}{27}{subsection.2.4.9}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.14}{\ignorespaces Przyk\IeC {\l }ad kodu p\k etli gry - Game Loop}}{27}{lstlisting.2.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.10}Sterowanie pojazdem za pomoc\k a klawiatury}{28}{subsection.2.4.10}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.15}{\ignorespaces Przyk\IeC {\l }adowy kod obs\IeC {\l }ugi sterowania pojazdem z klawiatury}}{28}{lstlisting.2.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.11}Czyszczenie zasob\'ow (Cleanup)}{28}{subsection.2.4.11}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.16}{\ignorespaces Kod funkcji odpowiedzialnej za czyszczenie zasob\'ow}}{29}{lstlisting.2.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}G\IeC {\l }\'owna p\k etla gry - \texttt  {game\_loop()}}{23}{subsection.2.4.3}\protected@file@percent }
+\newlabel{subsec:game_loop}{{2.4.3}{23}{G³ówna pêtla gry - \texttt {game\_loop()}}{subsection.2.4.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.12}{\ignorespaces Przyk\IeC {\l }adowy kod p\k etli gry -- \texttt  {game\_loop()}}}{23}{lstlisting.2.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Tryby asynchroniczny i synchroniczny w symulatorze CARLA}{24}{subsection.2.4.4}\protected@file@percent }
+\newlabel{subsec:async_sync_modes}{{2.4.4}{24}{Tryby asynchroniczny i synchroniczny w symulatorze CARLA}{subsection.2.4.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.13}{\ignorespaces Konfiguracja trybu synchronicznego w kodzie klienta}}{25}{lstlisting.2.13}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.14}{\ignorespaces Uruchomienie skryptu manual\_control.py w trybie synchronicznym (Linux)}}{25}{lstlisting.2.14}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.15}{\ignorespaces Uruchomienie skryptu manual\_control.py w trybie synchronicznym (Windows)}}{25}{lstlisting.2.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Znaczenie dla integracji z algorytmami zewn\k etrznymi}{26}{subsection.2.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Sterowanie pojazdem z poziomu klawiatury}{26}{subsection.2.4.6}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.16}{\ignorespaces Przyk\IeC {\l }adowy kod obs\IeC {\l }ugi sterowania pojazdem z klawiatury}}{26}{lstlisting.2.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Czyszczenie zasob\'ow (Cleanup)}{27}{subsection.2.4.7}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.17}{\ignorespaces Kod funkcji odpowiedzialnej za czyszczenie zasob\'ow}}{27}{lstlisting.2.17}\protected@file@percent }
 \citation{ren2015faster}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}System rozpoznawania obraz\'ow}{30}{chapter.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}System rozpoznawania obraz\'ow}{28}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \citation{girshick2015fast}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces RCNN}}{31}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:RCNN}{{3.1}{31}{RCNN}{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces RCNN}}{29}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:RCNN}{{3.1}{29}{RCNN}{figure.caption.27}{}}
 \citation{ren2015faster}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces fastRCNN}}{32}{figure.caption.26}\protected@file@percent }
-\newlabel{fig:fastRcnn}{{3.2}{32}{fastRCNN}{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces fastRCNN}}{30}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:fastRcnn}{{3.2}{30}{fastRCNN}{figure.caption.28}{}}
 \citation{liu2016ssd}
 \citation{liu2016ssd}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces fasterRCNN2}}{33}{figure.caption.27}\protected@file@percent }
-\newlabel{fig:fasterRcnn2}{{3.3}{33}{fasterRCNN2}{figure.caption.27}{}}
-\newlabel{fig:ssd_architecture}{{\caption@xref {fig:ssd_architecture}{ on input line 50}}{33}{System rozpoznawania obrazów}{figure.caption.28}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces SSD}}{33}{figure.caption.28}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces fasterRCNN2}}{31}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:fasterRcnn2}{{3.3}{31}{fasterRCNN2}{figure.caption.29}{}}
+\newlabel{fig:ssd_architecture}{{\caption@xref {fig:ssd_architecture}{ on input line 50}}{31}{System rozpoznawania obrazów}{figure.caption.30}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces SSD}}{31}{figure.caption.30}\protected@file@percent }
 \citation{yolov4_paper}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Por\'ownanie wybranych architektur}}{34}{table.caption.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Por\'ownanie wybranych architektur}}{32}{table.caption.31}\protected@file@percent }
 \citation{esezam}
 \citation{esezam}
 \citation{cnn_survey}
@@ -141,11 +140,11 @@
 \citation{Goodfellow2016}
 \citation{Redmon2016}
 \citation{Bochkovskiy2020}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}YOLOv4 i konwolucyjne sieci neuronowe}{35}{section.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Konwolucyjne sieci neuronowe (CNN)}{35}{subsection.3.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat struktury konwolucyjnej sieci neuronowej~\cite  {esezam}.}}{35}{figure.caption.30}\protected@file@percent }
-\newlabel{fig:cnn}{{3.5}{35}{Schemat struktury konwolucyjnej sieci neuronowej~\cite {esezam}}{figure.caption.30}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Zasada dzia\IeC {\l }ania algorytmu YOLO i YOLOv4}{35}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}YOLOv4 i konwolucyjne sieci neuronowe}{33}{section.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Konwolucyjne sieci neuronowe (CNN)}{33}{subsection.3.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat struktury konwolucyjnej sieci neuronowej~\cite  {esezam}.}}{33}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:cnn}{{3.5}{33}{Schemat struktury konwolucyjnej sieci neuronowej~\cite {esezam}}{figure.caption.32}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Zasada dzia\IeC {\l }ania algorytmu YOLO i YOLOv4}{33}{section.3.2}\protected@file@percent }
 \citation{Bochkovskiy2020}
 \citation{Geron2019}
 \citation{Bochkovskiy2020}
@@ -177,83 +176,83 @@
 \citation{carla}
 \citation{carla}
 \citation{yolo_usage}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Architektura YOLOv4}{38}{subsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Architektura YOLOv4}{36}{subsection.3.2.1}\protected@file@percent }
 \citation{yolo_usage}
 \citation{yolo_usage}
 \citation{Bochkovskiy2020}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Architektura YOLOv4. Zawiera backbone, neck i head~\cite  {yolo_usage}.}}{39}{figure.caption.31}\protected@file@percent }
-\newlabel{fig:yolov4_arch}{{3.6}{39}{Architektura YOLOv4. Zawiera backbone, neck i head~\cite {yolo_usage}}{figure.caption.31}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Zalety, wydajno\'s\'c i zastosowania algorytmu YOLOv4}{39}{section.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Architektura YOLOv4. Zawiera backbone, neck i head~\cite  {yolo_usage}.}}{37}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:yolov4_arch}{{3.6}{37}{Architektura YOLOv4. Zawiera backbone, neck i head~\cite {yolo_usage}}{figure.caption.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Zalety, wydajno\'s\'c i zastosowania algorytmu YOLOv4}{37}{section.3.3}\protected@file@percent }
 \citation{Bochkovskiy2020}
 \citation{yolo_usage}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Instalacja systemu YOLO}{41}{section.3.4}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}{\ignorespaces Aktualizacja listy pakiet\'ow}}{41}{lstlisting.3.1}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}{\ignorespaces Instalacja wymaganych pakiet\'ow}}{41}{lstlisting.3.2}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}{\ignorespaces Instalacja CUDA}}{41}{lstlisting.3.3}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}{\ignorespaces Instalacja cuDNN}}{41}{lstlisting.3.4}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}{\ignorespaces Klonowanie repozytorium YOLOv4}}{41}{lstlisting.3.5}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}{\ignorespaces Edytowanie pliku Makefile}}{42}{lstlisting.3.6}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.7}{\ignorespaces Kompilacja projektu YOLOv4}}{42}{lstlisting.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Testowanie instalacji}{42}{subsection.3.4.1}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.8}{\ignorespaces Testowanie YOLOv4}}{42}{lstlisting.3.8}\protected@file@percent }
-\newlabel{fig:yoloTest}{{\caption@xref {fig:yoloTest}{ on input line 317}}{42}{Testowanie instalacji}{figure.caption.37}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Yolo Test}}{42}{figure.caption.37}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Integracja detektora YOLOv4 z symulatorem CARLA}{42}{section.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Instalacja systemu YOLO}{39}{section.3.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}{\ignorespaces Aktualizacja listy pakiet\'ow}}{39}{lstlisting.3.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}{\ignorespaces Instalacja wymaganych pakiet\'ow}}{39}{lstlisting.3.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}{\ignorespaces Instalacja CUDA}}{39}{lstlisting.3.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}{\ignorespaces Instalacja cuDNN}}{39}{lstlisting.3.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}{\ignorespaces Klonowanie repozytorium YOLOv4}}{39}{lstlisting.3.5}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}{\ignorespaces Edytowanie pliku Makefile}}{40}{lstlisting.3.6}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.7}{\ignorespaces Kompilacja projektu YOLOv4}}{40}{lstlisting.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Testowanie instalacji}{40}{subsection.3.4.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.8}{\ignorespaces Testowanie YOLOv4}}{40}{lstlisting.3.8}\protected@file@percent }
+\newlabel{fig:yoloTest}{{\caption@xref {fig:yoloTest}{ on input line 317}}{40}{Testowanie instalacji}{figure.caption.39}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Yolo Test}}{40}{figure.caption.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Integracja detektora YOLOv4 z symulatorem CARLA}{40}{section.3.5}\protected@file@percent }
 \citation{carla}
 \citation{visoiou}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.9}{\ignorespaces Importowanie bibliotek dla integracji z YOLOv4}}{43}{lstlisting.3.9}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.10}{\ignorespaces Globalna funkcja \texttt  {get\_anchors()} dla YOLOv4}}{43}{lstlisting.3.10}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.11}{\ignorespaces Wczytywanie i przetwarzanie obrazu z symulatora CARLA}}{43}{lstlisting.3.11}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.12}{\ignorespaces Wykorzystanie funkcji \texttt  {combined\_non\_max\_suppression} w celu eliminacji powt\'orze\'n}}{43}{lstlisting.3.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Schemat ewaluacji offline}{43}{section.3.6}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.9}{\ignorespaces Importowanie bibliotek dla integracji z YOLOv4}}{41}{lstlisting.3.9}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.10}{\ignorespaces Globalna funkcja \texttt  {get\_anchors()} dla YOLOv4}}{41}{lstlisting.3.10}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.11}{\ignorespaces Wczytywanie i przetwarzanie obrazu z symulatora CARLA}}{41}{lstlisting.3.11}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.12}{\ignorespaces Wykorzystanie funkcji \texttt  {combined\_non\_max\_suppression} w celu eliminacji powt\'orze\'n}}{41}{lstlisting.3.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Schemat ewaluacji offline}{41}{section.3.6}\protected@file@percent }
 \citation{ultralytics_docs}
 \citation{ultralytics_python}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Wyniki bada\'n eksperymentalnych}{45}{chapter.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Wyniki bada\'n eksperymentalnych}{43}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Eksperyment on-line - wydajno\'s\'c systemu}{45}{section.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Opis scenariusza i przebiegu test\'ow}{45}{subsection.4.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces sun10car20ppl1}}{46}{figure.caption.38}\protected@file@percent }
-\newlabel{fig:sun10car20ppl1}{{4.1}{46}{sun10car20ppl1}{figure.caption.38}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces night20car40ppl2}}{46}{figure.caption.39}\protected@file@percent }
-\newlabel{fig:night20car40ppl2}{{4.2}{46}{night20car40ppl2}{figure.caption.39}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces rainsun10car20ppl3}}{47}{figure.caption.40}\protected@file@percent }
-\newlabel{fig:rainsun10car20ppl3}{{4.3}{47}{rainsun10car20ppl3}{figure.caption.40}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}\'Srodowisko sprz\k etowe i konfiguracja}{47}{subsection.4.1.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Wyniki test\'ow wydajno\'sciowych dla modelu du\.zego.}}{48}{table.caption.41}\protected@file@percent }
-\newlabel{tab:wyniki_model_duzy}{{4.1}{48}{Wyniki testów wydajnoœciowych dla modelu du¿ego}{table.caption.41}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Wyniki pomiar\'ow FPS}{48}{subsection.4.1.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Wyniki test\'ow wydajno\'sciowych modelu ma\IeC {\l }ego.}}{48}{table.caption.42}\protected@file@percent }
-\newlabel{tab:wyniki_model_maly}{{4.2}{48}{Wyniki testów wydajnoœciowych modelu ma³ego}{table.caption.42}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.4}Analiza wynik\'ow wydajno\'sciowych}{48}{subsection.4.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.5}Przyk\IeC {\l }adowe funkcjonalno\'sci oprogramowania w trybie on-line}{49}{subsection.4.1.5}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.1}{\ignorespaces Pobieranie i przetwarzanie obrazu w symulatorze CARLA}}{49}{lstlisting.4.1}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.2}{\ignorespaces Wykrywanie obiekt\'ow za pomoc\k a YOLOv4}}{49}{lstlisting.4.2}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.3}{\ignorespaces Filtrowanie wykrytych klas obiekt\'ow}}{50}{lstlisting.4.3}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.4}{\ignorespaces Wizualizacja wykrytych obiekt\'ow na ekranie}}{50}{lstlisting.4.4}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.5}{\ignorespaces Obs\IeC {\l }uga zdarze\'n klawiatury w symulatorze}}{50}{lstlisting.4.5}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.6}{\ignorespaces P\k etla g\IeC {\l }\'owna symulacji CARLA}}{50}{lstlisting.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Eksperyment offline -- weryfikacja poprawno\'sci detekcji}{51}{section.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Metryka Intersection over Union (IoU)}{51}{subsection.4.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Zestaw scen i konfiguracja eksperymentu offline}{52}{subsection.4.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Przebieg przetwarzania w eksperymencie offline}{52}{subsection.4.2.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Przyk\IeC {\l }adowe wyniki eksperymentu offline dla wszystkich zarejestrowanych scen symulacji CARLA.}}{53}{table.caption.43}\protected@file@percent }
-\newlabel{tab:iou_scenarios}{{4.3}{53}{Przyk³adowe wyniki eksperymentu offline dla wszystkich zarejestrowanych scen symulacji CARLA}{table.caption.43}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.4}Analiza wynik\'ow eksperymentu offline}{53}{subsection.4.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.5}Wybrane funkcjonalno\'sci oprogramowania w eksperymencie offline}{54}{subsection.4.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5.1}Skrypt \texttt  {bounding\_boxes.py} -- generowanie anotacji referencyjnych}{54}{subsubsection.4.2.5.1}\protected@file@percent }
-\newlabel{lst:bb_append}{{4.7}{54}{Dodawanie obiektu do anotacji w \texttt {bounding\_boxes.py}}{lstlisting.4.7}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.7}{\ignorespaces Dodawanie obiektu do anotacji w \texttt  {bounding\_boxes.py}}}{54}{lstlisting.4.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5.2}Skrypt \texttt  {yolo.py} -- detekcja YOLO i zapis JSON}{54}{subsubsection.4.2.5.2}\protected@file@percent }
-\newlabel{lst:yolo_append}{{4.8}{54}{Struktura JSON z wynikami YOLO}{lstlisting.4.8}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.8}{\ignorespaces Struktura JSON z wynikami YOLO}}{54}{lstlisting.4.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5.3}Skrypt \texttt  {evaluate\_iou.py} -- obliczanie metryki IoU}{55}{subsubsection.4.2.5.3}\protected@file@percent }
-\newlabel{lst:iou_func}{{4.9}{55}{Obliczanie IoU dla dwóch ramek 2D}{lstlisting.4.9}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.9}{\ignorespaces Obliczanie IoU dla dw\'och ramek 2D}}{55}{lstlisting.4.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5.4}Skrypt \texttt  {bbox\_image.py} -- wizualizacja anotacji na obrazach}{55}{subsubsection.4.2.5.4}\protected@file@percent }
-\newlabel{lst:bbox_image_short}{{4.10}{55}{Rysowanie ramek na obrazie na podstawie pliku JSON}{lstlisting.4.10}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.10}{\ignorespaces Rysowanie ramek na obrazie na podstawie pliku JSON}}{55}{lstlisting.4.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Dyskusja rezultat\'ow i wnioski ko\'ncowe}{57}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Eksperyment on-line - wydajno\'s\'c systemu}{43}{section.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Opis scenariusza i przebiegu test\'ow}{43}{subsection.4.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces sun10car20ppl1}}{44}{figure.caption.40}\protected@file@percent }
+\newlabel{fig:sun10car20ppl1}{{4.1}{44}{sun10car20ppl1}{figure.caption.40}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces night20car40ppl2}}{44}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:night20car40ppl2}{{4.2}{44}{night20car40ppl2}{figure.caption.41}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces rainsun10car20ppl3}}{45}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:rainsun10car20ppl3}{{4.3}{45}{rainsun10car20ppl3}{figure.caption.42}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}\'Srodowisko sprz\k etowe i konfiguracja}{45}{subsection.4.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Wyniki test\'ow wydajno\'sciowych dla modelu du\.zego.}}{46}{table.caption.43}\protected@file@percent }
+\newlabel{tab:wyniki_model_duzy}{{4.1}{46}{Wyniki testów wydajnoœciowych dla modelu du¿ego}{table.caption.43}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Wyniki pomiar\'ow FPS}{46}{subsection.4.1.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Wyniki test\'ow wydajno\'sciowych modelu ma\IeC {\l }ego.}}{46}{table.caption.44}\protected@file@percent }
+\newlabel{tab:wyniki_model_maly}{{4.2}{46}{Wyniki testów wydajnoœciowych modelu ma³ego}{table.caption.44}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.4}Analiza wynik\'ow wydajno\'sciowych}{46}{subsection.4.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.5}Przyk\IeC {\l }adowe funkcjonalno\'sci oprogramowania w trybie on-line}{47}{subsection.4.1.5}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.1}{\ignorespaces Pobieranie i przetwarzanie obrazu w symulatorze CARLA}}{47}{lstlisting.4.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.2}{\ignorespaces Wykrywanie obiekt\'ow za pomoc\k a YOLOv4}}{47}{lstlisting.4.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.3}{\ignorespaces Filtrowanie wykrytych klas obiekt\'ow}}{48}{lstlisting.4.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.4}{\ignorespaces Wizualizacja wykrytych obiekt\'ow na ekranie}}{48}{lstlisting.4.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.5}{\ignorespaces Obs\IeC {\l }uga zdarze\'n klawiatury w symulatorze}}{48}{lstlisting.4.5}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.6}{\ignorespaces P\k etla g\IeC {\l }\'owna symulacji CARLA}}{48}{lstlisting.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Eksperyment offline -- weryfikacja poprawno\'sci detekcji}{49}{section.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Metryka Intersection over Union (IoU)}{49}{subsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Zestaw scen i konfiguracja eksperymentu offline}{50}{subsection.4.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Przebieg przetwarzania w eksperymencie offline}{50}{subsection.4.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Przyk\IeC {\l }adowe wyniki eksperymentu offline dla wszystkich zarejestrowanych scen symulacji CARLA.}}{51}{table.caption.45}\protected@file@percent }
+\newlabel{tab:iou_scenarios}{{4.3}{51}{Przyk³adowe wyniki eksperymentu offline dla wszystkich zarejestrowanych scen symulacji CARLA}{table.caption.45}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.4}Analiza wynik\'ow eksperymentu offline}{51}{subsection.4.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.5}Wybrane funkcjonalno\'sci oprogramowania w eksperymencie offline}{52}{subsection.4.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5.1}Skrypt \texttt  {bounding\_boxes.py} -- generowanie anotacji referencyjnych}{52}{subsubsection.4.2.5.1}\protected@file@percent }
+\newlabel{lst:bb_append}{{4.7}{52}{Dodawanie obiektu do anotacji w \texttt {bounding\_boxes.py}}{lstlisting.4.7}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.7}{\ignorespaces Dodawanie obiektu do anotacji w \texttt  {bounding\_boxes.py}}}{52}{lstlisting.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5.2}Skrypt \texttt  {yolo.py} -- detekcja YOLO i zapis JSON}{52}{subsubsection.4.2.5.2}\protected@file@percent }
+\newlabel{lst:yolo_append}{{4.8}{52}{Struktura JSON z wynikami YOLO}{lstlisting.4.8}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.8}{\ignorespaces Struktura JSON z wynikami YOLO}}{52}{lstlisting.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5.3}Skrypt \texttt  {evaluate\_iou.py} -- obliczanie metryki IoU}{53}{subsubsection.4.2.5.3}\protected@file@percent }
+\newlabel{lst:iou_func}{{4.9}{53}{Obliczanie IoU dla dwóch ramek 2D}{lstlisting.4.9}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.9}{\ignorespaces Obliczanie IoU dla dw\'och ramek 2D}}{53}{lstlisting.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5.4}Skrypt \texttt  {bbox\_image.py} -- wizualizacja anotacji na obrazach}{53}{subsubsection.4.2.5.4}\protected@file@percent }
+\newlabel{lst:bbox_image_short}{{4.10}{53}{Rysowanie ramek na obrazie na podstawie pliku JSON}{lstlisting.4.10}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.10}{\ignorespaces Rysowanie ramek na obrazie na podstawie pliku JSON}}{53}{lstlisting.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Dyskusja rezultat\'ow i wnioski ko\'ncowe}{55}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{bibliografia/bibliografia}
@@ -280,4 +279,4 @@
 \bibcite{ultralytics_docs}{21}
 \bibcite{ultralytics_python}{22}
 \@writefile{lol}{\providecommand\tocbasic@end@toc@file{}\tocbasic@end@toc@file}
-\gdef \@abspage@last{70}
+\gdef \@abspage@last{68}
