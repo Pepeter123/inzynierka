@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: praca.aux
 The style file: unsrt.bst
 Database file #1: bibliografia/bibliografia.bib
-You've used 22 entries,
+You've used 24 entries,
             1791 wiz_defined-function locations,
-            547 strings with 6497 characters,
-and the built_in function-call counts, 3735 in all, are:
-= -- 283
-> -- 201
+            560 strings with 6861 characters,
+and the built_in function-call counts, 4047 in all, are:
+= -- 307
+> -- 212
 < -- 1
-+ -- 78
-- -- 56
-* -- 137
-:= -- 597
-add.period$ -- 65
-call.type$ -- 22
-change.case$ -- 18
++ -- 83
+- -- 59
+* -- 146
+:= -- 650
+add.period$ -- 72
+call.type$ -- 24
+change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 22
-duplicate$ -- 165
-empty$ -- 434
-format.name$ -- 56
-if$ -- 864
+cite$ -- 24
+duplicate$ -- 185
+empty$ -- 473
+format.name$ -- 59
+if$ -- 935
 int.to.chr$ -- 0
-int.to.str$ -- 22
-missing$ -- 12
-newline$ -- 112
-num.names$ -- 22
-pop$ -- 136
+int.to.str$ -- 24
+missing$ -- 14
+newline$ -- 123
+num.names$ -- 24
+pop$ -- 146
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 80
+skip$ -- 85
 stack$ -- 0
 substring$ -- 40
-swap$ -- 36
+swap$ -- 39
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 25
-width$ -- 24
-write$ -- 225
+while$ -- 27
+width$ -- 26
+write$ -- 247

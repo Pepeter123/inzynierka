@@ -220,13 +220,18 @@ Sensor radaru jest czujnikiem generuj¹cym sto¿kowy obszar detekcji, w obrêbie kt
 
 \subsection{Pogoda}
 
-Pogoda w symulatorze CARLA nie jest reprezentowana jako odrêbna klasa, lecz jako zbiór parametrów œrodowiskowych dostêpnych w œwiecie symulacji. Parametry te obejmuj¹ m.in. po³o¿enie s³oñca, stopieñ zachmurzenia, si³ê wiatru, mg³ê, deszcz, œnieg oraz inne czynniki, co umo¿liwia testowanie aplikacji w szerokim zakresie warunków atmosferycznych. Aby zdefiniowaæ w³asn¹ pogodê u¿ywa siê klasy pomocniczej \verb|carla.WeathrrParameters| \\
+Pogoda w symulatorze CARLA nie jest reprezentowana jako odrêbna klasa, lecz jako zbiór parametrów œrodowiskowych dostêpnych w œwiecie symulacji. Parametry te obejmuj¹ miêdzy innymi po³o¿enie s³oñca, stopieñ zachmurzenia, si³ê wiatru, mg³ê, deszcz oraz œnieg, co umo¿liwia testowanie algorytmów w szerokim zakresie warunków atmosferycznych. Aby zdefiniowaæ w³asn¹ pogodê, wykorzystuje siê klasê pomocnicz¹ \verb|carla.WeatherParameters|, w której mo¿na ustawiæ odpowiednie wartoœci atrybutów odpowiadaj¹cych za warunki atmosferyczne.
 
-\begin{lstlisting}[style=praca, caption={caption text}]
-	weather = carla.WeatherParameters( cloudiness=80.0, precipitation=30.0, 
-	sun_altitude_angle=70.0) world.set_weather(weather) 
+\begin{lstlisting}[style=praca, caption={Przyk³adowy kod ustawiania parametrów pogody w symulatorze CARLA.}]
+	weather = carla.WeatherParameters(
+	cloudiness=80.0,
+	precipitation=30.0,
+	sun_altitude_angle=70.0
+	)
+	world.set_weather(weather)
 	print(world.get_weather())
 \end{lstlisting}
+
 
 \begin{figure}[H]
 	\centering
@@ -377,7 +382,7 @@ Wzór opisuj¹cy projekcjê punktu $P_{3D} = [x, y, z]^T$ na punkt obrazu $p_{2D} =
 \end{equation}
 Gdzie $K$ to macierz wewnêtrzna kamery, $[R|t]$ to macierz transformacji z uk³adu œwiata do uk³adu kamery, a $s$ to wspó³czynnik skaluj¹cy. Ostateczny prostok¹t 2D (bbox 2D) wyznaczany jest poprzez znalezienie minimalnych i maksymalnych wartoœci wspó³rzêdnych $(u, v)$ spoœród wszystkich 8 rzutowanych wierzcho³ków bry³y 3D. Takie podejœcie gwarantuje, ¿e wygenerowany obrys 2D w pe³ni obejmuje widoczny obiekt na zdjêciu \cite{carla_bounding_boxes}.
 
-\section{Instalacja symulatora Carla}
+\section{Instalacja symulatora CARLA}
 
 \subsection{Wymagania sprzêtowe}
 

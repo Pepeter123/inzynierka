@@ -1,4 +1,4 @@
-\contentsline {lstlisting}{\numberline {2.1}{\ignorespaces caption text}}{13}{lstlisting.2.1}%
+\contentsline {lstlisting}{\numberline {2.1}{\ignorespaces Przyk\IeC {\l }adowy kod ustawiania parametr\'ow pogody w symulatorze CARLA.}}{13}{lstlisting.2.1}%
 \contentsline {lstlisting}{\numberline {2.2}{\ignorespaces Aktualizacja systemu}}{19}{lstlisting.2.2}%
 \contentsline {lstlisting}{\numberline {2.3}{\ignorespaces Instalacja zale\.zno\'sci}}{19}{lstlisting.2.3}%
 \contentsline {lstlisting}{\numberline {2.4}{\ignorespaces Instalacja Pythona i PIP}}{20}{lstlisting.2.4}%
@@ -15,26 +15,26 @@
 \contentsline {lstlisting}{\numberline {2.15}{\ignorespaces Uruchomienie skryptu manual\_control.py w trybie synchronicznym (Windows)}}{25}{lstlisting.2.15}%
 \contentsline {lstlisting}{\numberline {2.16}{\ignorespaces Przyk\IeC {\l }adowy kod obs\IeC {\l }ugi sterowania pojazdem z klawiatury}}{26}{lstlisting.2.16}%
 \contentsline {lstlisting}{\numberline {2.17}{\ignorespaces Kod funkcji odpowiedzialnej za czyszczenie zasob\'ow}}{27}{lstlisting.2.17}%
-\contentsline {lstlisting}{\numberline {3.1}{\ignorespaces Aktualizacja listy pakiet\'ow}}{39}{lstlisting.3.1}%
-\contentsline {lstlisting}{\numberline {3.2}{\ignorespaces Instalacja wymaganych pakiet\'ow}}{39}{lstlisting.3.2}%
-\contentsline {lstlisting}{\numberline {3.3}{\ignorespaces Instalacja CUDA}}{39}{lstlisting.3.3}%
-\contentsline {lstlisting}{\numberline {3.4}{\ignorespaces Instalacja cuDNN}}{39}{lstlisting.3.4}%
-\contentsline {lstlisting}{\numberline {3.5}{\ignorespaces Klonowanie repozytorium YOLOv4}}{39}{lstlisting.3.5}%
-\contentsline {lstlisting}{\numberline {3.6}{\ignorespaces Edytowanie pliku Makefile}}{40}{lstlisting.3.6}%
-\contentsline {lstlisting}{\numberline {3.7}{\ignorespaces Kompilacja projektu YOLOv4}}{40}{lstlisting.3.7}%
-\contentsline {lstlisting}{\numberline {3.8}{\ignorespaces Testowanie YOLOv4}}{40}{lstlisting.3.8}%
-\contentsline {lstlisting}{\numberline {3.9}{\ignorespaces Importowanie bibliotek dla integracji z YOLOv4}}{41}{lstlisting.3.9}%
-\contentsline {lstlisting}{\numberline {3.10}{\ignorespaces Globalna funkcja \texttt {get\_anchors()} dla YOLOv4}}{41}{lstlisting.3.10}%
-\contentsline {lstlisting}{\numberline {3.11}{\ignorespaces Wczytywanie i przetwarzanie obrazu z symulatora CARLA}}{41}{lstlisting.3.11}%
-\contentsline {lstlisting}{\numberline {3.12}{\ignorespaces Wykorzystanie funkcji \texttt {combined\_non\_max\_suppression} w celu eliminacji powt\'orze\'n}}{41}{lstlisting.3.12}%
-\contentsline {lstlisting}{\numberline {4.1}{\ignorespaces Pobieranie i przetwarzanie obrazu w symulatorze CARLA}}{47}{lstlisting.4.1}%
-\contentsline {lstlisting}{\numberline {4.2}{\ignorespaces Wykrywanie obiekt\'ow za pomoc\k a YOLOv4}}{47}{lstlisting.4.2}%
-\contentsline {lstlisting}{\numberline {4.3}{\ignorespaces Filtrowanie wykrytych klas obiekt\'ow}}{48}{lstlisting.4.3}%
-\contentsline {lstlisting}{\numberline {4.4}{\ignorespaces Wizualizacja wykrytych obiekt\'ow na ekranie}}{48}{lstlisting.4.4}%
-\contentsline {lstlisting}{\numberline {4.5}{\ignorespaces Obs\IeC {\l }uga zdarze\'n klawiatury w symulatorze}}{48}{lstlisting.4.5}%
+\contentsline {lstlisting}{\numberline {3.1}{\ignorespaces Aktualizacja listy pakiet\'ow}}{38}{lstlisting.3.1}%
+\contentsline {lstlisting}{\numberline {3.2}{\ignorespaces Instalacja wymaganych pakiet\'ow}}{38}{lstlisting.3.2}%
+\contentsline {lstlisting}{\numberline {3.3}{\ignorespaces Instalacja CUDA}}{38}{lstlisting.3.3}%
+\contentsline {lstlisting}{\numberline {3.4}{\ignorespaces Instalacja cuDNN}}{38}{lstlisting.3.4}%
+\contentsline {lstlisting}{\numberline {3.5}{\ignorespaces Klonowanie repozytorium YOLOv4}}{38}{lstlisting.3.5}%
+\contentsline {lstlisting}{\numberline {3.6}{\ignorespaces Edytowanie pliku Makefile}}{38}{lstlisting.3.6}%
+\contentsline {lstlisting}{\numberline {3.7}{\ignorespaces Kompilacja projektu YOLOv4}}{39}{lstlisting.3.7}%
+\contentsline {lstlisting}{\numberline {3.8}{\ignorespaces Testowanie YOLOv4}}{39}{lstlisting.3.8}%
+\contentsline {lstlisting}{\numberline {3.9}{\ignorespaces Importowanie bibliotek dla integracji z YOLOv4}}{39}{lstlisting.3.9}%
+\contentsline {lstlisting}{\numberline {3.10}{\ignorespaces Globalna funkcja \texttt {get\_anchors()} dla YOLOv4}}{40}{lstlisting.3.10}%
+\contentsline {lstlisting}{\numberline {3.11}{\ignorespaces Wczytywanie i przetwarzanie obrazu z symulatora CARLA}}{40}{lstlisting.3.11}%
+\contentsline {lstlisting}{\numberline {3.12}{\ignorespaces Wykorzystanie funkcji \texttt {combined\_non\_max\_suppression} w celu eliminacji powt\'orze\'n}}{40}{lstlisting.3.12}%
+\contentsline {lstlisting}{\numberline {4.1}{\ignorespaces Pobieranie i przetwarzanie obrazu w symulatorze CARLA}}{46}{lstlisting.4.1}%
+\contentsline {lstlisting}{\numberline {4.2}{\ignorespaces Wykrywanie obiekt\'ow za pomoc\k a YOLOv4}}{46}{lstlisting.4.2}%
+\contentsline {lstlisting}{\numberline {4.3}{\ignorespaces Filtrowanie wykrytych klas obiekt\'ow}}{47}{lstlisting.4.3}%
+\contentsline {lstlisting}{\numberline {4.4}{\ignorespaces Wizualizacja wykrytych obiekt\'ow na ekranie}}{47}{lstlisting.4.4}%
+\contentsline {lstlisting}{\numberline {4.5}{\ignorespaces Obs\IeC {\l }uga zdarze\'n klawiatury w symulatorze}}{47}{lstlisting.4.5}%
 \contentsline {lstlisting}{\numberline {4.6}{\ignorespaces P\k etla g\IeC {\l }\'owna symulacji CARLA}}{48}{lstlisting.4.6}%
-\contentsline {lstlisting}{\numberline {4.7}{\ignorespaces Dodawanie obiektu do anotacji w \texttt {bounding\_boxes.py}}}{52}{lstlisting.4.7}%
-\contentsline {lstlisting}{\numberline {4.8}{\ignorespaces Struktura JSON z wynikami YOLO}}{52}{lstlisting.4.8}%
-\contentsline {lstlisting}{\numberline {4.9}{\ignorespaces Obliczanie IoU dla dw\'och ramek 2D}}{53}{lstlisting.4.9}%
-\contentsline {lstlisting}{\numberline {4.10}{\ignorespaces Rysowanie ramek na obrazie na podstawie pliku JSON}}{53}{lstlisting.4.10}%
+\contentsline {lstlisting}{\numberline {4.7}{\ignorespaces Dodawanie obiektu do anotacji w \texttt {bounding\_boxes.py}}}{54}{lstlisting.4.7}%
+\contentsline {lstlisting}{\numberline {4.8}{\ignorespaces Struktura JSON z wynikami YOLO}}{54}{lstlisting.4.8}%
+\contentsline {lstlisting}{\numberline {4.9}{\ignorespaces Obliczanie IoU dla dw\'och ramek 2D}}{55}{lstlisting.4.9}%
+\contentsline {lstlisting}{\numberline {4.10}{\ignorespaces Rysowanie ramek na obrazie na podstawie pliku JSON}}{55}{lstlisting.4.10}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

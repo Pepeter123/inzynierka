@@ -6,18 +6,19 @@
 
 Poni¿ej przedstawiono \textbf{przegl¹d kluczowych architektur} stosowanych w rozpoznawaniu obrazów, wraz z ich charakterystyk¹ i przyk³adami.
 
+\begin{figure}[htbp]
+	\centering
+	\vspace{-0.75\baselineskip}
+	\includegraphics[width=12cm]{Rysunki/Rozdzial3/RCNN.png}
+	\caption[RCNN]{Schemat dzia³ania R-CNN.}
+	\label{fig:RCNN}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{R-CNN (Region-based Convolutional Neural Networks)} to jedna z pierwszych skutecznych metod detekcji obiektów, oparta na analizie wybranych regionów obrazu. W pierwszym etapie stosowany jest algorytm \textit{Selective Search}, który generuje oko³o 2000 propozycji obszarów potencjalnie zawieraj¹cych obiekty, uwzglêdniaj¹c cechy takie jak kolor, tekstura czy kszta³t. Ka¿dy region jest nastêpnie skalowany i przetwarzany przez sieæ konwolucyjn¹ (CNN), co pozwala na ekstrakcjê cech wizualnych. Ostatecznie, klasyfikator SVM decyduje o przynale¿noœci danego regionu do konkretnej klasy, a regresor liniowy doprecyzowuje wspó³rzêdne ramki ograniczaj¹cej.~\cite{ren2015faster}
 	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=12cm]{Rysunki/Rozdzial3/RCNN.png}
-		\caption[RCNN]{Schemat dzia³ania R-CNN.}
-		\label{fig:RCNN}
-	\end{figure}
-	
 	Choæ metoda ta cechuje siê wysok¹ precyzj¹ detekcji, jej g³ówn¹ wad¹ pozostaje du¿e zapotrzebowanie obliczeniowe zwi¹zane z koniecznoœci¹ analizowania tysiêcy regionów dla ka¿dego obrazu.
-
+	
 	\item \textbf{Fast R-CNN} to ulepszona wersja modelu R-CNN, zaprojektowana z myœl¹ o zwiêkszeniu wydajnoœci i redukcji czasoch³onnoœci procesu detekcji obiektów. G³ówne usprawnienie polega na zastosowaniu jednej sieci konwolucyjnej (CNN) do ekstrakcji cech z ca³ego obrazu przed wygenerowaniem propozycji regionów, co eliminuje koniecznoœæ wielokrotnego przetwarzania tych samych obszarów.
 	
 	Zamiast klasyfikatora SVM, Fast R-CNN wykorzystuje wbudowan¹ warstwê softmax do rozpoznawania klas obiektów oraz regresjê do dok³adnej lokalizacji ramek ograniczaj¹cych. Regiony zainteresowania (RoI) s¹ przekszta³cane za pomoc¹ operacji \textit{RoI Pooling}, która dostosowuje ich wymiary do jednolitego formatu wejœciowego dla dalszej klasyfikacji.
@@ -27,10 +28,10 @@ Poni¿ej przedstawiono \textbf{przegl¹d kluczowych architektur} stosowanych w roz
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{Rysunki/Rozdzial3/fastRCNN.png}
-		\caption[fastRCNN]{Schemat dzia³ania Fast R-CNN.}
+		\caption[fastRCNN]{Schemat dzia³ania Fast R-CNN. ród³o: \cite{stutzFastRCNN}.}
 		\label{fig:fastRcnn}
 	\end{figure}
-
+	
 	\item \textbf{Faster R-CNN} to zaawansowana architektura detekcji obiektów, która integruje Sieæ Generuj¹c¹ Propozycje Regionów (Region Proposal Network, RPN) z g³ówn¹ sieci¹ konwolucyjn¹. Kluczow¹ innowacj¹ jest eliminacja potrzeby korzystania z zewnêtrznych algorytmów generuj¹cych propozycje regionów, co znacznie skraca czas detekcji i zwiêksza efektywnoœæ~\cite{ren2015faster}.
 	
 	Ca³y obraz jest najpierw przetwarzany przez CNN w celu uzyskania map cech. Nastêpnie RPN generuje regiony zainteresowania bezpoœrednio na podstawie tych map, przewiduj¹c zarówno ich pozycje, jak i prawdopodobieñstwo zawierania obiektów. Regiony te s¹ klasyfikowane oraz doprecyzowywane przez koñcowy modu³ sieci. Dziêki wspó³dzieleniu warstw konwolucyjnych pomiêdzy RPN a modu³em klasyfikacyjnym, Faster R-CNN oferuje wysok¹ dok³adnoœæ przy znacznie lepszej wydajnoœci ni¿ jego poprzednicy.
@@ -42,7 +43,7 @@ Poni¿ej przedstawiono \textbf{przegl¹d kluczowych architektur} stosowanych w roz
 		\label{fig:fasterRcnn2}
 	\end{figure}
 
-	\item \textbf{SSD (Single Shot MultiBox Detector)} to jednowarstwowa architektura detekcji obiektów, która, w przeciwieñstwie do metod opartych na regionach, takich jak R-CNN, wykonuje detekcjê i klasyfikacjê obiektów w jednym kroku. Dziêki temu SSD jest szybsza i bardziej efektywna, co czyni j¹ odpowiedni¹ do zastosowañ w czasie rzeczywistym.
+	\item \textbf{SSD (Single Shot MultiBox Detector)} to jednoetapowa metoda detekcji obiektów, która, w przeciwieñstwie do modelów opartych na regionach, takich jak R-CNN, wykonuje detekcjê i klasyfikacjê obiektów w jednym kroku. Dziêki temu SSD jest szybsza i bardziej efektywna, co czyni j¹ odpowiedni¹ do zastosowañ wymagaj¹cych przetwarzania w czasie rzeczywistym.
 	
 	\begin{figure}[H]
 		\centering
@@ -67,13 +68,9 @@ Poni¿ej przedstawiono \textbf{przegl¹d kluczowych architektur} stosowanych w roz
 		\item Systemy wspomagania kierowcy (ADAS).
 	\end{itemize}
 	
-	\item \textbf{YOLO (You Only Look Once)} to kolejna jednowarstwowa architektura, która traktuje detekcjê obiektów jako problem regresji, przewiduj¹c bezpoœrednio klasy i po³o¿enie obiektów w obrazie. Dziêki temu YOLO osi¹ga bardzo wysok¹ szybkoœæ detekcji, co jest istotne w aplikacjach wymagaj¹cych przetwarzania w czasie rzeczywistym.
+	\item \textbf{YOLO (You Only Look Once)} to kolejna jednokrokowa architektura, która traktuje detekcjê obiektów jako problem regresji, przewiduj¹c bezpoœrednio klasy i po³o¿enie obiektów w obrazie. Dziêki temu YOLO osi¹ga bardzo wysok¹ szybkoœæ detekcji, co jest istotne w aplikacjach wymagaj¹cych przetwarzania w czasie rzeczywistym.
 	
-	\item \textbf{DETR (Detection Transformer)} to nowoczesna architektura detekcji obiektów oparta na transformatorach, która integruje mechanizmy uwagi (attention mechanisms) w procesie detekcji. DETR eliminuje potrzebê stosowania tradycyjnych metod generowania propozycji regionów, co upraszcza proces detekcji i pozwala na bardziej efektywne wykorzystanie danych.
-	
-	Schemat dzia³ania DETR
-	ród³o: End-to-End Object Detection with Transformers
-	
+	\item \textbf{DETR (Detection Transformer)} to nowoczesna architektura detekcji obiektów oparta na transformerach, która integruje mechanizmy uwagi (attention mechanisms) w procesie detekcji. DETR eliminuje potrzebê stosowania tradycyjnych metod generowania propozycji regionów, co upraszcza proces detekcji i pozwala na bardziej efektywne wykorzystanie danych.
 \end{itemize}
 
 Poni¿sza tabela przedstawia \textbf{porównanie omówionych architektur} pod wzglêdem szybkoœci i dok³adnoœci detekcji:
@@ -104,7 +101,7 @@ Poni¿sza tabela przedstawia \textbf{porównanie omówionych architektur} pod wzglê
 
 Rozpoznawanie obrazów z wykorzystaniem sieci neuronowych jest obecnie jedn¹ z kluczowych technologii w dziedzinie sztucznej inteligencji. Dziêki zastosowaniu zaawansowanych architektur, takich jak R-CNN, SSD, YOLO czy DETR, mo¿liwe jest osi¹ganie wysokiej dok³adnoœci i szybkoœci detekcji obiektów. Wybór odpowiedniej architektury zale¿y od specyficznych wymagañ aplikacji, takich jak potrzeba przetwarzania w czasie rzeczywistym, dostêpnoœæ zasobów obliczeniowych oraz dok³adnoœæ rozpoznawania.
 
-Przysz³y rozwój w tej dziedzinie prawdopodobnie bêdzie koncentrowa³ siê na dalszym zwiêkszaniu efektywnoœci modeli, integracji z systemami opartymi na transformatorach oraz rozwijaniu metod rozpoznawania obiektów w trudnych warunkach œrodowiskowych.
+Przysz³y rozwój w tej dziedzinie prawdopodobnie bêdzie koncentrowa³ siê na dalszym zwiêkszaniu efektywnoœci modeli, integracji z systemami opartymi na transformerach oraz rozwijaniu metod rozpoznawania obiektów w trudnych warunkach œrodowiskowych.
 \section{YOLOv4 i konwolucyjne sieci neuronowe}
 
 YOLOv4 (\textit{You Only Look Once version 4}) to jeden z najnowszych modeli s³u¿¹cych do detekcji obiektów w obrazach i wideo, nale¿¹cy do rodziny algorytmów YOLO. Jego celem jest osi¹gniêcie wysokiej precyzji przy jednoczesnym zachowaniu du¿ej szybkoœci dzia³ania. YOLOv4 opiera siê na konwolucyjnych sieciach neuronowych (CNN), które umo¿liwiaj¹ ekstrakcjê cech wizualnych z obrazów oraz ich klasyfikacjê \cite{yolov4_paper}.
@@ -122,12 +119,12 @@ Konwolucyjne sieci neuronowe (CNN) s¹ rodzajem sztucznych sieci neuronowych szcz
 
 Konwolucyjne sieci neuronowe sk³adaj¹ siê z trzech g³ównych typów warstw:
 \begin{itemize}
-	\item \textbf{Warstwa konwolucyjna (Convolutional Layer)} - wykonuje operacjê konwolucji na obrazie wejœciowym, wykrywaj¹c podstawowe cechy, takie jak krawêdzie, rogi i tekstury.
-	\item \textbf{Warstwa aktywacji (Activation Layer)} - czêsto stosuje funkcjê aktywacyjn¹ ReLU (Rectified Linear Unit), która wprowadza nieliniowoœæ do sieci.
-	\item \textbf{Warstwa poolingowa (Pooling Layer)} - zmniejsza rozmiar danych, podsumowuj¹c cechy w danym obszarze, co prowadzi do zmniejszenia liczby parametrów i zwiêkszenia wydajnoœci obliczeniowej.
+	\item \textbf{Warstwa konwolucyjna (Convolutional Layer)} – wykonuje operacjê konwolucji na obrazie wejœciowym, wykrywaj¹c podstawowe cechy, takie jak krawêdzie, rogi i tekstury.
+	\item \textbf{Warstwa aktywacji (Activation Layer)} – czêsto stosuje funkcjê aktywacyjn¹ ReLU (Rectified Linear Unit), która wprowadza nieliniowoœæ do sieci.
+	\item \textbf{Warstwa poolingowa (Pooling Layer)} – zmniejsza rozmiar danych, podsumowuj¹c cechy w danym obszarze, co prowadzi do zmniejszenia liczby parametrów i zwiêkszenia wydajnoœci obliczeniowej.
 \end{itemize}
 
-Zosta³y one opracowane przez LeCuna, Bengio i Hintona w 2015 roku \cite{cnn_survey}, a ich celem by³o umo¿liwienie maszynom skutecznego rozpoznawania wzorców w danych wizualnych, takich jak obrazy.
+Korzenie konwolucyjnych sieci neuronowych siêgaj¹ lat 80. XX wieku, kiedy Fukushima zaproponowa³ model Neocognitron do rozpoznawania wzorców odpornych na przesuniêcia.\cite{fukushima1980} PóŸniejsze prace LeCuna i wspó³autorów ugruntowa³y praktyczne zastosowania CNN w zadaniach takich jak rozpoznawanie cyfr i dokumentów.\cite{lecun1998}
 
 \section{Zasada dzia³ania algorytmu YOLO i YOLOv4}
 
@@ -135,45 +132,45 @@ Algorytmy z rodziny \textit{YOLO} (You Only Look Once) nale¿¹ do najwydajniejszy
 
 W algorytmach YOLO obraz wejœciowy jest wstêpnie przeskalowywany do ustalonej rozdzielczoœci (najczêœciej \(416 \times 416\) lub \(608 \times 608\) pikseli), a nastêpnie przetwarzany przez g³êbok¹ sieæ konwolucyjn¹, która jednoczeœnie odpowiada za ekstrakcjê cech, lokalizacjê obiektów oraz ich klasyfikacjê~\cite{Bochkovskiy2020,Geron2019}. W wyniku dzia³ania sieci otrzymuje siê zbiór propozycji ramek ograniczaj¹cych (\textit{bounding boxes}) wraz z przypisanymi im prawdopodobieñstwami przynale¿noœci do klas oraz wartoœciami ufnoœci (\textit{objectness score}), które nastêpnie s¹ filtrowane w celu uzyskania koñcowych detekcji. YOLOv4 stanowi rozwiniêcie wczeœniejszych wersji, wprowadzaj¹c szereg modyfikacji architektonicznych i technik treningowych, zapewniaj¹cych lepszy kompromis pomiêdzy dok³adnoœci¹ a szybkoœci¹ dzia³ania~\cite{Bochkovskiy2020}. 
 
-\textbf{Etap 1: Podzia³ obrazu na siatkê i definicja anchor boxes}
+\subsection*{Etap 1: Podzia³ obrazu na siatkê i definicja anchor boxes}
 
 Podstaw¹ dzia³ania algorytmów YOLO jest podzia³ przeskalowanego obrazu na regularn¹ siatkê przestrzenn¹ o rozmiarze \(S \times S\), gdzie \(S\) zale¿y od poziomu rozdzielczoœci detekcji~\cite{Redmon2016}. W przypadku YOLOv4 detekcja realizowana jest równoczeœnie na trzech skalach: \(13 \times 13\), \(26 \times 26\) oraz \(52 \times 52\), co umo¿liwia skuteczne wykrywanie odpowiednio du¿ych, œrednich oraz ma³ych obiektów~\cite{Bochkovskiy2020}. Ka¿da komórka siatki odpowiada za wykrywanie obiektów, których œrodek masy znajduje siê w jej obrêbie, co ogranicza liczbê mo¿liwych lokalizacji i upraszcza proces optymalizacji~\cite{Geron2019}. 
 
 Dla ka¿dej komórki siatki definiowanych jest \(B\) tzw. \textit{anchor boxes}, czyli z góry ustalonych propozycji ramek ograniczaj¹cych o okreœlonych proporcjach i rozmiarach~\cite{Bochkovskiy2020}. Anchor boxy s¹ zwykle wyznaczane na podstawie analizy danych treningowych (np. metod¹ k-œrednich), tak aby jak najlepiej odzwierciedla³y typowe kszta³ty i rozmiary obiektów wystêpuj¹cych w danym zbiorze. W typowej konfiguracji YOLOv4 stosuje siê trzy anchor boxy na ka¿d¹ komórkê dla ka¿dej z trzech skal, co daje ³¹cznie dziewiêæ anchorów przypisanych do danego punktu siatki i pozwala na modelowanie obiektów o zró¿nicowanych rozmiarach oraz proporcjach~\cite{Bochkovskiy2020}. 
 
-\textbf{Etap 2: Ekstrakcja cech – backbone CSPDarknet53}
+\subsection*{Etap 2: Ekstrakcja cech – backbone CSPDarknet53}
 
 Pierwszym etapem przetwarzania obrazu w YOLOv4 jest ekstrakcja cech wizualnych z wykorzystaniem g³êbokiej sieci konwolucyjnej pe³ni¹cej rolê \textit{backbone}. W YOLOv4 funkcjê tê realizuje architektura \textit{CSPDarknet53}, bêd¹ca rozwiniêciem sieci Darknet-53 z zastosowaniem mechanizmu \textit{cross-stage partial connections}~\cite{Bochkovskiy2020}. Rozwi¹zanie to pozwala na lepsze rozdzielenie przep³ywu gradientów w sieci oraz redukcjê liczby operacji obliczeniowych bez istotnej utraty jakoœci reprezentacji cech~\cite{Bochkovskiy2020}. 
 
 W trakcie propagacji w g³¹b sieci CSPDarknet53 obraz jest wielokrotnie poddawany operacjom konwolucji, normalizacji i nieliniowej aktywacji, co prowadzi do utworzenia hierarchicznej reprezentacji cech – od niskopoziomowych (krawêdzie, tekstury) po wysokopoziomowe (struktury semantyczne). Dziêki temu kolejne warstwy sieci s¹ w stanie rozró¿niaæ zarówno proste, jak i z³o¿one obiekty, co jest kluczowe dla skutecznej detekcji w ró¿norodnych scenariuszach, w tym w z³o¿onych œrodowiskach miejskich~\cite{Geron2019}. 
 
-\textbf{Etap 3: Agregacja wieloskalowa – SPP i PAN}
+\subsection*{Etap 3: Agregacja wieloskalowa – SPP i PAN}
 
 Po etapie ekstrakcji cech przez backbone wykorzystywane s¹ modu³y odpowiedzialne za ich dalsz¹ fuzjê i agregacjê. W YOLOv4 rolê tê pe³ni¹ miêdzy innymi \textit{Spatial Pyramid Pooling} (SPP) oraz \textit{Path Aggregation Network} (PAN)~\cite{Bochkovskiy2020}. Modu³ SPP stosuje równoleg³e operacje poolingowe o ró¿nych rozmiarach okien, co pozwala na zwiêkszenie efektywnego pola recepcji i integracjê informacji kontekstowych z ró¿nych skal przestrzennych bez koniecznoœci zmiany wymiarów wejœcia~\cite{Bochkovskiy2020}. 
 
 Z kolei \textit{Path Aggregation Network} odpowiada za efektywn¹ propagacjê cech pomiêdzy warstwami ni¿szymi i wy¿szymi poprzez po³¹czenia typu top-down i bottom-up, ³¹cz¹c informacjê semantyczn¹ z wy¿szych poziomów z detalami przestrzennymi z ni¿szych poziomów~\cite{Sze2017}. Taka struktura poprawia jakoœæ detekcji ma³ych obiektów oraz stabilizuje proces uczenia, poniewa¿ sieæ otrzymuje bogatsz¹ i lepiej zró¿nicowan¹ reprezentacjê cech na wszystkich poziomach rozdzielczoœci. W efekcie mo¿liwa jest jednoczesna detekcja obiektów o istotnie ró¿nych rozmiarach przy zachowaniu wysokiej precyzji lokalizacji~\cite{Bochkovskiy2020}. 
 
-\textbf{Etap 4: Predykcja atrybutów obiektów na wielu skalach}
+\subsection*{Etap 4: Predykcja atrybutów obiektów na wielu skalach}
 
-Na wyjœciu modu³ów agreguj¹cych cechy znajduj¹ siê g³owice detekcyjne przypisane do trzech siatek: \(13 \times 13\), \(26 \times 26\) oraz \(52 \times 52\)~\cite{Bochkovskiy2020}. Ka¿da komórka tych siatek generuje predykcje dla swoich anchor boxów. Dla ka¿dego anchor boxa sieæ przewiduje zestaw parametrów opisuj¹cych potencjalny obiekt: wspó³rzêdne przesuniêcia œrodka ramki wzglêdem komórki siatki \((t_x, t_y)\), logarytmiczne przeskalowania szerokoœci i wysokoœci \((t_w, t_h)\), wspó³czynnik ufnoœci \(P_{obj}\) oraz wektor prawdopodobieñstw przypisania do poszczególnych klas~\cite{Aggarwal2018}. 
+Na wyjœciu modu³ów agreguj¹cych cechy znajduj¹ siê g³owy (sieci neuronowe odpowiedzialne za regresjê i klasyfikacjê) detekcyjne przypisane do trzech siatek: \(13 \times 13\), \(26 \times 26\) oraz \(52 \times 52\)~\cite{Bochkovskiy2020}. Ka¿da komórka tych siatek generuje predykcje dla swoich anchor boxów. Dla ka¿dego anchor boxa sieæ przewiduje zestaw parametrów opisuj¹cych potencjalny obiekt: wspó³rzêdne przesuniêcia œrodka ramki wzglêdem komórki siatki \((t_x, t_y)\), logarytmiczne przeskalowania szerokoœci i wysokoœci \((t_w, t_h)\), wspó³czynnik ufnoœci \(P_{obj}\) oraz wektor prawdopodobieñstw przypisania do poszczególnych klas~\cite{Aggarwal2018}. 
 
-Wartoœci wyjœciowe s¹ nastêpnie przekszta³cane do przestrzeni obrazu za pomoc¹ funkcji nieliniowych. Wspó³rzêdne œrodka ramki s¹ skalowane przy u¿yciu funkcji sigmoidalnej, co zapewnia ich lokalizacjê w obrêbie danej komórki siatki, natomiast szerokoœæ i wysokoœæ s¹ obliczane poprzez zastosowanie funkcji eksponencjalnej do przewidywanych parametrów oraz pomno¿enie przez wymiary anchor boxa~\cite{Bochkovskiy2020}. Dziêki temu model uczy siê jedynie wzglêdnych modyfikacji anchorów, co stabilizuje proces optymalizacji i poprawia zbie¿noœæ uczenia. 
+Wartoœci wyjœciowe s¹ nastêpnie przekszta³cane do przestrzeni obrazu za pomoc¹ funkcji nieliniowych. Wspó³rzêdne œrodka ramki s¹ skalowane przy u¿yciu funkcji sigmoidalnej, co zapewnia ich lokalizacjê w obrêbie danej komórki siatki, natomiast szerokoœæ i wysokoœæ s¹ obliczane poprzez zastosowanie funkcji wyk³adniczej do przewidywanych parametrów oraz pomno¿enie przez wymiary anchor boxa~\cite{Bochkovskiy2020}. Dziêki temu model uczy siê jedynie wzglêdnych modyfikacji anchorów, co stabilizuje proces optymalizacji i poprawia zbie¿noœæ uczenia. 
 
 Predykcja klas obiektów realizowana jest poprzez generowanie rozk³adu prawdopodobieñstwa spoœród wszystkich dostêpnych klas, zwykle przy u¿yciu funkcji softmax lub sigmoidalnej, w zale¿noœci od przyjêtej konfiguracji~\cite{Goodfellow2016}. W przypadku YOLOv4 model jest domyœlnie trenowany na zbiorze COCO, obejmuj¹cym 80 klas obiektów, takich jak osoby, pojazdy, zwierzêta, elementy infrastruktury czy przedmioty codziennego u¿ytku~\cite{Lin2014}. Jednoczeœnie architektura pozwala na ³atwe dostosowanie liczby klas do konkretnego zastosowania poprzez transfer uczenia na w³asnym zbiorze danych. 
 
-\textbf{Etap 5: Filtrowanie wyników – Non-Maximum Suppression}
+\subsection*{Etap 5: Filtrowanie wyników – Non-Maximum Suppression}
 
 Po wygenerowaniu predykcji dla wszystkich komórek i anchor boxów na trzech skalach powstaje bardzo du¿y zbiór potencjalnych ramek detekcyjnych. Wiele z nich odnosi siê do tego samego obiektu, ró¿ni¹c siê nieznacznie po³o¿eniem oraz wartoœci¹ wspó³czynnika ufnoœci. Aby otrzymaæ spójny i nieprzepe³niony zbiór detekcji, stosuje siê algorytm \textit{Non-Maximum Suppression} (NMS)~\cite{Geron2019,Goodfellow2016}. 
 
 Algorytm NMS polega na iteracyjnym wybieraniu ramek o najwy¿szej wartoœci ufnoœci dla danej klasy, a nastêpnie eliminowaniu tych, których miara nak³adania siê z wybran¹ ramk¹, okreœlona wskaŸnikiem IoU (Intersection over Union), przekracza zadany próg~\cite{Geron2019}. W rezultacie pozostaj¹ jedynie ramki najlepiej reprezentuj¹ce poszczególne obiekty, co zapewnia czytelnoœæ i jednoznacznoœæ wyników detekcji. Mechanizm ten jest szczególnie istotny w scenach o wysokim zagêszczeniu obiektów, gdzie wiele anchorów mo¿e wskazywaæ na ten sam element obrazu. 
 
-\textbf{Etap 6: Techniki treningowe i generalizacja}
+\subsection*{Etap 6: Techniki treningowe i generalizacja}
 
 YOLOv4, oprócz zmian architektury, wykorzystuje tak¿e szereg zaawansowanych technik treningowych, takich jak \textit{mosaic data augmentation}, \textit{dropblock regularization} oraz funkcja straty \textit{CIoU loss}, które poprawiaj¹ zdolnoœæ modelu do generalizacji~\cite{Bochkovskiy2020}. Mosaic augmentation polega na ³¹czeniu fragmentów kilku obrazów w jeden przyk³ad treningowy, co zwiêksza ró¿norodnoœæ danych, natomiast DropBlock wprowadza losowe wyzerowywanie bloków aktywacji, ograniczaj¹c zjawisko przeuczenia~\cite{Bochkovskiy2020,Geron2019}. Z kolei CIoU loss uwzglêdnia nie tylko nak³adanie siê ramek, ale tak¿e odleg³oœæ miêdzy ich œrodkami oraz proporcje, co prowadzi do dok³adniejszej optymalizacji parametrów ramek ograniczaj¹cych~\cite{Bochkovskiy2020}. 
 
 Zastosowanie tych metod powoduje, ¿e YOLOv4 osi¹ga wysok¹ dok³adnoœæ predykcji przy zachowaniu krótkiego czasu inferencji, co czyni go szczególnie atrakcyjnym w zastosowaniach czasu rzeczywistego, zw³aszcza na platformach o ograniczonych zasobach obliczeniowych. Jest to kluczowe zarówno w systemach wbudowanych, jak i w aplikacjach wymagaj¹cych przetwarzania strumieni wideo na ¿ywo. 
 
-\textbf{Etap 7: Zastosowania YOLO/YOLOv4, w tym integracja z CARLA}
+\subsection*{Etap 7: Zastosowania YOLO/YOLOv4, w tym integracja z CARLA}
 
 Dziêki wysokiej szybkoœci dzia³ania i precyzyjnej detekcji obiektów, YOLOv4 znajduje zastosowanie w wielu dziedzinach, takich jak systemy monitoringu wizyjnego, inteligentne miasta, analiza wideo, robotyka czy systemy bezpieczeñstwa~\cite{yolo_usage}. Szczególnie istotn¹ grupê zastosowañ stanowi¹ systemy wspomagania kierowcy oraz badania nad autonomiczn¹ jazd¹, gdzie konieczne jest niezawodne wykrywanie obiektów w dynamicznych i z³o¿onych scenach drogowych. 
 
@@ -219,18 +216,6 @@ YOLOv4 ³¹czy w sobie liczne usprawnienia architektoniczne i techniczne wzglêdem 
 	\item \textbf{Elastycznoœæ i adaptowalnoœæ} – model mo¿na z ³atwoœci¹ dostosowaæ do nowych klas obiektów poprzez proces tzw. \textit{fine-tuningu}.
 	\item \textbf{Odpornoœæ na zak³ócenia} – YOLOv4 radzi sobie z trudnymi warunkami detekcji, takimi jak czêœciowe zas³oniêcia, rotacje, zmienne oœwietlenie czy szum.
 \end{itemize}
-
-Zaletom tym towarzyszy przemyœlana architektura wewnêtrzna, oparta na integracji licznych nowoczesnych komponentów:
-
-\begin{itemize}
-	\item \textbf{Funkcja aktywacji Mish} – niemonotoniczna funkcja aktywacji, która poprawia propagacjê gradientów.
-	\item \textbf{DropBlock regularization} – technika regularizacji przestrzennej ograniczaj¹ca nadmierne dopasowanie (overfitting).
-	\item \textbf{CSPNet (Cross-Stage Partial Network)} – struktura rozdzielaj¹ca przep³yw danych w celu zmniejszenia obci¹¿enia obliczeniowego przy jednoczesnym zwiêkszeniu g³êbokoœci sieci.
-	\item \textbf{PANet (Path Aggregation Network)} – odpowiedzialna za integracjê informacji na ró¿nych poziomach cech w celu skuteczniejszej lokalizacji obiektów.
-	\item \textbf{SPP (Spatial Pyramid Pooling)} – umo¿liwia detekcjê obiektów w ró¿nych skalach bez utraty przestrzennej spójnoœci.
-\end{itemize}
-
-Dziêki tym mechanizmom YOLOv4 stanowi jedno z najbardziej kompleksowych i wydajnych narzêdzi w dziedzinie detekcji wizualnej.
 
 \subsection*{Inne przyk³ady zastosowania algorytmu YOLO}
 
@@ -331,7 +316,7 @@ Proces integracji rozpoczêto od zaimportowania wymaganych bibliotek i konfigurac
 	from core.config import cfg
 \end{lstlisting}
 
-Zdefiniowana zosta³a równie¿ globalna funkcja \verb|spawn_actor()|, której celem jest wczytywanie i przekszta³canie listy wspó³rzêdnych tzw. \verb|anchor boxes|, bêd¹cych podstaw¹ w modelu YOLO do przewidywania pole¿enia obiektów w obrazie. Przyjmuje jako argument listê wspó³rzêdnych opisuj¹cych wymiary anchorów, nastêpnie przekszta³ca j¹ do struktury trójwymiarowej, umo¿liwiaj¹cej przypisanie anchorów do trzech skal detekcji, z których ka¿da operuje na prostok¹tnych propozycjach. Dziêki takiej organizacji danych mo¿liwe jest skuteczne dopasowanie anchorów do charakterystyki obiektów wystêpuj¹cych w obrazie, co znacz¹co wp³ywa na jakoœæ predykcji oraz efektywnoœæ dzia³ania algorytmu detekcji.
+Zdefiniowana zosta³a równie¿ globalna funkcja \verb|spawn_actor()|, której celem jest wczytywanie i przekszta³canie listy wspó³rzêdnych tzw. \verb|anchor boxes|, bêd¹cych podstaw¹ w modelu YOLO do przewidywania po³o¿enia obiektów w obrazie. Przyjmuje jako argument listê wspó³rzêdnych opisuj¹cych wymiary anchorów, nastêpnie przekszta³ca j¹ do struktury trójwymiarowej, umo¿liwiaj¹cej przypisanie anchorów do trzech skal detekcji, z których ka¿da operuje na prostok¹tnych propozycjach. Dziêki takiej organizacji danych mo¿liwe jest skuteczne dopasowanie anchorów do charakterystyki obiektów wystêpuj¹cych w obrazie, co znacz¹co wp³ywa na jakoœæ predykcji oraz efektywnoœæ dzia³ania algorytmu detekcji.
 
 \begin{lstlisting}[language=Python, style=pythonColor, emph={get\_anchors, array, reshape}, caption={Globalna funkcja \texttt{get\_anchors()} dla YOLOv4}]
 	def get_anchors(anchors_path):

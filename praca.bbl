@@ -16,6 +16,11 @@ German Ros and Vladlen Koltun.
 \newblock \url{https://carla.readthedocs.io/en/latest/start_introduction/},
   2025.
 
+\bibitem{unreal-engine}
+Epic Games.
+\newblock Unreal engine documentation.
+\newblock \url{https://docs.unrealengine.com/4.27/en-US/}, 2025.
+
 \bibitem{devEpicgames}
 Epic Games.
 \newblock Coordinate system and spaces in unreal engine.
@@ -35,11 +40,6 @@ Epic Games.
 \newblock Bounding boxes tutorial, 2022.
 \newblock Dostêp: 29.12.2025.
 
-\bibitem{unreal-engine}
-Epic Games.
-\newblock Unreal engine documentation.
-\newblock \url{https://docs.unrealengine.com/4.27/en-US/}, 2025.
-
 \bibitem{ren2015faster}
 Shaoqing Ren, Kaiming He, Ross~B. Girshick, and Jian Sun.
 \newblock Faster {R-CNN}: Towards real-time object detection with region
@@ -51,6 +51,12 @@ Ross Girshick.
 \newblock Fast r-cnn.
 \newblock In {\em Proceedings of the IEEE International Conference on Computer
   Vision}, pages 1440--1448, 2015.
+
+\bibitem{stutzFastRCNN}
+David Stutz.
+\newblock {\"Fast R-CNN\", Girshick}.
+\newblock \url{https://davidstutz.de/fast-r-cnn-girshick/}, 2018.
+\newblock dostêp: 17.02.2026.
 
 \bibitem{liu2016ssd}
 Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed,
@@ -64,10 +70,16 @@ Alexey Bochkovskiy, Chien-Yao Wang, and Hong-Yuan~Mark Liao.
 \newblock Yolov4: Optimal speed and accuracy of object detection.
 \newblock \url{https://arxiv.org/abs/2004.10934}, 2020.
 
-\bibitem{cnn_survey}
-Yann LeCun, Yoshua Bengio, and Geoffrey Hinton.
-\newblock Deep learning.
-\newblock \url{https://www.nature.com/articles/nature14539}, 2015.
+\bibitem{fukushima1980}
+Kunihiko Fukushima.
+\newblock Neocognitron: A self-organizing neural network model for a mechanism
+  of pattern recognition unaffected by shift in position.
+\newblock {\em Biological Cybernetics}, 1980.
+
+\bibitem{lecun1998}
+Yann LeCun, Le{\'o}n Bottou, Yoshua Bengio, and Patrick Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock In {\em Proceedings of the IEEE}, 1998.
 
 \bibitem{Redmon2016}
 Joseph Redmon, Santosh Divvala, Ross Girshick, and Ali Farhadi.

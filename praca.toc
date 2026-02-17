@@ -13,7 +13,7 @@
 \contentsline {subsubsection}{\numberline {2.2.5.1}Relacja mi\k edzy punktem Origin a \'srodkiem geometrycznym}{17}{subsubsection.2.2.5.1}%
 \contentsline {subsubsection}{\numberline {2.2.5.2}Transformacja do uk\IeC {\l }adu wsp\'o\IeC {\l }rz\k ednych \'swiata}{18}{subsubsection.2.2.5.2}%
 \contentsline {subsubsection}{\numberline {2.2.5.3}Rzutowanie z przestrzeni 3D na p\IeC {\l }aszczyzn\k e obrazu 2D}{18}{subsubsection.2.2.5.3}%
-\contentsline {section}{\numberline {2.3}Instalacja symulatora Carla}{19}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Instalacja symulatora CARLA}{19}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Wymagania sprz\k etowe}{19}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Instalacja i konfiguracja dla systemu Ubuntu}{19}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Instalacja Unreal Engine}{20}{subsection.2.3.3}%
@@ -28,30 +28,29 @@
 \contentsline {subsection}{\numberline {2.4.6}Sterowanie pojazdem z poziomu klawiatury}{26}{subsection.2.4.6}%
 \contentsline {subsection}{\numberline {2.4.7}Czyszczenie zasob\'ow (Cleanup)}{27}{subsection.2.4.7}%
 \contentsline {chapter}{\numberline {3}System rozpoznawania obraz\'ow}{28}{chapter.3}%
-\contentsline {section}{\numberline {3.1}YOLOv4 i konwolucyjne sieci neuronowe}{33}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Konwolucyjne sieci neuronowe (CNN)}{33}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.1}YOLOv4 i konwolucyjne sieci neuronowe}{32}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Konwolucyjne sieci neuronowe (CNN)}{32}{subsection.3.1.1}%
 \contentsline {section}{\numberline {3.2}Zasada dzia\IeC {\l }ania algorytmu YOLO i YOLOv4}{33}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Architektura YOLOv4}{36}{subsection.3.2.1}%
 \contentsline {section}{\numberline {3.3}Zalety, wydajno\'s\'c i zastosowania algorytmu YOLOv4}{37}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Instalacja systemu YOLO}{39}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Testowanie instalacji}{40}{subsection.3.4.1}%
-\contentsline {section}{\numberline {3.5}Integracja detektora YOLOv4 z symulatorem CARLA}{40}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Schemat ewaluacji offline}{41}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Wyniki bada\'n eksperymentalnych}{43}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Eksperyment on-line - wydajno\'s\'c systemu}{43}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Opis scenariusza i przebiegu test\'ow}{43}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}\'Srodowisko sprz\k etowe i konfiguracja}{45}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}Wyniki pomiar\'ow FPS}{46}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Analiza wynik\'ow wydajno\'sciowych}{46}{subsection.4.1.4}%
-\contentsline {subsection}{\numberline {4.1.5}Przyk\IeC {\l }adowe funkcjonalno\'sci oprogramowania w trybie on-line}{47}{subsection.4.1.5}%
-\contentsline {section}{\numberline {4.2}Eksperyment offline -- weryfikacja poprawno\'sci detekcji}{49}{section.4.2}%
+\contentsline {section}{\numberline {3.4}Instalacja systemu YOLO}{38}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Testowanie instalacji}{39}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.5}Integracja detektora YOLOv4 z symulatorem CARLA}{39}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Schemat ewaluacji offline}{40}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Wyniki bada\'n eksperymentalnych}{42}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Eksperyment on-line - wydajno\'s\'c systemu}{42}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Opis scenariusza i przebiegu test\'ow}{42}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}\'Srodowisko sprz\k etowe i konfiguracja}{44}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Analiza wynik\'ow wydajno\'sciowych}{44}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Przyk\IeC {\l }adowe funkcjonalno\'sci oprogramowania w trybie on-line}{46}{subsection.4.1.4}%
+\contentsline {section}{\numberline {4.2}Eksperyment offline -- weryfikacja poprawno\'sci detekcji}{48}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Metryka Intersection over Union (IoU)}{49}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Zestaw scen i konfiguracja eksperymentu offline}{50}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Przebieg przetwarzania w eksperymencie offline}{50}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Analiza wynik\'ow eksperymentu offline}{51}{subsection.4.2.4}%
-\contentsline {subsection}{\numberline {4.2.5}Wybrane funkcjonalno\'sci oprogramowania w eksperymencie offline}{52}{subsection.4.2.5}%
-\contentsline {subsubsection}{\numberline {4.2.5.1}Skrypt \texttt {bounding\_boxes.py} -- generowanie anotacji referencyjnych}{52}{subsubsection.4.2.5.1}%
-\contentsline {subsubsection}{\numberline {4.2.5.2}Skrypt \texttt {yolo.py} -- detekcja YOLO i zapis JSON}{52}{subsubsection.4.2.5.2}%
-\contentsline {subsubsection}{\numberline {4.2.5.3}Skrypt \texttt {evaluate\_iou.py} -- obliczanie metryki IoU}{53}{subsubsection.4.2.5.3}%
-\contentsline {subsubsection}{\numberline {4.2.5.4}Skrypt \texttt {bbox\_image.py} -- wizualizacja anotacji na obrazach}{53}{subsubsection.4.2.5.4}%
-\contentsline {chapter}{\numberline {5}Dyskusja rezultat\'ow i wnioski ko\'ncowe}{55}{chapter.5}%
+\contentsline {subsection}{\numberline {4.2.2}Zestaw scen i konfiguracja eksperymentu offline}{49}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Przebieg przetwarzania w eksperymencie offline}{52}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Analiza wynik\'ow eksperymentu offline}{53}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Wybrane funkcjonalno\'sci oprogramowania w eksperymencie offline}{53}{subsection.4.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.5.1}Skrypt \texttt {bounding\_boxes.py} -- generowanie anotacji referencyjnych}{54}{subsubsection.4.2.5.1}%
+\contentsline {subsubsection}{\numberline {4.2.5.2}Skrypt \texttt {yolo.py} -- detekcja YOLO i zapis JSON}{54}{subsubsection.4.2.5.2}%
+\contentsline {subsubsection}{\numberline {4.2.5.3}Skrypt \texttt {evaluate\_iou.py} -- obliczanie metryki IoU}{55}{subsubsection.4.2.5.3}%
+\contentsline {subsubsection}{\numberline {4.2.5.4}Skrypt \texttt {bbox\_image.py} -- wizualizacja anotacji na obrazach}{55}{subsubsection.4.2.5.4}%
+\contentsline {chapter}{\numberline {5}Dyskusja rezultat\'ow i wnioski ko\'ncowe}{57}{chapter.5}%

@@ -20,15 +20,19 @@
 \contentsline {figure}{\numberline {2.18}{\ignorespaces \'Swiat\IeC {\l }a pojazdu}}{16}{figure.caption.21}%
 \contentsline {figure}{\numberline {2.19}{\ignorespaces Schemat blokowy dzia\IeC {\l }ania pliku \texttt {manual\_control.py}}}{22}{figure.caption.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces RCNN}}{29}{figure.caption.27}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces fastRCNN}}{30}{figure.caption.28}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces fasterRCNN2}}{31}{figure.caption.29}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces SSD}}{31}{figure.caption.30}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat struktury konwolucyjnej sieci neuronowej~\cite {esezam}.}}{33}{figure.caption.32}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Architektura YOLOv4. Zawiera backbone, neck i head~\cite {yolo_usage}.}}{37}{figure.caption.33}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Yolo Test}}{40}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces RCNN}}{28}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces fastRCNN}}{29}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces fasterRCNN2}}{30}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces SSD}}{30}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat struktury konwolucyjnej sieci neuronowej~\cite {esezam}.}}{32}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Architektura YOLOv4. Zawiera backbone, neck i head~\cite {yolo_usage}.}}{36}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Yolo Test}}{39}{figure.caption.46}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces sun10car20ppl1}}{44}{figure.caption.40}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces night20car40ppl2}}{44}{figure.caption.41}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces rainsun10car20ppl3}}{45}{figure.caption.42}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces sun10car20ppl1}}{43}{figure.caption.47}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces night20car40ppl2}}{43}{figure.caption.48}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces rainsun10car20ppl3}}{44}{figure.caption.49}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Scenariusz \textit {Town03, dzie\'n, s\IeC {\l }o\'nce} z widocznymi pojazdami na skrzy\.zowaniu.}}{50}{figure.caption.52}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Scenariusz \textit {Town03, deszczowa noc} z odbiciami \'swiate\IeC {\l } na mokrej nawierzchni.}}{51}{figure.caption.53}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Scenariusz \textit {Town04, dzie\'n, silny deszcz} na drodze szybkiego ruchu.}}{51}{figure.caption.54}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Scenariusz \textit {Town04, noc, czyste niebo} z punktowymi \'zr\'od\IeC {\l }ami \'swiat\IeC {\l }a.}}{52}{figure.caption.55}%
 \addvspace {10\p@ }
