@@ -35,4 +35,8 @@
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Scenariusz \textit {Town03, deszczowa noc} z odbiciami \'swiate\IeC {\l } na mokrej nawierzchni.}}{51}{figure.caption.53}%
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Scenariusz \textit {Town04, dzie\'n, silny deszcz} na drodze szybkiego ruchu.}}{51}{figure.caption.54}%
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Scenariusz \textit {Town04, noc, czyste niebo} z punktowymi \'zr\'od\IeC {\l }ami \'swiat\IeC {\l }a.}}{52}{figure.caption.55}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Scenariusz \textit {Town03, noc, czyste niebo} -- ramki \textit {ground truth} CARLA dla pojazd\'ow widocznych w kadrze.}}{53}{figure.caption.57}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Scenariusz \textit {Town03, noc, czyste niebo} -- detekcje YOLO dla tej samej klatki.}}{54}{figure.caption.58}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Scenariusz \textit {Town03, dzie\'n, silny deszcz} -- ramki \textit {ground truth} CARLA na autostradzie.}}{54}{figure.caption.59}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Scenariusz \textit {Town03, dzie\'n, silny deszcz} -- detekcje YOLO dla tej samej klatki.}}{55}{figure.caption.60}%
 \addvspace {10\p@ }

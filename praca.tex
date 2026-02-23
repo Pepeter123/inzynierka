@@ -28,87 +28,101 @@
 %==========================================================================================
 \begin{document}
 	
-	%=========================================================================================
-	% Strona tytu³owa – zgodnie z nowym wzorem WNIT
-	%=========================================================================================
-	\pagenumbering{roman}
-	\thispagestyle{empty}
-	\begin{center}
-		\textbf{UNIWERSYTET ZIELONOGÓRSKI}\\[0.5cm]
-		\textbf{Wydzia³ Nauk In¿ynieryjno-Technicznych}\\[3cm]
-		
-		Praca in¿ynierska\\[0.8cm]
-		
-		Kierunek: Informatyka\\[0.3cm]
-		Specjalnoœæ: Sieciowe Systemy Informatyczne\\[0.3cm]
-		Studia stacjonarne\\[3cm]
-		
-		\textbf{System do wykrywania i rozpoznawania obiektów na obrazie z kamery samochodowej z wykorzystaniem symulatora CARLA}\\[0.8cm]
-		\textbf{A system for detecting and recognizing objects in images from a car camera using the CARLA simulator}\\[3cm]
-		
-		Piotr Noga\\[1.5cm]
-		
-		\raggedright
-		Promotor:\\
-		Dr hab. in¿. Marek Kowal, prof. UZ\\[3cm]
-		
-		\raggedleft
-		Zielona Góra, luty 2026
-	\end{center}
-	\clearpage
+%=========================================================================================
+% Strona tytu³owa – zgodnie z nowym wzorem WNIT
+%=========================================================================================
+\pagenumbering{roman}
+\thispagestyle{empty}
+
+\begin{center}
+	\textbf{UNIWERSYTET ZIELONOGÓRSKI}\\[0.5cm]
+	\textbf{Wydzia³ Nauk In¿ynieryjno-Technicznych}\\[3cm]
 	
-	%=========================================================================================
-	% Pusta strona po karcie tytu³owej (wymóg szablonu)
-	%=========================================================================================
-	\thispagestyle{empty}
-	\pustastrona
-	\newpage
+	Praca in¿ynierska\\[0.8cm]
 	
-	%========================================================================================
-	% Streszczenie
-	%========================================================================================
-	\normalsize
-	\input{Streszczenie/Streszczenie.tex}
-	\newpage
+	Kierunek: Informatyka\\[0.3cm]
+	Specjalnoœæ: Sieciowe Systemy Informatyczne\\[0.3cm]
+	Studia stacjonarne\\[3cm]
 	
-	%========================================================================================
-	% Spis treœci, spis tabel i rysunków
-	%========================================================================================
-	\tableofcontents
-	\newpage
-	
-	\listoffigures
-	\newpage
-	
-	\listoftables
-	\newpage
-	
-	{\raggedbottom
-		\lstlistoflistings\raggedbottom}
-	\newpage
-	
-	%========================================================================================
-	% Treœæ – od tego miejsca arabskie numerowanie stron od 1
-	%========================================================================================
-	\pagenumbering{arabic}
-	\setcounter{page}{1}
-	\pagestyle{fancy}    % nag³ówki tylko w treœci
-	
-	%========================================================================================
-	% Treœæ
-	%========================================================================================
-	\input{Rozdzial1/rozdzial1.tex}
-	\input{Rozdzial2/rozdzial2.tex}
-	\input{Rozdzial3/rozdzial3.tex}
-	\input{Rozdzial4/rozdzial4.tex}
-	\input{Rozdzial5/rozdzial5.tex}
-	
-	%========================================================================================
-	% Literatura
-	%========================================================================================
-	\begin{flushleft}
-		\bibliography{bibliografia/bibliografia}
-	\end{flushleft}
+	\textbf{System do wykrywania i rozpoznawania obiektów na obrazie z kamery
+		samochodowej z wykorzystaniem symulatora CARLA}\\[0.8cm]
+	\textbf{A system for detecting and recognizing objects in images from a car
+		camera using the CARLA simulator}\\[3cm]
+
+	Piotr Noga
+\end{center}
+
+% blok z nazwiskiem dyplomanta + blok promotora w prawej po³owie
+\vspace*{0.5cm}
+
+\noindent
+\hfill
+\begin{minipage}{0.5\textwidth}
+	\raggedright
+	Promotor:\\
+	Dr hab. in¿. Marek Kowal, prof. UZ
+\end{minipage}
+
+\vfill
+
+\begin{center}
+	Zielona Góra, luty 2026
+\end{center}
+
+\clearpage
+
+%=========================================================================================
+% Pusta strona po karcie tytu³owej (wymóg szablonu)
+%=========================================================================================
+\thispagestyle{empty}
+\pustastrona
+\newpage
+
+%========================================================================================
+% Streszczenie
+%========================================================================================
+\normalsize
+\input{Streszczenie/Streszczenie.tex}
+\newpage
+
+%========================================================================================
+% Spis treœci, spis tabel i rysunków
+%========================================================================================
+\tableofcontents
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+{\raggedbottom
+	\lstlistoflistings\raggedbottom}
+\newpage
+
+%========================================================================================
+% Treœæ – od tego miejsca arabskie numerowanie stron od 1
+%========================================================================================
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\pagestyle{fancy}    % nag³ówki tylko w treœci
+
+%========================================================================================
+% Treœæ
+%========================================================================================
+\input{Rozdzial1/rozdzial1.tex}
+\input{Rozdzial2/rozdzial2.tex}
+\input{Rozdzial3/rozdzial3.tex}
+\input{Rozdzial4/rozdzial4.tex}
+\input{Rozdzial5/rozdzial5.tex}
+
+%========================================================================================
+% Literatura
+%========================================================================================
+\begin{flushleft}
+	\bibliography{bibliografia/bibliografia}
+\end{flushleft}
 	
 \end{document}
 %========================================================================================

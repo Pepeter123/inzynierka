@@ -48,9 +48,10 @@
 \contentsline {subsection}{\numberline {4.2.2}Zestaw scen i konfiguracja eksperymentu offline}{49}{subsection.4.2.2}%
 \contentsline {subsection}{\numberline {4.2.3}Przebieg przetwarzania w eksperymencie offline}{52}{subsection.4.2.3}%
 \contentsline {subsection}{\numberline {4.2.4}Analiza wynik\'ow eksperymentu offline}{53}{subsection.4.2.4}%
-\contentsline {subsection}{\numberline {4.2.5}Wybrane funkcjonalno\'sci oprogramowania w eksperymencie offline}{53}{subsection.4.2.5}%
-\contentsline {subsubsection}{\numberline {4.2.5.1}Skrypt \texttt {bounding\_boxes.py} -- generowanie anotacji referencyjnych}{54}{subsubsection.4.2.5.1}%
-\contentsline {subsubsection}{\numberline {4.2.5.2}Skrypt \texttt {yolo.py} -- detekcja YOLO i zapis JSON}{54}{subsubsection.4.2.5.2}%
-\contentsline {subsubsection}{\numberline {4.2.5.3}Skrypt \texttt {evaluate\_iou.py} -- obliczanie metryki IoU}{55}{subsubsection.4.2.5.3}%
-\contentsline {subsubsection}{\numberline {4.2.5.4}Skrypt \texttt {bbox\_image.py} -- wizualizacja anotacji na obrazach}{55}{subsubsection.4.2.5.4}%
-\contentsline {chapter}{\numberline {5}Dyskusja rezultat\'ow i wnioski ko\'ncowe}{57}{chapter.5}%
+\contentsline {paragraph}{Podsumowanie.}{55}{section*.61}%
+\contentsline {subsection}{\numberline {4.2.5}Wybrane funkcjonalno\'sci oprogramowania w eksperymencie offline}{55}{subsection.4.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.5.1}Skrypt \texttt {bounding\_boxes.py} -- generowanie anotacji referencyjnych}{55}{subsubsection.4.2.5.1}%
+\contentsline {subsubsection}{\numberline {4.2.5.2}Skrypt \texttt {yolo.py} -- detekcja YOLO i zapis JSON}{56}{subsubsection.4.2.5.2}%
+\contentsline {subsubsection}{\numberline {4.2.5.3}Skrypt \texttt {evaluate\_iou.py} -- obliczanie metryki IoU}{57}{subsubsection.4.2.5.3}%
+\contentsline {subsubsection}{\numberline {4.2.5.4}Skrypt \texttt {bbox\_image.py} -- wizualizacja anotacji na obrazach}{57}{subsubsection.4.2.5.4}%
+\contentsline {chapter}{\numberline {5}Dyskusja rezultat\'ow i wnioski ko\'ncowe}{59}{chapter.5}%

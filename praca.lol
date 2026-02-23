@@ -33,8 +33,8 @@
 \contentsline {lstlisting}{\numberline {4.4}{\ignorespaces Wizualizacja wykrytych obiekt\'ow na ekranie}}{47}{lstlisting.4.4}%
 \contentsline {lstlisting}{\numberline {4.5}{\ignorespaces Obs\IeC {\l }uga zdarze\'n klawiatury w symulatorze}}{47}{lstlisting.4.5}%
 \contentsline {lstlisting}{\numberline {4.6}{\ignorespaces P\k etla g\IeC {\l }\'owna symulacji CARLA}}{48}{lstlisting.4.6}%
-\contentsline {lstlisting}{\numberline {4.7}{\ignorespaces Dodawanie obiektu do anotacji w \texttt {bounding\_boxes.py}}}{54}{lstlisting.4.7}%
-\contentsline {lstlisting}{\numberline {4.8}{\ignorespaces Struktura JSON z wynikami YOLO}}{54}{lstlisting.4.8}%
-\contentsline {lstlisting}{\numberline {4.9}{\ignorespaces Obliczanie IoU dla dw\'och ramek 2D}}{55}{lstlisting.4.9}%
-\contentsline {lstlisting}{\numberline {4.10}{\ignorespaces Rysowanie ramek na obrazie na podstawie pliku JSON}}{55}{lstlisting.4.10}%
+\contentsline {lstlisting}{\numberline {4.7}{\ignorespaces Dodawanie obiektu do anotacji w \texttt {bounding\_boxes.py}}}{55}{lstlisting.4.7}%
+\contentsline {lstlisting}{\numberline {4.8}{\ignorespaces Struktura JSON z wynikami YOLO}}{56}{lstlisting.4.8}%
+\contentsline {lstlisting}{\numberline {4.9}{\ignorespaces Obliczanie IoU dla dw\'och ramek 2D}}{57}{lstlisting.4.9}%
+\contentsline {lstlisting}{\numberline {4.10}{\ignorespaces Rysowanie ramek na obrazie na podstawie pliku JSON}}{57}{lstlisting.4.10}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

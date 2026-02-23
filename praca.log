@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.4)  17 FEB 2026 04:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.4)  23 FEB 2026 21:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1035,12 +1035,6 @@ Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count375
 Package tocbasic Info: omitting babel extension for `lol'
 (tocbasic)             because of missing \bbl@set@language on input line 29.
-
-
-[1
-
-{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/
-texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
 4.
 
@@ -1084,6 +1078,11 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 64.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
+[1
+
+{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/
+texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
+
 [2
 
 ] (./Streszczenie/Streszczenie.tex)
@@ -1101,19 +1100,24 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 
 
-[5] (./praca.lof)
+[5] (./praca.lof
+Underfull \vbox (badness 5756) has occurred while \output is active []
+
+
+
+[6])
 \tf@lof=\write7
 \openout7 = `praca.lof'.
 
 
 
-[6] (./praca.lot)
+[7] (./praca.lot)
 \tf@lot=\write8
 \openout8 = `praca.lot'.
 
 
 
-[7] (./praca.lol
+[8] (./praca.lol
 Overfull \hbox (4.39142pt too wide) in paragraph at lines 1--1
  [][] [][]\T1/lmr/m/n/12 Przykªadowy kod usta-wia-nia pa-ra-me-trów po-go-dy w 
 sy-mu-la-to-rze CAR- 
@@ -1121,7 +1125,7 @@ sy-mu-la-to-rze CAR-
 
 
 
-[8
+[9
 
 ])
 \tf@lol=\write9
@@ -1129,7 +1133,7 @@ sy-mu-la-to-rze CAR-
 
 
 
-[9] (./Rozdzial1/rozdzial1.tex
+[10] (./Rozdzial1/rozdzial1.tex
 Rozdzia\PlPrIeC {\l } 1.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 5.
@@ -1162,12 +1166,12 @@ File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ]
 
 [5]
-<Rysunki/Rozdzial2/map_1.png, id=530, 1626.075pt x 958.58125pt>
+<Rysunki/Rozdzial2/map_1.png, id=546, 1626.075pt x 958.58125pt>
 File: Rysunki/Rozdzial2/map_1.png Graphic file (type png)
 <use Rysunki/Rozdzial2/map_1.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/map_1.png  used on input line 43.
 (pdftex.def)             Requested size: 341.43306pt x 201.26411pt.
-<Rysunki/Rozdzial2/Town04.png, id=534, 1626.075pt x 958.58125pt>
+<Rysunki/Rozdzial2/Town04.png, id=550, 1626.075pt x 958.58125pt>
 File: Rysunki/Rozdzial2/Town04.png Graphic file (type png)
 <use Rysunki/Rozdzial2/Town04.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/Town04.png  used on input line 52.
@@ -1175,7 +1179,7 @@ Package pdftex.def Info: Rysunki/Rozdzial2/Town04.png  used on input line 52.
 
 
 [6 <./Rysunki/Rozdzial2/map_1.png> <./Rysunki/Rozdzial2/Town04.png>]
-<Rysunki/Rozdzial2/traffic.png, id=543, 1281.78876pt x 757.83125pt>
+<Rysunki/Rozdzial2/traffic.png, id=559, 1281.78876pt x 757.83125pt>
 File: Rysunki/Rozdzial2/traffic.png Graphic file (type png)
 <use Rysunki/Rozdzial2/traffic.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/traffic.png  used on input line 61.
@@ -1185,7 +1189,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 72--73
 
  []
 
-<Rysunki/Rozdzial2/collision_example.png, id=544, 1283.79625pt x 753.81625pt>
+<Rysunki/Rozdzial2/collision_example.png, id=560, 1283.79625pt x 753.81625pt>
 File: Rysunki/Rozdzial2/collision_example.png Graphic file (type png)
 <use Rysunki/Rozdzial2/collision_example.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/collision_example.png  used on input
@@ -1202,14 +1206,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--107
 
 
 [7 <./Rysunki/Rozdzial2/traffic.png>]
-<Rysunki/Rozdzial2/depth_camera_oryginal.png, id=550, 1286.8075pt x 761.84625pt
+<Rysunki/Rozdzial2/depth_camera_oryginal.png, id=566, 1286.8075pt x 761.84625pt
 >
 File: Rysunki/Rozdzial2/depth_camera_oryginal.png Graphic file (type png)
 <use Rysunki/Rozdzial2/depth_camera_oryginal.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/depth_camera_oryginal.png  used on i
 nput line 116.
 (pdftex.def)             Requested size: 341.43306pt x 202.14404pt.
-<Rysunki/Rozdzial2/depth_gray_scale.png, id=551, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/depth_gray_scale.png, id=567, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/depth_gray_scale.png Graphic file (type png)
 <use Rysunki/Rozdzial2/depth_gray_scale.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/depth_gray_scale.png  used on input 
@@ -1219,18 +1223,18 @@ line 125.
 
 [8 <./Rysunki/Rozdzial2/collision_example.png> <./Rysunki/Rozdzial2/depth_camer
 a_oryginal.png>]
-<Rysunki/Rozdzial2/depth_logarytmic.png, id=563, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/depth_logarytmic.png, id=579, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/depth_logarytmic.png Graphic file (type png)
 <use Rysunki/Rozdzial2/depth_logarytmic.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/depth_logarytmic.png  used on input 
 line 133.
 (pdftex.def)             Requested size: 341.43306pt x 202.14404pt.
-<Rysunki/Rozdzial2/gnss.png, id=564, 217.81375pt x 19.07124pt>
+<Rysunki/Rozdzial2/gnss.png, id=580, 217.81375pt x 19.07124pt>
 File: Rysunki/Rozdzial2/gnss.png Graphic file (type png)
 <use Rysunki/Rozdzial2/gnss.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/gnss.png  used on input line 143.
 (pdftex.def)             Requested size: 341.43306pt x 29.89503pt.
-<Rysunki/Rozdzial2/imu.png, id=565, 214.8025pt x 55.20625pt>
+<Rysunki/Rozdzial2/imu.png, id=581, 214.8025pt x 55.20625pt>
 File: Rysunki/Rozdzial2/imu.png Graphic file (type png)
 <use Rysunki/Rozdzial2/imu.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/imu.png  used on input line 152.
@@ -1239,7 +1243,7 @@ Package pdftex.def Info: Rysunki/Rozdzial2/imu.png  used on input line 152.
 
 [9 <./Rysunki/Rozdzial2/depth_gray_scale.png> <./Rysunki/Rozdzial2/depth_logary
 tmic.png> <./Rysunki/Rozdzial2/gnss.png>]
-<Rysunki/Rozdzial2/crossed_line.png, id=573, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/crossed_line.png, id=590, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/crossed_line.png Graphic file (type png)
 <use Rysunki/Rozdzial2/crossed_line.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/crossed_line.png  used on input line
@@ -1271,7 +1275,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--189
 
  []
 
-<Rysunki/Rozdzial2/lidar.png, id=581, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/lidar.png, id=597, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/lidar.png Graphic file (type png)
 <use Rysunki/Rozdzial2/lidar.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/lidar.png  used on input line 194.
@@ -1284,7 +1288,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [11{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/202
 5/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc
 /dvips/lm/lm-mathsy.enc}]
-<Rysunki/Rozdzial2/obstacle_detector.png, id=593, 214.8025pt x 241.90375pt>
+<Rysunki/Rozdzial2/obstacle_detector.png, id=609, 214.8025pt x 241.90375pt>
 File: Rysunki/Rozdzial2/obstacle_detector.png Graphic file (type png)
 <use Rysunki/Rozdzial2/obstacle_detector.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/obstacle_detector.png  used on input
@@ -1294,13 +1298,13 @@ Package pdftex.def Info: Rysunki/Rozdzial2/obstacle_detector.png  used on input
 
 [12 <./Rysunki/Rozdzial2/lidar.png> <./Rysunki/Rozdzial2/obstacle_detector.png>
 ]
-<Rysunki/Rozdzial2/radar_sensor.png, id=600, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/radar_sensor.png, id=616, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/radar_sensor.png Graphic file (type png)
 <use Rysunki/Rozdzial2/radar_sensor.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/radar_sensor.png  used on input line
  212.
 (pdftex.def)             Requested size: 426.79135pt x 252.67714pt.
-<Rysunki/Rozdzial2/soft_rain_sunset.png, id=601, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/soft_rain_sunset.png, id=617, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/soft_rain_sunset.png Graphic file (type png)
 <use Rysunki/Rozdzial2/soft_rain_sunset.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/soft_rain_sunset.png  used on input 
@@ -1312,7 +1316,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [13 <./Rysunki/Rozdzial2/radar_sensor.png>]
-<Rysunki/Rozdzial2/cloudy_night.png, id=614, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/cloudy_night.png, id=630, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/cloudy_night.png Graphic file (type png)
 <use Rysunki/Rozdzial2/cloudy_night.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/cloudy_night.png  used on input line
@@ -1322,13 +1326,13 @@ Package pdftex.def Info: Rysunki/Rozdzial2/cloudy_night.png  used on input line
 
 [14 <./Rysunki/Rozdzial2/soft_rain_sunset.png> <./Rysunki/Rozdzial2/cloudy_nigh
 t.png>]
-<Rysunki/Rozdzial2/hard_rain_noon.png, id=623, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/hard_rain_noon.png, id=639, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/hard_rain_noon.png Graphic file (type png)
 <use Rysunki/Rozdzial2/hard_rain_noon.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/hard_rain_noon.png  used on input li
 ne 266.
 (pdftex.def)             Requested size: 341.43306pt x 202.14404pt.
-<Rysunki/Rozdzial2/street_lights.png, id=624, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/street_lights.png, id=640, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/street_lights.png Graphic file (type png)
 <use Rysunki/Rozdzial2/street_lights.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/street_lights.png  used on input lin
@@ -1344,7 +1348,7 @@ e []\T1/lmr/m/n/12 i [][]\T1/lmtt/m/n/12 carla.Vehicle.set_light_state[]\T1/lmr
 /m/n/12 .
  []
 
-<Rysunki/Rozdzial2/vehicle_lights.png, id=632, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/vehicle_lights.png, id=649, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/vehicle_lights.png Graphic file (type png)
 <use Rysunki/Rozdzial2/vehicle_lights.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/vehicle_lights.png  used on input li
@@ -1377,7 +1381,7 @@ raz k¡-ta wi-dze-nia (FOV).
 [21]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 512.
-<Rysunki/Rozdzial2/diagram_manual_control.png, id=712, 1027.84pt x 1541.76pt>
+<Rysunki/Rozdzial2/diagram_manual_control.png, id=729, 1027.84pt x 1541.76pt>
 File: Rysunki/Rozdzial2/diagram_manual_control.png Graphic file (type png)
 <use Rysunki/Rozdzial2/diagram_manual_control.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/diagram_manual_control.png  used on 
@@ -1434,7 +1438,7 @@ rake
 
 [27]
 Rozdzia\PlPrIeC {\l } 3.
-<Rysunki/Rozdzial3/RCNN.png, id=794, 846.16125pt x 585.18625pt>
+<Rysunki/Rozdzial3/RCNN.png, id=811, 846.16125pt x 585.18625pt>
 File: Rysunki/Rozdzial3/RCNN.png Graphic file (type png)
 <use Rysunki/Rozdzial3/RCNN.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/RCNN.png  used on input line 12.
@@ -1444,7 +1448,7 @@ Package pdftex.def Info: Rysunki/Rozdzial3/RCNN.png  used on input line 12.
 [28
 
  <./Rysunki/Rozdzial3/RCNN.png>]
-<Rysunki/Rozdzial3/fastRCNN.png, id=803, 528.47438pt x 211.54031pt>
+<Rysunki/Rozdzial3/fastRCNN.png, id=819, 528.47438pt x 211.54031pt>
 File: Rysunki/Rozdzial3/fastRCNN.png Graphic file (type png)
 <use Rysunki/Rozdzial3/fastRCNN.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/fastRCNN.png  used on input line 30.
@@ -1453,13 +1457,13 @@ Package pdftex.def Info: Rysunki/Rozdzial3/fastRCNN.png  used on input line 30.
 
 
 [29 <./Rysunki/Rozdzial3/fastRCNN.png>]
-<Rysunki/Rozdzial3/fasterRCNN2.png, id=814, 932.48375pt x 793.96625pt>
+<Rysunki/Rozdzial3/fasterRCNN2.png, id=830, 932.48375pt x 793.96625pt>
 File: Rysunki/Rozdzial3/fasterRCNN2.png Graphic file (type png)
 <use Rysunki/Rozdzial3/fasterRCNN2.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/fasterRCNN2.png  used on input line 
 41.
 (pdftex.def)             Requested size: 341.43306pt x 290.70995pt.
-<Rysunki/Rozdzial3/ssd_architecture.png, id=815, 1104.125pt x 350.30875pt>
+<Rysunki/Rozdzial3/ssd_architecture.png, id=831, 1104.125pt x 350.30875pt>
 File: Rysunki/Rozdzial3/ssd_architecture.png Graphic file (type png)
 <use Rysunki/Rozdzial3/ssd_architecture.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/ssd_architecture.png  used on input 
@@ -1483,7 +1487,7 @@ omó-wio-nych ar-chi-tek-tur \T1/lmr/m/n/12 pod wzgl¦-
 
 
 [31]
-<Rysunki/Rozdzial3/cnn_structure.png, id=830, 585.18625pt x 205.76875pt>
+<Rysunki/Rozdzial3/cnn_structure.png, id=846, 585.18625pt x 205.76875pt>
 File: Rysunki/Rozdzial3/cnn_structure.png Graphic file (type png)
 <use Rysunki/Rozdzial3/cnn_structure.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/cnn_structure.png  used on input lin
@@ -1509,7 +1513,7 @@ Overfull \hbox (17.16772pt too wide) in paragraph at lines 191--192
 no-wi pod-sta-w¦ (back-bo-ne) YOLOv4. 
  []
 
-<Rysunki/Rozdzial3/yolov4_architecture.png, id=907, 833.1125pt x 243.91125pt>
+<Rysunki/Rozdzial3/yolov4_architecture.png, id=923, 833.1125pt x 243.91125pt>
 File: Rysunki/Rozdzial3/yolov4_architecture.png Graphic file (type png)
 <use Rysunki/Rozdzial3/yolov4_architecture.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/yolov4_architecture.png  used on inp
@@ -1522,7 +1526,7 @@ ut line 197.
 [37]
 
 [38]
-<Rysunki/Rozdzial3/yolo_test.png, id=945, 822.07124pt x 458.71375pt>
+<Rysunki/Rozdzial3/yolo_test.png, id=961, 822.07124pt x 458.71375pt>
 File: Rysunki/Rozdzial3/yolo_test.png Graphic file (type png)
 <use Rysunki/Rozdzial3/yolo_test.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/yolo_test.png  used on input line 30
@@ -1536,7 +1540,7 @@ Package pdftex.def Info: Rysunki/Rozdzial3/yolo_test.png  used on input line 30
 
 [41]
 Rozdzia\PlPrIeC {\l } 4.
-<Rysunki/Rozdzial4/sun10car20ppl1.png, id=986, 1197.47375pt x 676.5275pt>
+<Rysunki/Rozdzial4/sun10car20ppl1.png, id=1002, 1197.47375pt x 676.5275pt>
 File: Rysunki/Rozdzial4/sun10car20ppl1.png Graphic file (type png)
 <use Rysunki/Rozdzial4/sun10car20ppl1.png>
 Package pdftex.def Info: Rysunki/Rozdzial4/sun10car20ppl1.png  used on input li
@@ -1547,13 +1551,13 @@ ne 22.
 [42
 
 ]
-<Rysunki/Rozdzial4/night20car40ppl2.png, id=992, 1196.47pt x 672.5125pt>
+<Rysunki/Rozdzial4/night20car40ppl2.png, id=1008, 1196.47pt x 672.5125pt>
 File: Rysunki/Rozdzial4/night20car40ppl2.png Graphic file (type png)
 <use Rysunki/Rozdzial4/night20car40ppl2.png>
 Package pdftex.def Info: Rysunki/Rozdzial4/night20car40ppl2.png  used on input 
 line 30.
 (pdftex.def)             Requested size: 341.43306pt x 191.91432pt.
-<Rysunki/Rozdzial4/rainsun10car20ppl3.png, id=993, 1201.48875pt x 676.5275pt>
+<Rysunki/Rozdzial4/rainsun10car20ppl3.png, id=1009, 1201.48875pt x 676.5275pt>
 File: Rysunki/Rozdzial4/rainsun10car20ppl3.png Graphic file (type png)
 <use Rysunki/Rozdzial4/rainsun10car20ppl3.png>
 Package pdftex.def Info: Rysunki/Rozdzial4/rainsun10car20ppl3.png  used on inpu
@@ -1579,8 +1583,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [45]
 
 [46]
-
-[47]
 Overfull \hbox (22.4566pt too wide) in paragraph at lines 215--216
 []\T1/lmr/m/n/12 Wszystkie po-wy»-sze funk-cje zo-sta-ªy zin-te-gro-wa-ne w gªó
 w-nej p¦-tli gry \T1/lmtt/m/n/12 game_loop()\T1/lmr/m/n/12 ,
@@ -1588,10 +1590,12 @@ w-nej p¦-tli gry \T1/lmtt/m/n/12 game_loop()\T1/lmr/m/n/12 ,
 
 
 
+[47]
+
 [48]
 
 [49]
-<Rysunki/Rozdzial4/town_03_cars_200_clear_noon_d75_scen_01.png, id=1059, 1284.8
+<Rysunki/Rozdzial4/town_03_cars_200_clear_noon_d75_scen_01.png, id=1075, 1284.8
 pt x 722.7pt>
 File: Rysunki/Rozdzial4/town_03_cars_200_clear_noon_d75_scen_01.png Graphic fil
 e (type png)
@@ -1599,7 +1603,7 @@ e (type png)
 Package pdftex.def Info: Rysunki/Rozdzial4/town_03_cars_200_clear_noon_d75_scen
 _01.png  used on input line 310.
 (pdftex.def)             Requested size: 341.43306pt x 192.05493pt.
-<Rysunki/Rozdzial4/town_03_cars_200_rainy_night_d75_scen_01.png, id=1060, 1284.
+<Rysunki/Rozdzial4/town_03_cars_200_rainy_night_d75_scen_01.png, id=1076, 1284.
 8pt x 722.7pt>
 File: Rysunki/Rozdzial4/town_03_cars_200_rainy_night_d75_scen_01.png Graphic fi
 le (type png)
@@ -1613,7 +1617,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [50 <./Rysunki/Rozdzial4/town_03_cars_200_clear_noon_d75_scen_01.png>]
-<Rysunki/Rozdzial4/town_04_cars_200_hard_rain_noon_d75_scen_01.png, id=1067, 12
+<Rysunki/Rozdzial4/town_04_cars_200_hard_rain_noon_d75_scen_01.png, id=1083, 12
 84.8pt x 722.7pt>
 File: Rysunki/Rozdzial4/town_04_cars_200_hard_rain_noon_d75_scen_01.png Graphic
  file (type png)
@@ -1621,7 +1625,7 @@ File: Rysunki/Rozdzial4/town_04_cars_200_hard_rain_noon_d75_scen_01.png Graphic
 Package pdftex.def Info: Rysunki/Rozdzial4/town_04_cars_200_hard_rain_noon_d75_
 scen_01.png  used on input line 342.
 (pdftex.def)             Requested size: 341.43306pt x 192.05493pt.
-<Rysunki/Rozdzial4/town_04_cars_200_clear_night_d75_scen_01.png, id=1068, 1284.
+<Rysunki/Rozdzial4/town_04_cars_200_clear_night_d75_scen_01.png, id=1084, 1284.
 8pt x 722.7pt>
 File: Rysunki/Rozdzial4/town_04_cars_200_clear_night_d75_scen_01.png Graphic fi
 le (type png)
@@ -1644,19 +1648,57 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [52 <./Rysunki/Rozdzial4/town_04_cars_200_clear_night_d75_scen_01.png>]
+<Rysunki/Rozdzial4/town03_clear_night_carla.png, id=1098, 1284.8pt x 722.7pt>
+File: Rysunki/Rozdzial4/town03_clear_night_carla.png Graphic file (type png)
+<use Rysunki/Rozdzial4/town03_clear_night_carla.png>
+Package pdftex.def Info: Rysunki/Rozdzial4/town03_clear_night_carla.png  used o
+n input line 410.
+(pdftex.def)             Requested size: 341.43306pt x 192.05493pt.
+<Rysunki/Rozdzial4/town03_clear_night_yolo.png, id=1099, 1284.8pt x 722.7pt>
+File: Rysunki/Rozdzial4/town03_clear_night_yolo.png Graphic file (type png)
+<use Rysunki/Rozdzial4/town03_clear_night_yolo.png>
+Package pdftex.def Info: Rysunki/Rozdzial4/town03_clear_night_yolo.png  used on
+ input line 417.
+(pdftex.def)             Requested size: 341.43306pt x 192.05493pt.
 
-[53]
+Underfull \vbox (badness 7468) has occurred while \output is active []
+
+
+
+[53 <./Rysunki/Rozdzial4/town03_clear_night_carla.png (PNG copy)>]
+<Rysunki/Rozdzial4/town03_hard_rain_noon_carla.png, id=1104, 1284.8pt x 722.7pt
+>
+File: Rysunki/Rozdzial4/town03_hard_rain_noon_carla.png Graphic file (type png)
+
+<use Rysunki/Rozdzial4/town03_hard_rain_noon_carla.png>
+Package pdftex.def Info: Rysunki/Rozdzial4/town03_hard_rain_noon_carla.png  use
+d on input line 426.
+(pdftex.def)             Requested size: 341.43306pt x 192.05493pt.
+<Rysunki/Rozdzial4/town03_hard_rain_noon_yolo.png, id=1105, 1284.8pt x 722.7pt>
+
+File: Rysunki/Rozdzial4/town03_hard_rain_noon_yolo.png Graphic file (type png)
+<use Rysunki/Rozdzial4/town03_hard_rain_noon_yolo.png>
+Package pdftex.def Info: Rysunki/Rozdzial4/town03_hard_rain_noon_yolo.png  used
+ on input line 433.
+(pdftex.def)             Requested size: 341.43306pt x 192.05493pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[54 <./Rysunki/Rozdzial4/town03_clear_night_yolo.png (PNG copy)> <./Rysunki/Roz
+dzial4/town03_hard_rain_noon_carla.png (PNG copy)>]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 414.
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 420.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 447.
 
 
-[54]) (./Rozdzial5/rozdzial5.tex
+[55 <./Rysunki/Rozdzial4/town03_hard_rain_noon_yolo.png (PNG copy)>]
 
-[55]
+[56]) (./Rozdzial5/rozdzial5.tex
 
-[56]
+[57]
+
+[58]
 Rozdzia\PlPrIeC {\l } 5.
 
 Overfull \hbox (5.82852pt too wide) in paragraph at lines 18--19
@@ -1666,7 +1708,7 @@ bar-dzo do-brze spraw-
 
 
 
-[57
+[59
 
 ]
 Overfull \hbox (1.52234pt too wide) in paragraph at lines 43--44
@@ -1676,15 +1718,15 @@ Overfull \hbox (1.52234pt too wide) in paragraph at lines 43--44
 
 
 
-[58]) (./praca.bbl
+[60]) (./praca.bbl
 
-[59]
+[61]
 
-[60
+[62
 
 ])
 
-[61] (./praca.aux)
+[63] (./praca.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1697,11 +1739,11 @@ Package rerunfilecheck Info: File `praca.out' has not changed.
 (rerunfilecheck)             Checksum: E0262CCAA592BAE19E587B6083A9671E;13713.
  ) 
 Here is how much of TeX's memory you used:
- 26206 strings out of 473190
- 465131 string characters out of 5719980
- 1282853 words of memory out of 5000000
- 48515 multiletter control sequences out of 15000+600000
- 638606 words of font info for 97 fonts, out of 8000000 for 9000
+ 26244 strings out of 473190
+ 466835 string characters out of 5719980
+ 1285546 words of memory out of 5000000
+ 48545 multiletter control sequences out of 15000+600000
+ 638288 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  115i,14n,110p,2379b,2174s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025
@@ -1718,10 +1760,10 @@ c/lm/lmri12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c
 mf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type
 1/public/lm/lmtt12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt8.
 pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on praca.pdf (70 pages, 27702828 bytes).
+Output written on praca.pdf (73 pages, 30857292 bytes).
 PDF statistics:
- 1390 PDF objects out of 1440 (max. 8388607)
- 1197 compressed objects within 12 object streams
- 469 named destinations out of 1000 (max. 500000)
- 614 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1423 PDF objects out of 1440 (max. 8388607)
+ 1222 compressed objects within 13 object streams
+ 477 named destinations out of 1000 (max. 500000)
+ 634 words of extra memory for PDF output out of 10000 (max. 10000000)
 
