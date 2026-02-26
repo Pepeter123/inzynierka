@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.4)  23 FEB 2026 21:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.4)  24 FEB 2026 11:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -926,15 +926,6 @@ LaTeX Warning: Label `fig:przyklad3D' multiply defined.
 
 LaTeX Warning: Label `fig:przyklad3D' multiply defined.
 
-
-LaTeX Warning: Label `fig:przyklad3D' multiply defined.
-
-
-LaTeX Warning: Label `fig:przyklad3D' multiply defined.
-
-
-LaTeX Warning: Label `fig:przyklad3D' multiply defined.
-
 )
 \openout1 = `praca.aux'.
 
@@ -1036,42 +1027,42 @@ Package caption Info: End \AtBeginDocument code.
 Package tocbasic Info: omitting babel extension for `lol'
 (tocbasic)             because of missing \bbl@set@language on input line 29.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
-4.
+2.
 
 (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
-4.
+2.
 
 (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-64.
+62.
 
 (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-64.
+62.
 
 (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 64.
+(Font)              <12> on input line 62.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 64.
+(Font)              <8> on input line 62.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 64.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 64.
+(Font)              <6> on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
 
 
 (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 64.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
 
 
 (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1252,33 +1243,26 @@ Package pdftex.def Info: Rysunki/Rozdzial2/crossed_line.png  used on input line
 
 
 [10 <./Rysunki/Rozdzial2/imu.png> <./Rysunki/Rozdzial2/crossed_line.png>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 175.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 175.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 175.
-
-Overfull \hbox (47.53326pt too wide) in paragraph at lines 188--189
+Overfull \hbox (47.53326pt too wide) in paragraph at lines 191--192
 \T1/lmr/m/n/12 ªu. Praw-do-po-do-bie«-stwo to de-fi-nio-wa-ne jest przez dwa pa
 -ra-me-try: [][]\T1/lmtt/m/n/12 dropoff_zero_intensity[]\T1/lmr/m/n/12 ,
  []
 
 
-Overfull \hbox (9.76909pt too wide) in paragraph at lines 188--189
+Overfull \hbox (9.76909pt too wide) in paragraph at lines 191--192
 [][]\T1/lmtt/m/n/12 dropoff_intensity_limit[]\T1/lmr/m/n/12 , wy-zna-cza-j¡-cy 
 próg in-ten-syw-no-±ci, po-wy-»ej któ-re-go punk-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--189
+Underfull \hbox (badness 10000) in paragraph at lines 191--192
 
  []
 
 <Rysunki/Rozdzial2/lidar.png, id=597, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/lidar.png Graphic file (type png)
 <use Rysunki/Rozdzial2/lidar.png>
-Package pdftex.def Info: Rysunki/Rozdzial2/lidar.png  used on input line 194.
+Package pdftex.def Info: Rysunki/Rozdzial2/lidar.png  used on input line 197.
 (pdftex.def)             Requested size: 426.79135pt x 252.67714pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1288,27 +1272,27 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [11{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/202
 5/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc
 /dvips/lm/lm-mathsy.enc}]
-<Rysunki/Rozdzial2/obstacle_detector.png, id=609, 214.8025pt x 241.90375pt>
+<Rysunki/Rozdzial2/obstacle_detector.png, id=610, 214.8025pt x 241.90375pt>
 File: Rysunki/Rozdzial2/obstacle_detector.png Graphic file (type png)
 <use Rysunki/Rozdzial2/obstacle_detector.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/obstacle_detector.png  used on input
- line 203.
+ line 206.
 (pdftex.def)             Requested size: 170.71652pt x 192.25719pt.
 
 
 [12 <./Rysunki/Rozdzial2/lidar.png> <./Rysunki/Rozdzial2/obstacle_detector.png>
 ]
-<Rysunki/Rozdzial2/radar_sensor.png, id=616, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/radar_sensor.png, id=617, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/radar_sensor.png Graphic file (type png)
 <use Rysunki/Rozdzial2/radar_sensor.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/radar_sensor.png  used on input line
- 212.
+ 215.
 (pdftex.def)             Requested size: 426.79135pt x 252.67714pt.
-<Rysunki/Rozdzial2/soft_rain_sunset.png, id=617, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/soft_rain_sunset.png, id=618, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/soft_rain_sunset.png Graphic file (type png)
 <use Rysunki/Rozdzial2/soft_rain_sunset.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/soft_rain_sunset.png  used on input 
-line 238.
+line 241.
 (pdftex.def)             Requested size: 426.79135pt x 252.67714pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1316,48 +1300,48 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [13 <./Rysunki/Rozdzial2/radar_sensor.png>]
-<Rysunki/Rozdzial2/cloudy_night.png, id=630, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/cloudy_night.png, id=631, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/cloudy_night.png Graphic file (type png)
 <use Rysunki/Rozdzial2/cloudy_night.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/cloudy_night.png  used on input line
- 252.
+ 255.
 (pdftex.def)             Requested size: 341.43306pt x 202.14404pt.
 
 
 [14 <./Rysunki/Rozdzial2/soft_rain_sunset.png> <./Rysunki/Rozdzial2/cloudy_nigh
 t.png>]
-<Rysunki/Rozdzial2/hard_rain_noon.png, id=639, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/hard_rain_noon.png, id=640, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/hard_rain_noon.png Graphic file (type png)
 <use Rysunki/Rozdzial2/hard_rain_noon.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/hard_rain_noon.png  used on input li
-ne 266.
+ne 269.
 (pdftex.def)             Requested size: 341.43306pt x 202.14404pt.
-<Rysunki/Rozdzial2/street_lights.png, id=640, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/street_lights.png, id=641, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/street_lights.png Graphic file (type png)
 <use Rysunki/Rozdzial2/street_lights.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/street_lights.png  used on input lin
-e 280.
+e 283.
 (pdftex.def)             Requested size: 341.43306pt x 202.14404pt.
 
 
 [15 <./Rysunki/Rozdzial2/hard_rain_noon.png> <./Rysunki/Rozdzial2/street_lights
 .png>]
-Overfull \hbox (20.46347pt too wide) in paragraph at lines 292--293
+Overfull \hbox (20.46347pt too wide) in paragraph at lines 295--296
 \T1/lmr/m/n/12 po-mo-c¡ me-tod [][]\T1/lmtt/m/n/12 carla.Vehicle.get_light_stat
 e []\T1/lmr/m/n/12 i [][]\T1/lmtt/m/n/12 carla.Vehicle.set_light_state[]\T1/lmr
 /m/n/12 .
  []
 
-<Rysunki/Rozdzial2/vehicle_lights.png, id=649, 1286.8075pt x 761.84625pt>
+<Rysunki/Rozdzial2/vehicle_lights.png, id=650, 1286.8075pt x 761.84625pt>
 File: Rysunki/Rozdzial2/vehicle_lights.png Graphic file (type png)
 <use Rysunki/Rozdzial2/vehicle_lights.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/vehicle_lights.png  used on input li
-ne 296.
+ne 299.
 (pdftex.def)             Requested size: 341.43306pt x 202.14404pt.
 
 
 [16 <./Rysunki/Rozdzial2/vehicle_lights.png>]
-Overfull \hbox (11.04622pt too wide) in paragraph at lines 344--345
+Overfull \hbox (11.04622pt too wide) in paragraph at lines 347--348
 []\T1/lmtt/m/n/12 location\T1/lmr/m/n/12 : Okre-±la prze-su-ni¦-cie ±rod-ka geo
 -me-trycz-ne-go pro-sto-pa-dªo-±cia-nu wzgl¦-
  []
@@ -1365,7 +1349,7 @@ Overfull \hbox (11.04622pt too wide) in paragraph at lines 344--345
 
 
 [17]
-Overfull \hbox (5.56734pt too wide) in paragraph at lines 376--377
+Overfull \hbox (5.56734pt too wide) in paragraph at lines 379--380
 \T1/lmr/m/n/12 we-wn¦trz-nych), któ-ra za-le-»y od roz-dziel-czo-±ci ob-ra-zu o
 raz k¡-ta wi-dze-nia (FOV). 
  []
@@ -1380,12 +1364,12 @@ raz k¡-ta wi-dze-nia (FOV).
 
 [21]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 512.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 515.
 <Rysunki/Rozdzial2/diagram_manual_control.png, id=729, 1027.84pt x 1541.76pt>
 File: Rysunki/Rozdzial2/diagram_manual_control.png Graphic file (type png)
 <use Rysunki/Rozdzial2/diagram_manual_control.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/diagram_manual_control.png  used on 
-input line 517.
+input line 520.
 (pdftex.def)             Requested size: 298.75264pt x 448.13406pt.
 
 
@@ -1394,23 +1378,23 @@ input line 517.
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 543.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 546.
 
 
 [23]
-Overfull \hbox (4.59058pt too wide) in paragraph at lines 566--570
+Overfull \hbox (4.59058pt too wide) in paragraph at lines 569--573
 []\T1/lmr/bx/n/12 Inicjalizacja kom-po-nen-tów\T1/lmr/m/n/12 : two-rze-ni s¡ kl
 ient CAR-LA, obiekt ±wia-ta [][]\T1/lmtt/m/n/12 world[]\T1/lmr/m/n/12 ,
  []
 
 
-Overfull \hbox (7.09975pt too wide) in paragraph at lines 575--580
+Overfull \hbox (7.09975pt too wide) in paragraph at lines 578--583
 []\T1/lmr/bx/n/12 Przetwarzanie wej-±cia u»yt-kow-ni-ka\T1/lmr/m/n/12 : funk-cj
 a [][]\T1/lmtt/m/n/12 parse_control_input(keys)
  []
 
 
-Overfull \hbox (0.57497pt too wide) in paragraph at lines 601--602
+Overfull \hbox (0.57497pt too wide) in paragraph at lines 604--605
 []\T1/lmr/m/n/12 W po-cz¡t-ko-wej fa-zie prze-pro-wa-dza-nych eks-pe-ry-men-tów
  tryb asyn-chro-nicz-ny oka-
  []
@@ -1420,13 +1404,13 @@ Overfull \hbox (0.57497pt too wide) in paragraph at lines 601--602
 [24]
 
 [25]
-Overfull \hbox (22.70657pt too wide) in paragraph at lines 650--651
+Overfull \hbox (22.70657pt too wide) in paragraph at lines 653--654
 \T1/lmr/m/n/12 CAR-LA jest ste-ro-wa-nie przy po-mo-cy kla-wia-tu-ry. W tym ce-
 lu skrypt \T1/lmtt/m/n/12 manual_control.py
  []
 
 
-Overfull \hbox (4.2219pt too wide) in paragraph at lines 675--676
+Overfull \hbox (4.2219pt too wide) in paragraph at lines 678--679
 \T1/lmr/m/n/12 wu-je pa-ra-me-try ste-ru-j¡-ce po-jaz-dem, ta-kie jak [][]\T1/l
 mtt/m/n/12 throttle []\T1/lmr/m/n/12 (przy-spie-sze-nie), [][]\T1/lmtt/m/n/12 b
 rake
@@ -1711,7 +1695,7 @@ bar-dzo do-brze spraw-
 [59
 
 ]
-Overfull \hbox (1.52234pt too wide) in paragraph at lines 43--44
+Overfull \hbox (1.52234pt too wide) in paragraph at lines 51--52
 []\T1/lmr/m/n/12 Wyniki te-sto-wa-ne-go sys-te-mu zo-sta-ªy przed-sta-wio-ne na
  pod-sta-wie zrzu-tów ekra-
  []
@@ -1739,31 +1723,31 @@ Package rerunfilecheck Info: File `praca.out' has not changed.
 (rerunfilecheck)             Checksum: E0262CCAA592BAE19E587B6083A9671E;13713.
  ) 
 Here is how much of TeX's memory you used:
- 26244 strings out of 473190
- 466835 string characters out of 5719980
- 1285546 words of memory out of 5000000
- 48545 multiletter control sequences out of 15000+600000
- 638288 words of font info for 96 fonts, out of 8000000 for 9000
+ 26228 strings out of 473190
+ 466670 string characters out of 5719980
+ 1285762 words of memory out of 5000000
+ 48532 multiletter control sequences out of 15000+600000
+ 626239 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  115i,14n,110p,2379b,2174s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025
 /texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/
 type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lm
-mi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texli
-ve/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/
-fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/
-lm/lmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/tex
-live/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2025/texmf-dist
-/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publi
-c/lm/lmri12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c
-:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2025/tex
-mf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type
-1/public/lm/lmtt12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt8.
-pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on praca.pdf (73 pages, 30857292 bytes).
+mi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texliv
+e/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/f
+onts/type1/public/lm/lmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/l
+m/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texli
+ve/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2025/texmf-dist
+/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publi
+c/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:
+/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2025/texm
+f-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1
+/public/lm/lmtt12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt8.p
+fb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
+Output written on praca.pdf (73 pages, 30856581 bytes).
 PDF statistics:
- 1423 PDF objects out of 1440 (max. 8388607)
+ 1422 PDF objects out of 1440 (max. 8388607)
  1222 compressed objects within 13 object streams
- 477 named destinations out of 1000 (max. 500000)
+ 479 named destinations out of 1000 (max. 500000)
  634 words of extra memory for PDF output out of 10000 (max. 10000000)
 

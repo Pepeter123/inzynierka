@@ -15,7 +15,9 @@ Wszystkie cele okreœlone w zakresie pracy zosta³y zrealizowane:
 \subsection*{Wnioski}
 Integracja detektorów obiektów z symulatorami stanowi obecnie nieod³¹czny element testowania algorytmów autonomicznej jazdy – zarówno na etapie prototypowania, jak i walidacji modeli w œrodowiskach kontrolowanych.
 
-Przeprowadzone eksperymenty wykaza³y, ¿e model YOLOv4 bardzo dobrze sprawdza siê w zadaniu wykrywania obiektów w czasie rzeczywistym. Uzyskane rezultaty by³y zadowalaj¹ce zarówno pod wzglêdem liczby wykrytych obiektów, jak i ich klasyfikacji. Model skutecznie identyfikowa³ pojazdy, ludzi oraz znaki drogowe w ró¿nych warunkach oœwietleniowych i pogodowych.
+Przeprowadzone eksperymenty wykaza³y, ¿e model YOLOv4 bardzo dobrze sprawdza siê w zadaniu wykrywania obiektów w czasie rzeczywistym. Uzyskane rezultaty by³y zadowalaj¹ce zarówno pod wzglêdem liczby wykrytych obiektów, jak i ich klasyfikacji. Model skutecznie identyfikowa³ pojazdy, ludzi oraz znaki drogowe w ró¿nych warunkach oœwietleniowych i pogodowych. 
+
+Dodatkowo, w eksperymencie offline z wykorzystaniem metryki IoU zweryfikowano, w jakim stopniu ramki detekcji pokrywaj¹ siê z anotacjami referencyjnymi generowanymi przez symulator CARLA.
 
 Na tle innych podejœæ, np. SSD czy Faster R-CNN, YOLOv4 wyró¿nia siê znacznie wy¿sz¹ prêdkoœci¹ dzia³ania, co ma kluczowe znaczenie w kontekœcie pojazdów autonomicznych. Choæ dok³adnoœæ detekcji mo¿e byæ nieco ni¿sza ni¿ w przypadku modeli bardziej z³o¿onych, to kompromis pomiêdzy szybkoœci¹ a precyzj¹ zosta³ zachowany na bardzo dobrym poziomie, co potwierdza literatura przedmiotu oraz wyniki innych badaczy w tej dziedzinie.
 
@@ -31,12 +33,18 @@ Na podstawie przeprowadzonych testów mo¿na sformu³owaæ nastêpuj¹ce wnioski:
 	\item Wprowadzenie mo¿liwoœci filtrowania klas oraz dynamicznego renderowania wyników na ekranie znacz¹co poprawia czytelnoœæ systemu i u³atwia analizê zachowania modelu.
 	
 	\item Otrzymane rezultaty w pe³ni uzasadniaj¹ osi¹gniêcie za³o¿onych celów, gdy¿ zaprojektowany system wykrywa obiekty z du¿¹ dok³adnoœci¹ i niskim opóŸnieniem, co odpowiada wymaganiom stawianym przed systemami percepcji w pojazdach autonomicznych.
+	
+	\item Eksperyment offline z metryk¹ IoU potwierdzi³ poprawnoœæ detekcji
+	ramkowej w typowych warunkach dziennych oraz ujawni³ spadek zgodnoœci
+	anotacji w scenach nocnych i podczas intensywnych opadów, co jest
+	spójne z obserwacjami jakoœciowymi przedstawionymi w rozdziale czwartym.
 \end{enumerate}
 
 Mimo pozytywnych rezultatów, nale¿y wskazaæ kilka ograniczeñ i mo¿liwoœci ich eliminacji:
 
 \begin{itemize}
-	\item Model YOLOv4 nie zawsze poprawnie rozpoznaje obiekty w du¿ym oddaleniu lub w s³abych warunkach oœwietleniowych, co mo¿e wynikaæ z ograniczeñ danych treningowych lub niskiej rozdzielczoœci obrazu.
+	\item Model YOLOv4 nie zawsze poprawnie rozpoznaje obiekty w du¿ym oddaleniu lub w s³abych warunkach oœwietleniowych,co zosta³o równie¿ odzwierciedlone w ni¿szych wartoœciach IoU
+	dla scen nocnych oraz z intensywnym deszczem w eksperymencie offline.
 	
 	\item Detekcja odbywa siê wy³¹cznie na podstawie danych wizyjnych – system móg³by zostaæ ulepszony poprzez fuzjê danych z innych sensorów (np. LIDAR, radar), co poprawi³oby jego odpornoœæ na b³êdy w trudnych warunkach.
 	
@@ -44,7 +52,7 @@ Mimo pozytywnych rezultatów, nale¿y wskazaæ kilka ograniczeñ i mo¿liwoœci ich el
 	
 	\item Testy przeprowadzono wy³¹cznie w œrodowisku symulacyjnym, które – mimo wysokiego realizmu – nie oddaje w pe³ni nieprzewidywalnoœci œwiata rzeczywistego. Wdro¿enie systemu na realnych danych wymaga³oby dalszego dostrojenia i oceny.
 	
-	\item Z powodu ograniczeñ sprzêtowych system zosta³ przetestowany w nieco gorszych warunkach, ni¿ zalecanych przez sam symulator CARLA. Dodatkowo system do detekcji obiektów YOLO pobiera kolejne zasoby sprzêtowy na skutek czego w gorszych warunkach pogodowych, takich jak noc czy deszcz oraz przy du¿ym natê¿eniu ruchu iloœæ klatek by³a bardzo niska.
+	\item Z powodu ograniczeñ sprzêtowych system zosta³ przetestowany w nieco gorszych warunkach, ni¿ zalecanych przez sam symulator CARLA. Dodatkowo system do detekcji obiektów YOLO pobiera kolejne zasoby sprzêtowe na skutek czego w gorszych warunkach pogodowych, takich jak noc czy deszcz oraz przy du¿ym natê¿eniu ruchu, iloœæ klatek na sekundê by³a bardzo niska.
 \end{itemize}
 
 \subsection*{Mo¿liwy rozwój systemu}

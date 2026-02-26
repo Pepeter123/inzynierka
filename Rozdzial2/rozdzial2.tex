@@ -141,7 +141,7 @@ Sensor GNSS (Global Navigation Satellite Systems) - podaje aktualn¹ pozycjê GNSS
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{Rysunki/Rozdzial2/gnss.png}
-	\label{fig:przyklad3D}
+	\label{fig:gnss}
 	\caption[Sensor GNSS]{Widok sensora GNSS.}
 \end{figure} 
 
@@ -150,7 +150,7 @@ Sensor IMU dostarcza natomiast miary, które akcelerometr, ¿yroskop i kompas mog³
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{Rysunki/Rozdzial2/imu.png}
-	\label{fig:przyklad3D}
+	\label{fig:imu}
 	\caption[Sensor IMU]{Widok sensora IMU.}
 \end{figure} 
 
@@ -162,7 +162,7 @@ Wyjœcie pobiera listê oznaczeñ przecinaj¹cych siê pasów: obliczenia s¹ wykonywan
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{Rysunki/Rozdzial2/crossed_line.png}
-	\label{fig:przyklad3D}
+	\label{fig:crossedline}
 	\caption[Sensor pDrzeciêcia linii]{Obraz przyk³adu przeciêcia linii.}
 \end{figure} 
 
@@ -172,13 +172,16 @@ Pomiar LIDAR-owy zawiera paczkê z wszystkimi punktami wygenerowanymi w przedzial
 
 Informacja z pomiaru LIDAR-owego jest zakodowana w postaci punktów 4D. Pierwsze trzy z nich to punkty przestrzenne we wspó³rzêdnych xyz, a ostatni to straty intensywnoœci podczas jazdy. Intensywnoœæ ta jest obliczana wed³ug nastêpuj¹cego wzoru:
 
-\centerline{\large {$ I/I_0 = e^{-a*d}$ }}
+\begin{equation}
+	\frac{I}{I_0} = e^{-a \cdot d}
+\end{equation}
 
 Gdzie:
-\begin{itemize}
-	\item $a$ -- Oznacza wspó³czynnik t³umienia. Mo¿e on zale¿eæ od d³ugoœci fali czujnika oraz warunków atmosferycznych. Mo¿na go zmodyfikowaæ za pomoc¹ atrybutu LIDAR \verb|atmosphere_attenuation_rate|.
-	\item $b$ -- Odleg³oœæ od punktu trafienia do czujnika.
-\end{itemize}
+
+\begin{description}
+	\item[$a$] -- Oznacza wspó³czynnik t³umienia. Mo¿e on zale¿eæ od d³ugoœci fali czujnika oraz warunków atmosferycznych. Mo¿na go zmodyfikowaæ za pomoc¹ atrybutu LIDAR \verb|atmosphere_attenuation_rate|.
+	\item[$b$] -- Odleg³oœæ od punktu trafienia do czujnika.
+\end{description}
 
 W celu zwiêkszenia realizmu symulacji LIDAR umo¿liwia losowe odrzucanie punktów chmury (general drop-off), co pozwala modelowaæ straty pomiarowe oraz poprawiæ wydajnoœæ obliczeniow¹. Ustawienie parametru na wartoœæ 0,5 powoduje odrzucenie 50\% punktów.
 \begin{lstlisting}[style=praca]
